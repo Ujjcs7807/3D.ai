@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D.AI — Build Your World</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07050f; --bg2: #0d0a1a;
+  --card: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.08);
+  --border-glow: rgba(99,102,241,0.35); --text: #f1f0f7; --text2: #8b87a8; --text3: #5f5b7a;
+  --accent: #6366f1; --accent2: #a78bfa; --cyan: #22d3ee; --green: #10b981; --nav: rgba(7,5,15,0.8);
+}
+[data-theme="cyber"] {
+  --bg:#000d1a;--bg2:#001428;--card:rgba(0,240,255,0.04);--border:rgba(0,240,255,0.1);
+  --border-glow:rgba(0,240,255,0.4);--text:#e0f8ff;--text2:#5fa8bc;--text3:#2d6070;
+  --accent:#00c8ff;--accent2:#00eeff;--cyan:#00eeff;--green:#00ff99;--nav:rgba(0,13,26,0.88);
+}
+[data-theme="light"] {
+  --bg:#f5f6fa;--bg2:#eceef5;--card:rgba(0,0,0,0.04);--border:rgba(0,0,0,0.08);
+  --border-glow:rgba(99,102,241,0.3);--text:#1a1830;--text2:#6b6888;--text3:#aaa8c0;
+  --accent:#6366f1;--accent2:#7c73f5;--cyan:#2563eb;--green:#059669;--nav:rgba(245,246,250,0.9);
+}
+[data-theme="neon"] {
+  --bg:#030d00;--bg2:#071200;--card:rgba(0,255,80,0.04);--border:rgba(0,255,80,0.1);
+  --border-glow:rgba(0,255,80,0.4);--text:#d4ffdc;--text2:#4a9055;--text3:#2a5030;
+  --accent:#00e64d;--accent2:#39ff6e;--cyan:#39ff6e;--green:#ffe600;--nav:rgba(3,13,0,0.9);
+}
+[data-theme="rose"] {
+  --bg:#100008;--bg2:#180010;--card:rgba(255,50,120,0.05);--border:rgba(255,50,120,0.12);
+  --border-glow:rgba(255,50,120,0.4);--text:#ffe8f2;--text2:#b06080;--text3:#703050;
+  --accent:#ff2d78;--accent2:#ff72aa;--cyan:#ff72aa;--green:#ff9900;--nav:rgba(16,0,8,0.9);
+}
+/* Theme dropdown */
+.theme-wrap{position:relative;}
+.theme-toggle-btn{background:var(--card);border:1px solid var(--border);color:var(--text2);
+  padding:7px 14px;border-radius:8px;font-size:0.82rem;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.theme-toggle-btn:hover{border-color:var(--border-glow);color:var(--text);}
+.theme-drop{position:absolute;top:calc(100% + 8px);right:0;background:var(--bg2);
+  border:1px solid var(--border);border-radius:10px;padding:6px;min-width:165px;
+  display:none;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.theme-drop.open{display:block;}
+.t-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;
+  cursor:pointer;font-size:0.84rem;font-weight:500;color:var(--text2);transition:all 0.18s;}
+.t-opt:hover,.t-opt.active{background:var(--card);color:var(--text);}
+.t-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* ── CANVAS ── */
+#c { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 62px;
+  background: var(--nav); backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Orbitron', monospace; font-size: 1.3rem; font-weight: 900;
+  color: var(--text); letter-spacing: 1px;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--text2); text-decoration: none; font-size: 0.88rem;
+  font-weight: 500; transition: color 0.2s; letter-spacing: 0.03em;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; gap: 0.6rem; align-items: center; }
+
+.btn { cursor: pointer; font-family: 'Inter', sans-serif; border: none; transition: all 0.25s; }
+.btn-ghost {
+  background: transparent; color: var(--text2); border: 1px solid var(--border);
+  padding: 7px 18px; border-radius: 8px; font-size: 0.84rem; font-weight: 500;
+}
+.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.btn-accent {
+  background: var(--accent); color: #fff;
+  padding: 8px 20px; border-radius: 8px; font-size: 0.84rem; font-weight: 600;
+}
+.btn-accent:hover { background: #5254e0; transform: translateY(-1px); }
+
+/* ── HERO ── */
+#hero {
+  position: relative; z-index: 10; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: 100px 2rem 6rem;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);
+  color: var(--accent2); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.08em; padding: 5px 14px; border-radius: 50px;
+  text-transform: uppercase; margin-bottom: 1.8rem;
+  animation: fadeUp 0.6s 0.1s both;
+}
+.dot-live { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 1.4s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-title {
+  font-family: 'Orbitron', monospace; font-weight: 900;
+  font-size: clamp(2.8rem, 7vw, 6.5rem); line-height: 1.08;
+  letter-spacing: -1px; margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s 0.25s both;
+}
+.hero-title .hi { color: var(--accent2); }
+.hero-desc {
+  color: var(--text2); font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  max-width: 520px; line-height: 1.75; margin-bottom: 2.5rem;
+  animation: fadeUp 0.6s 0.4s both;
+}
+.hero-ctas {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.6s 0.55s both;
+}
+.btn-lg { padding: 13px 34px; border-radius: 10px; font-size: 0.93rem; font-weight: 600; }
+
+/* Cube */
+.cube-area {
+  margin-top: 4rem; animation: fadeUp 0.7s 0.7s both;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.cube-wrap { perspective: 600px; width: 90px; height: 90px; }
+.cube {
+  width: 90px; height: 90px; transform-style: preserve-3d;
+  animation: spinCube 10s linear infinite; position: relative;
+}
+.cf {
+  position: absolute; width: 90px; height: 90px;
+  background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', monospace; font-size: 1rem; color: var(--accent2);
+  font-weight: 600;
+}
+.cf.front  { transform: translateZ(45px); }
+.cf.back   { transform: rotateY(180deg) translateZ(45px); }
+.cf.left   { transform: rotateY(-90deg) translateZ(45px); }
+.cf.right  { transform: rotateY(90deg) translateZ(45px); }
+.cf.top    { transform: rotateX(90deg) translateZ(45px); }
+.cf.bottom { transform: rotateX(-90deg) translateZ(45px); }
+@keyframes spinCube {
+  0%   { transform: rotateX(15deg) rotateY(0); }
+  100% { transform: rotateX(15deg) rotateY(360deg); }
+}
+.cube-label { color: var(--text3); font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--text3); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+}
+.scroll-bar { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--accent), transparent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+/* ── SECTIONS ── */
+section { position: relative; z-index: 10; padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.sec-tag {
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 0.6rem;
+}
+.sec-title { font-family: 'Orbitron', monospace; font-size: clamp(1.6rem,3.5vw,2.6rem); font-weight: 900; margin-bottom: 0.8rem; line-height: 1.2; }
+.sec-sub { color: var(--text2); font-size: 1rem; line-height: 1.7; }
+hr.div { border: none; border-top: 1px solid var(--border); }
+
+/* ── HOW IT WORKS ── */
+#how { background: var(--bg2); }
+.how-head { text-align: center; margin-bottom: 3.5rem; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.5rem; }
+.step {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 2rem 1.5rem; text-align: center; transition: all 0.3s;
+}
+.step:hover { border-color: var(--border-glow); transform: translateY(-5px); box-shadow: 0 8px 32px rgba(99,102,241,0.1); }
+.step-ico { font-size: 2.2rem; margin-bottom: 1rem; display: block; animation: floatIco 3s ease-in-out infinite; }
+.step:nth-child(2) .step-ico { animation-delay: -1s; }
+.step:nth-child(3) .step-ico { animation-delay: -2s; }
+.step:nth-child(4) .step-ico { animation-delay: -0.5s; }
+@keyframes floatIco { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+.step-n { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; color: var(--text3); text-transform: uppercase; margin-bottom: 0.5rem; }
+.step-t { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.6rem; color: var(--text); }
+.step-d { color: var(--text2); font-size: 0.88rem; line-height: 1.6; }
+
+/* ── PRICING ── */
+#pricing { text-align: center; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 1.5rem; max-width: 680px; margin: 3rem auto 0; }
+.plan {
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+  padding: 2.2rem 1.8rem; text-align: left; transition: all 0.3s; position: relative;
+}
+.plan.pro { border-color: var(--border-glow); box-shadow: 0 0 40px rgba(99,102,241,0.12); }
+.plan:hover { transform: translateY(-6px); }
+.pop-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.1em; padding: 3px 14px; border-radius: 50px; text-transform: uppercase; white-space: nowrap;
+}
+.plan-name { font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 600; color: var(--accent2); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
+.plan-price { font-family: 'Orbitron', monospace; font-size: 2.5rem; font-weight: 900; margin-bottom: 0.3rem; }
+.plan-price sub { font-size: 1rem; font-weight: 400; color: var(--text2); }
+.plan-mo { color: var(--text3); font-size: 0.82rem; margin-bottom: 1.2rem; }
+.plan-desc { color: var(--text2); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+.feats { list-style: none; margin-bottom: 1.8rem; }
+.feats li { padding: 7px 0; color: var(--text2); font-size: 0.9rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 9px; }
+.feats li:last-child { border: none; }
+.feats li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+.plan-cta {
+  width: 100%; padding: 12px; border-radius: 9px; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; transition: all 0.25s; border: none; font-family: 'Inter', sans-serif;
+}
+.plan-cta.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.plan-cta.ghost:hover { border-color: var(--accent); color: var(--accent2); }
+.plan-cta.solid { background: var(--accent); color: #fff; }
+.plan-cta.solid:hover { background: #5254e0; transform: scale(1.02); }
+
+/* ── ENTER WORLD ── */
+#world { background: var(--bg2); text-align: center; }
+.world-center { max-width: 560px; margin: 0 auto; }
+.globe-wrap {
+  width: 260px; height: 260px; margin: 2.5rem auto 1.5rem;
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.globe-wrap::before {
+  content:''; position:absolute;
+  width:120px; height:120px; border-radius:50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.4) 0%, transparent 70%);
+  animation: coreGlow 2.5s ease-in-out infinite; z-index:0;
+}
+@keyframes coreGlow { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.4);opacity:1} }
+.globe-sphere {
+  width:100px; height:100px; border-radius:50%; position:relative; z-index:2; flex-shrink:0;
+  border:2px solid rgba(99,102,241,0.8);
+  background: radial-gradient(ellipse at 32% 28%, rgba(167,139,250,0.55), rgba(99,102,241,0.2) 50%, transparent);
+  animation: gPulse 2.5s ease-in-out infinite;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15), 0 0 25px rgba(99,102,241,0.7), 0 0 60px rgba(99,102,241,0.4), 0 0 100px rgba(99,102,241,0.15), inset 0 0 30px rgba(167,139,250,0.3);
+}
+.globe-sphere::before {
+  content:''; position:absolute; top:50%; left:5%; width:90%; height:1.5px;
+  background:linear-gradient(90deg,transparent,rgba(99,102,241,0.7),transparent);
+  transform:translateY(-50%);
+}
+.globe-sphere::after {
+  content:''; position:absolute; top:5%; left:50%; width:1.5px; height:90%;
+  background:linear-gradient(180deg,transparent,rgba(99,102,241,0.5),transparent);
+  transform:translateX(-50%);
+}
+.gr1,.gr2,.gr3,.gr4,.gr5 {
+  position:absolute; top:50%; left:50%; border-radius:50%; transform-style:preserve-3d;
+}
+.gr1{width:150px;height:150px;margin:-75px 0 0 -75px; border:2px solid rgba(34,211,238,0.6); transform:rotateX(90deg); animation:rs1 3.5s linear infinite;}
+.gr2{width:168px;height:168px;margin:-84px 0 0 -84px; border:1.5px solid rgba(99,102,241,0.55); transform:rotateX(62deg); animation:rs2 5s linear infinite;}
+.gr3{width:186px;height:186px;margin:-93px 0 0 -93px; border:1.5px solid rgba(167,139,250,0.45); transform:rotateX(62deg) rotateZ(72deg); animation:rs3 7s linear infinite reverse;}
+.gr4{width:210px;height:210px;margin:-105px 0 0 -105px; border:1px solid rgba(99,102,241,0.3); transform:rotateX(62deg) rotateZ(144deg); animation:rs4 9s linear infinite;}
+.gr5{width:240px;height:240px;margin:-120px 0 0 -120px; border:1px solid rgba(34,211,238,0.2); transform:rotateX(62deg) rotateZ(216deg); animation:rs5 11s linear infinite reverse;}
+.gd { position:absolute; top:-6px; left:50%; transform:translateX(-50%); border-radius:50%; }
+.gd1{width:13px;height:13px;background:#22d3ee; box-shadow:0 0 8px #22d3ee,0 0 22px #22d3ee,0 0 40px rgba(34,211,238,0.7);}
+.gd2{width:12px;height:12px;background:#6366f1; box-shadow:0 0 8px #6366f1,0 0 22px #6366f1,0 0 40px rgba(99,102,241,0.7);}
+.gd3{width:10px;height:10px;background:#a78bfa; box-shadow:0 0 7px #a78bfa,0 0 18px #a78bfa,0 0 32px rgba(167,139,250,0.6);}
+.gd4{width:9px;height:9px;background:#818cf8; box-shadow:0 0 6px #818cf8,0 0 16px rgba(129,140,248,0.7);}
+.gd5{width:8px;height:8px;background:#22d3ee; box-shadow:0 0 6px #22d3ee,0 0 14px rgba(34,211,238,0.6);}
+@keyframes rs1{from{transform:rotateX(90deg) rotateZ(0)} to{transform:rotateX(90deg) rotateZ(360deg)}}
+@keyframes rs2{from{transform:rotateX(62deg) rotateZ(0)} to{transform:rotateX(62deg) rotateZ(360deg)}}
+@keyframes rs3{from{transform:rotateX(62deg) rotateZ(72deg)} to{transform:rotateX(62deg) rotateZ(432deg)}}
+@keyframes rs4{from{transform:rotateX(62deg) rotateZ(144deg)} to{transform:rotateX(62deg) rotateZ(504deg)}}
+@keyframes rs5{from{transform:rotateX(62deg) rotateZ(216deg)} to{transform:rotateX(62deg) rotateZ(576deg)}}
+@keyframes gPulse{
+  0%,100%{box-shadow:0 0 0 3px rgba(99,102,241,0.15),0 0 25px rgba(99,102,241,0.7),0 0 60px rgba(99,102,241,0.4),0 0 100px rgba(99,102,241,0.15),inset 0 0 30px rgba(167,139,250,0.3);}
+  50%{box-shadow:0 0 0 4px rgba(99,102,241,0.25),0 0 35px rgba(99,102,241,0.9),0 0 80px rgba(99,102,241,0.55),0 0 130px rgba(99,102,241,0.2),inset 0 0 45px rgba(167,139,250,0.45);}
+}
+@keyframes gRing { to { transform: translate(-50%,-50%) rotateX(68deg) rotateZ(360deg); } }
+@keyframes spinCube { 0%{transform:rotateX(15deg) rotateY(0)} 100%{transform:rotateX(15deg) rotateY(360deg)} }
+
+
+/* ── GLOBE UPGRADED ── */
+.glow-ring {
+  position: absolute; border-radius: 50%; border: 1px solid; pointer-events: none; z-index: 0;
+}
+.g-ring-out {
+  width: 290px; height: 290px;
+  border-color: rgba(99,102,241,0.12);
+  animation: ringPulseOut 3s ease-in-out infinite;
+}
+.g-ring-mid {
+  width: 245px; height: 245px;
+  border-color: rgba(99,102,241,0.2);
+  animation: ringPulseOut 3s ease-in-out infinite 0.5s;
+}
+@keyframes ringPulseOut {
+  0%,100%{transform:scale(1);opacity:0.5}
+  50%{transform:scale(1.06);opacity:1}
+}
+.sphere-lat {
+  position: absolute; left: 5%; width: 90%; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent);
+  border-radius: 50%;
+}
+.lat1 { top: 35%; }
+.lat2 { top: 62%; }
+.sphere-lng {
+  position: absolute; top: 5%; height: 90%; width: 1.5px;
+  background: linear-gradient(180deg, transparent, rgba(99,102,241,0.5), transparent);
+  border-radius: 50%;
+}
+.lng1 { left: 35%; }
+.lng2 { left: 62%; }
+.sphere-core {
+  position: absolute; top: 50%; left: 50%;
+  width: 16px; height: 16px; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle, #fff 0%, var(--accent) 50%, transparent 100%);
+  box-shadow: 0 0 10px #fff, 0 0 20px var(--accent), 0 0 40px var(--accent);
+  animation: corePulse 1.8s ease-in-out infinite;
+}
+@keyframes corePulse {
+  0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.9}
+  50%{transform:translate(-50%,-50%) scale(1.5); opacity:1}
+}
+
+.world-title { font-family: 'Orbitron', monospace; font-size: clamp(1.6rem,3.5vw,2.2rem); font-weight: 900; margin-bottom: 0.8rem; }
+.world-sub { color: var(--text2); font-size: 0.97rem; line-height: 1.7; margin-bottom: 2rem; }
+.enter-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; padding: 15px 44px; border-radius: 50px; border: none;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(99,102,241,0.35); letter-spacing: 0.03em;
+}
+.enter-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 36px rgba(99,102,241,0.45); }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 10; background: var(--bg); border-top: 1px solid var(--border);
+  padding: 1.8rem 2rem; text-align: center; color: var(--text3);
+  font-size: 0.82rem; letter-spacing: 0.05em;
+}
+footer strong { color: var(--accent2); font-family: 'Orbitron', monospace; font-size: 0.85rem; }
+
+/* ── DRAWER ── */
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px); z-index: 200;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+.drawer {
+  position: fixed; top: 0; right: -440px; bottom: 0; width: 100%; max-width: 420px;
+  background: var(--bg2); border-left: 1px solid var(--border);
+  z-index: 201; transition: right 0.38s cubic-bezier(.25,.8,.25,1);
+  display: flex; flex-direction: column; overflow-y: auto;
+}
+.drawer-overlay.open .drawer { right: 0; }
+
+.drawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 1.8rem; border-bottom: 1px solid var(--border);
+}
+.drawer-logo { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 900; }
+.drawer-logo span { color: var(--accent); }
+.drawer-close {
+  background: none; border: none; color: var(--text2); font-size: 1.2rem;
+  cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: all 0.2s;
+}
+.drawer-close:hover { background: var(--card); color: var(--text); }
+
+/* Tabs */
+.d-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.d-tab {
+  flex: 1; padding: 1rem; text-align: center; font-size: 0.88rem; font-weight: 600;
+  color: var(--text2); cursor: pointer; border: none; background: transparent;
+  transition: all 0.2s; border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.d-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+/* Form */
+.d-form { padding: 2rem 1.8rem; flex: 1; }
+.d-panel { display: none; }
+.d-panel.active { display: block; }
+.d-welcome { margin-bottom: 1.8rem; }
+.d-welcome h2 { font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 900; margin-bottom: 0.3rem; }
+.d-welcome p { color: var(--text2); font-size: 0.88rem; }
+
+.fg { margin-bottom: 1.2rem; }
+.fg label { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); margin-bottom: 0.45rem; }
+.fg input {
+  width: 100%; background: var(--card); border: 1px solid var(--border);
+  color: var(--text); padding: 11px 14px; border-radius: 9px;
+  font-size: 0.93rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
+}
+.fg input:focus { border-color: var(--border-glow); }
+.fg input::placeholder { color: var(--text3); }
+
+.d-submit {
+  width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none;
+  border-radius: 9px; font-size: 0.92rem; font-weight: 700; cursor: pointer;
+  transition: all 0.25s; font-family: 'Inter', sans-serif; margin-top: 0.5rem;
+}
+.d-submit:hover { background: #5254e0; }
+
+.d-switch { text-align: center; margin-top: 1.2rem; font-size: 0.85rem; color: var(--text2); }
+.d-switch a { color: var(--accent2); cursor: pointer; text-decoration: none; font-weight: 500; }
+.d-switch a:hover { text-decoration: underline; }
+
+.plan-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.2rem;
+}
+.plan-opt {
+  border: 1px solid var(--border); border-radius: 9px; padding: 0.9rem;
+  cursor: pointer; transition: all 0.2s; text-align: center;
+}
+.plan-opt:hover, .plan-opt.sel { border-color: var(--border-glow); background: rgba(99,102,241,0.08); }
+.plan-opt .po-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+.plan-opt .po-price { color: var(--accent2); font-size: 0.8rem; font-weight: 600; }
+
+/* Reveal */
+/* Plan feature highlight */
+.feat-highlight { background: rgba(99,102,241,0.06); border-radius: 6px; margin-top: 4px; }
+.feat-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; margin-left: 4px; letter-spacing: 0.05em; }
+.pro-badge { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.vis { opacity: 1; transform: none; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+</style>
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">3D<span>.</span>AI</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#how">How it Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#world">Enter World</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="theme-wrap">
+      <button class="theme-toggle-btn" id="themeBtn" onclick="toggleThemeDrop(event)">
+        <span id="themeIcon">🌑</span> Theme
+      </button>
+      <div class="theme-drop" id="themeDrop">
+        <div class="t-opt active" onclick="setTheme('default','🌑',this)"><div class="t-dot" style="background:#6366f1"></div>Dark</div>
+        <div class="t-opt" onclick="setTheme('cyber','💠',this)"><div class="t-dot" style="background:#00c8ff"></div>Cyber Blue</div>
+        <div class="t-opt" onclick="setTheme('light','☀️',this)"><div class="t-dot" style="background:#6366f1;outline:1px solid #ccc"></div>Light</div>
+        <div class="t-opt" onclick="setTheme('neon','🟢',this)"><div class="t-dot" style="background:#00e64d"></div>Neon Green</div>
+        <div class="t-opt" onclick="setTheme('rose','🌸',this)"><div class="t-dot" style="background:#ff2d78"></div>Rose Red</div>
+      </div>
+    </div>
+    <button class="btn btn-ghost" onclick="openDrawer('login')">Log In</button>
+    <button class="btn btn-accent" onclick="openDrawer('signup')">Sign Up Free</button>
+  </div>
+
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow"><div class="dot-live"></div> AI-Powered 3D Platform</div>
+  <h1 class="hero-title">Build Your<br><span class="hi">3D World</span><br>With AI</h1>
+  <p class="hero-desc">Describe any world in words. Our AI builds it in 3D — fully interactive, exportable, and shareable in minutes.</p>
+  <div class="hero-ctas">
+    <button class="btn btn-accent btn-lg" onclick="openDrawer('signup')">Start Building Free →</button>
+    <button class="btn btn-ghost btn-lg" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+  </div>
+  <div class="cube-area">
+    <div class="cube-wrap">
+      <div class="cube">
+        <div class="cf front">AI</div>
+        <div class="cf back">3D</div>
+        <div class="cf left">∞</div>
+        <div class="cf right">XR</div>
+        <div class="cf top">▲</div>
+        <div class="cf bottom">▼</div>
+      </div>
+    </div>
+    <div class="cube-label">AI Rendering Engine</div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <div class="how-head reveal">
+      <div class="sec-tag">Process</div>
+      <h2 class="sec-title">How 3D.AI Works</h2>
+      <p class="sec-sub" style="max-width:480px;margin:0 auto">From your imagination to a full 3D world — in just 4 simple steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-ico">💬</span>
+        <div class="step-n">Step 01</div>
+        <div class="step-t">Describe Your World</div>
+        <p class="step-d">Type anything — "cyberpunk city at night" or "peaceful forest village" — and our AI understands.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-ico">🧠</span>
+        <div class="step-n">Step 02</div>
+        <div class="step-t">AI Builds It in 3D</div>
+        <p class="step-d">Our neural engine generates full 3D scenes, objects, lighting, and textures automatically.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-ico">🌐</span>
+        <div class="step-n">Step 03</div>
+        <div class="step-t">Enter & Explore</div>
+        <p class="step-d">Walk inside your creation via browser or VR. Interact, modify, and customize everything.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-ico">📤</span>
+        <div class="step-n">Step 04</div>
+        <div class="step-t">Export & Share</div>
+        <p class="step-d">Export as GLB, FBX or embed in your site. Share with one link to anyone worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="reveal">
+      <div class="sec-tag">Pricing</div>
+      <h2 class="sec-title">Simple, Clear Plans</h2>
+      <p class="sec-sub" style="max-width:440px;margin:0 auto">Pick a plan and start building. No hidden fees.</p>
+    </div>
+    <div class="plans" style="max-width:980px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <!-- Free -->
+      <div class="plan reveal">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">₹0<sub>/mo</sub></div>
+        <div class="plan-mo">Forever free</div>
+        <p class="plan-desc">Try 3D.AI at no cost. Perfect for exploring what's possible.</p>
+        <ul class="feats">
+          <li>3 AI World Generations</li>
+          <li>Basic Textures</li>
+          <li>Browser 3D Viewer</li>
+          <li>Community Support</li>
+          <li class="feat-highlight">Photo with 3D Model <span class="feat-badge">10/day</span></li>
+        </ul>
+        <button class="plan-cta ghost" onclick="openDrawer('signup')">Start Free →</button>
+      </div>
+
+      <!-- Basic -->
+      <div class="plan reveal">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">₹299<sub>/mo</sub></div>
+        <div class="plan-mo">Billed monthly</div>
+        <p class="plan-desc">For beginners and hobbyists exploring AI-powered 3D creation.</p>
+        <ul class="feats">
+          <li>20 AI World Generations</li>
+          <li>HD Textures & Lighting</li>
+          <li>Browser 3D Viewer</li>
+          <li>GLB Export</li>
+          <li>Email Support</li>
+          <li class="feat-highlight">Photo with Unlimited 3D Model <span class="feat-badge pro-badge">Unlimited</span></li>
+        </ul>
+        <button class="plan-cta ghost" onclick="openDrawer('signup')">Get Basic →</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan pro reveal">
+        <div class="pop-badge">Most Popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">₹999<sub>/mo</sub></div>
+        <div class="plan-mo">Billed monthly</div>
+        <p class="plan-desc">For serious creators, developers, and freelancers building real projects.</p>
+        <ul class="feats">
+          <li>Unlimited Generations</li>
+          <li>4K Ultra Textures</li>
+          <li>VR + AR Access</li>
+          <li>Real-time Collaboration</li>
+          <li>GLB / FBX / OBJ Export</li>
+          <li>Priority AI Engine</li>
+          <li>Priority Support</li>
+          <li class="feat-highlight">Photo with Unlimited 3D Model <span class="feat-badge pro-badge">Unlimited</span></li>
+        </ul>
+        <button class="plan-cta solid" onclick="openDrawer('signup')">Get Pro →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ENTER WORLD -->
+<section id="world">
+  <div class="world-center reveal">
+    <div class="sec-tag">Ready?</div>
+    <h2 class="world-title">Enter Your<br>3D World</h2>
+    <p class="world-sub">Log in and step into your AI-generated universe. Your dimension is waiting.</p>
+
+    <!-- Animated Globe -->
+    <div class="globe-wrap">
+      <!-- Outer glow rings -->
+      <div class="glow-ring g-ring-out"></div>
+      <div class="glow-ring g-ring-mid"></div>
+      <!-- Sphere -->
+      <div class="globe-sphere">
+        <div class="sphere-lat lat1"></div>
+        <div class="sphere-lat lat2"></div>
+        <div class="sphere-lng lng1"></div>
+        <div class="sphere-lng lng2"></div>
+        <!-- Glowing core dot -->
+        <div class="sphere-core"></div>
+      </div>
+      <!-- Orbit rings with dots -->
+      <div class="gr1"><div class="gd gd1"></div></div>
+      <div class="gr2"><div class="gd gd2"></div></div>
+      <div class="gr3"><div class="gd gd3"></div></div>
+      <div class="gr4"><div class="gd gd4"></div></div>
+      <div class="gr5"><div class="gd gd5"></div></div>
+    </div>
+
+    <button class="enter-btn" onclick="openDrawer('login')">
+      🌐 Log In to Enter 3D World
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>3D.AI</strong> &nbsp;·&nbsp; AI-Powered 3D Platform &nbsp;·&nbsp; © 2026 All Rights Reserved<br><span style="font-size:0.75rem;color:var(--text3);letter-spacing:0.12em;margin-top:6px;display:inline-block;">Powered by <strong style="color:var(--accent2);font-family:Orbitron,monospace;font-size:0.75rem;">Ujjwal Production</strong></span>
+</footer>
+
+<!-- ===== DRAWER ===== -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="overlayClose(event)">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div class="drawer-logo">3D<span>.</span>AI</div>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+
+    <div class="d-tabs">
+      <button class="d-tab" id="tab-login" onclick="switchTab('login')">Log In</button>
+      <button class="d-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <div class="d-form">
+      <!-- LOGIN -->
+      <div class="d-panel" id="panel-login">
+        <div class="d-welcome">
+          <h2>Welcome back 👋</h2>
+          <p>Log in to enter your 3D world.</p>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="you@example.com" id="l-email"></div>
+        <div class="fg"><label>Password</label><input type="password" placeholder="••••••••" id="l-pass"></div>
+        <button class="d-submit" onclick="doLogin()">🚀 Enter My World</button>
+        <div class="d-switch">Don't have an account? <a onclick="switchTab('signup')">Sign Up Free</a></div>
+      </div>
+
+      <!-- SIGNUP -->
+      <div class="d-panel" id="panel-signup">
+        <div class="d-welcome">
+          <h2>Create Account ✦</h2>
+          <p>Start building 3D worlds with AI today.</p>
+        </div>
+        <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" id="s-name"></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="you@example.com" id="s-email"></div>
+        <div class="fg"><label>Password</label><input type="password" placeholder="Create a password" id="s-pass"></div>
+
+        <!-- Plan selection -->
+        <div class="fg">
+          <label>Choose Plan</label>
+          <div class="plan-row" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="plan-opt sel" id="opt-free" onclick="selPlan('free')">
+              <div class="po-name">Free</div>
+              <div class="po-price">₹0/mo</div>
+            </div>
+            <div class="plan-opt" id="opt-basic" onclick="selPlan('basic')">
+              <div class="po-name">Basic</div>
+              <div class="po-price">₹299/mo</div>
+            </div>
+            <div class="plan-opt" id="opt-pro" onclick="selPlan('pro')">
+              <div class="po-name">Pro ⭐</div>
+              <div class="po-price">₹999/mo</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="d-submit" onclick="doSignup()">✦ Create My Account</button>
+        <div class="d-switch">Already have an account? <a onclick="switchTab('login')">Log In</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── CANVAS ── */
+const cv = document.getElementById('c');
+const cx = cv.getContext('2d');
+const resize = () => { cv.width = innerWidth; cv.height = innerHeight; };
+resize(); window.addEventListener('resize', resize);
+const pts = Array.from({length:80}, () => ({
+  x: Math.random()*innerWidth, y: Math.random()*innerHeight,
+  vx: (Math.random()-.5)*.2, vy: (Math.random()-.5)*.2,
+  r: Math.random()*1+.4, p: Math.random()*Math.PI*2
+}));
+function drawC() {
+  cx.clearRect(0,0,cv.width,cv.height);
+  pts.forEach((p,i) => {
+    p.x+=p.vx; p.y+=p.vy; p.p+=.012;
+    if(p.x<0)p.x=cv.width; if(p.x>cv.width)p.x=0;
+    if(p.y<0)p.y=cv.height; if(p.y>cv.height)p.y=0;
+    const a = 0.35+Math.sin(p.p)*.25;
+    cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    cx.fillStyle='#6366f1'; cx.globalAlpha=a; cx.fill(); cx.globalAlpha=1;
+    for(let j=i+1;j<pts.length;j++){
+      const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.strokeStyle='#6366f1';cx.globalAlpha=(1-d/120)*0.07;cx.lineWidth=.5;cx.stroke();cx.globalAlpha=1;}
+    }
+  });
+  requestAnimationFrame(drawC);
+}
+drawC();
+
+/* ── DRAWER ── */
+let curTab = 'login';
+function openDrawer(tab) {
+  document.getElementById('drawerOverlay').classList.add('open');
+  switchTab(tab);
+}
+function closeDrawer() { document.getElementById('drawerOverlay').classList.remove('open'); }
+function overlayClose(e) { if(e.target===document.getElementById('drawerOverlay')) closeDrawer(); }
+function switchTab(t) {
+  curTab = t;
+  document.querySelectorAll('.d-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.d-panel').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('panel-'+t).classList.add('active');
+}
+
+/* ── PLAN SELECT ── */
+let selPlanVal = 'free';
+function selPlan(p) {
+  selPlanVal = p;
+  ['free','basic','pro'].forEach(x => {
+    const el = document.getElementById('opt-'+x);
+    if(el) el.classList.toggle('sel', p===x);
+  });
+}
+
+/* ── AUTH ACTIONS ── */
+function doLogin() {
+  const btn = document.querySelector('#panel-login .d-submit');
+  btn.textContent = '⏳ Logging in...'; btn.disabled = true;
+  setTimeout(() => { btn.textContent = '✅ Welcome back!'; }, 1500);
+}
+function doSignup() {
+  const btn = document.querySelector('#panel-signup .d-submit');
+  btn.textContent = '⏳ Creating account...'; btn.disabled = true;
+  setTimeout(() => { btn.textContent = '✅ Account Created! Enjoy 3D.AI'; }, 1500);
+}
+
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── ESC CLOSE ── */
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
+
+
+
+/* ── THEME ── */
+function toggleThemeDrop(e){
+  e.stopPropagation();
+  document.getElementById('themeDrop').classList.toggle('open');
+}
+function setTheme(t,icon,el){
+  document.documentElement.setAttribute('data-theme', t==='default'?'':t);
+  document.getElementById('themeIcon').textContent=icon;
+  document.querySelectorAll('.t-opt').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('themeDrop').classList.remove('open');
+  localStorage.setItem('3dai-theme',t);
+  localStorage.setItem('3dai-icon',icon);
+}
+document.addEventListener('click',()=>{
+  const d=document.getElementById('themeDrop');
+  if(d) d.classList.remove('open');
+});
+(function(){
+  const t=localStorage.getItem('3dai-theme');
+  const ic=localStorage.getItem('3dai-icon');
+  if(t && t!=='default'){
+    document.documentElement.setAttribute('data-theme',t);
+    const el=document.getElementById('themeIcon');
+    if(ic&&el) el.textContent=ic;
+  }
+})();
+</script>
+</body>
+</html>
