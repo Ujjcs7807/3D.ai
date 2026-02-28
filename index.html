@@ -769,6 +769,11 @@ function doSignup() {
   setTimeout(() => { btn.textContent = '✅ Account Created! Enjoy 3D.AI'; }, 1500);
 }
 
+/* ── SCROLL REVEAL ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 /* ── ESC CLOSE ── */
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); });
