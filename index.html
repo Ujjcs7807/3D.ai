@@ -731,6 +731,21 @@ function drawC() {
 }
 drawC();
 
+/* ── DRAWER ── */
+let curTab = 'login';
+function openDrawer(tab) {
+  document.getElementById('drawerOverlay').classList.add('open');
+  switchTab(tab);
+}
+function closeDrawer() { document.getElementById('drawerOverlay').classList.remove('open'); }
+function overlayClose(e) { if(e.target===document.getElementById('drawerOverlay')) closeDrawer(); }
+function switchTab(t) {
+  curTab = t;
+  document.querySelectorAll('.d-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.d-panel').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('panel-'+t).classList.add('active');
+}
 
 /* ── PLAN SELECT ── */
 let selPlanVal = 'free';
