@@ -780,33 +780,3 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); 
 
 
 
-/* ── THEME ── */
-function toggleThemeDrop(e){
-  e.stopPropagation();
-  document.getElementById('themeDrop').classList.toggle('open');
-}
-function setTheme(t,icon,el){
-  document.documentElement.setAttribute('data-theme', t==='default'?'':t);
-  document.getElementById('themeIcon').textContent=icon;
-  document.querySelectorAll('.t-opt').forEach(x=>x.classList.remove('active'));
-  if(el) el.classList.add('active');
-  document.getElementById('themeDrop').classList.remove('open');
-  localStorage.setItem('3dai-theme',t);
-  localStorage.setItem('3dai-icon',icon);
-}
-document.addEventListener('click',()=>{
-  const d=document.getElementById('themeDrop');
-  if(d) d.classList.remove('open');
-});
-(function(){
-  const t=localStorage.getItem('3dai-theme');
-  const ic=localStorage.getItem('3dai-icon');
-  if(t && t!=='default'){
-    document.documentElement.setAttribute('data-theme',t);
-    const el=document.getElementById('themeIcon');
-    if(ic&&el) el.textContent=ic;
-  }
-})();
-</script>
-</body>
-</html>
