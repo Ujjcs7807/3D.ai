@@ -398,6 +398,23 @@ footer strong { color: var(--accent2); font-family: 'Orbitron', monospace; font-
 .fg input:focus { border-color: var(--border-glow); }
 .fg input::placeholder { color: var(--text3); }
 
+
+.google-btn {
+  width:100%; padding:12px; border-radius:9px; font-size:0.9rem; font-weight:600;
+  cursor:pointer; transition:all 0.25s; font-family:'Inter',sans-serif;
+  background:#fff; color:#1a1a1a; border:1px solid rgba(0,0,0,0.15);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-bottom:1rem;
+}
+.google-btn:hover { background:#f5f5f5; box-shadow:0 2px 12px rgba(0,0,0,0.15); transform:translateY(-1px); }
+.google-btn svg { width:20px; height:20px; flex-shrink:0; }
+.or-divider {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:1rem; color:var(--text3); font-size:0.8rem;
+}
+.or-divider::before, .or-divider::after {
+  content:''; flex:1; height:1px; background:var(--border);
+}
 .d-submit {
   width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none;
   border-radius: 9px; font-size: 0.92rem; font-weight: 700; cursor: pointer;
@@ -637,7 +654,7 @@ footer strong { color: var(--accent2); font-family: 'Orbitron', monospace; font-
 
 <!-- FOOTER -->
 <footer>
-  <strong>3D.AI</strong> &nbsp;·&nbsp; AI-Powered 3D Platform &nbsp;·&nbsp; © 2026 All Rights Reserved<br><span style="font-size:0.75rem;color:var(--text3);letter-spacing:0.12em;margin-top:6px;display:inline-block;">Powered by <strong style="color:var(--accent2);font-family:Orbitron,monospace;font-size:0.75rem;">Ujjwal Production</strong></span>
+  <strong>3D.AI</strong> &nbsp;·&nbsp; © 2026 All Rights Reserved &nbsp;·&nbsp; <strong style="color:var(--accent2);font-family:Orbitron,monospace;font-size:0.82rem;">Ujjwal Production</strong>
 </footer>
 
 <!-- ===== DRAWER ===== -->
@@ -660,6 +677,11 @@ footer strong { color: var(--accent2); font-family: 'Orbitron', monospace; font-
           <h2>Welcome back 👋</h2>
           <p>Log in to enter your 3D world.</p>
         </div>
+        <button class="google-btn" onclick="doGoogle()">
+          <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>
+          Continue with Google
+        </button>
+        <div class="or-divider">or</div>
         <div class="fg"><label>Email</label><input type="email" placeholder="you@example.com" id="l-email"></div>
         <div class="fg"><label>Password</label><input type="password" placeholder="••••••••" id="l-pass"></div>
         <button class="d-submit" onclick="doLogin()">🚀 Enter My World</button>
@@ -672,6 +694,11 @@ footer strong { color: var(--accent2); font-family: 'Orbitron', monospace; font-
           <h2>Create Account ✦</h2>
           <p>Start building 3D worlds with AI today.</p>
         </div>
+        <button class="google-btn" onclick="doGoogle()">
+          <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>
+          Sign Up with Google
+        </button>
+        <div class="or-divider">or</div>
         <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" id="s-name"></div>
         <div class="fg"><label>Email</label><input type="email" placeholder="you@example.com" id="s-email"></div>
         <div class="fg"><label>Password</label><input type="password" placeholder="Create a password" id="s-pass"></div>
@@ -758,6 +785,13 @@ function selPlan(p) {
 }
 
 /* ── AUTH ACTIONS ── */
+function doGoogle() {
+  const btns = document.querySelectorAll('.google-btn');
+  btns.forEach(b => { b.textContent = '⏳ Connecting to Google...'; b.disabled = true; });
+  setTimeout(() => {
+    btns.forEach(b => { b.textContent = '✅ Google Connected!'; });
+  }, 1500);
+}
 function doLogin() {
   const btn = document.querySelector('#panel-login .d-submit');
   btn.textContent = '⏳ Logging in...'; btn.disabled = true;
@@ -780,3 +814,33 @@ document.addEventListener('keydown', e => { if(e.key==='Escape') closeDrawer(); 
 
 
 
+/* ── THEME ── */
+function toggleThemeDrop(e){
+  e.stopPropagation();
+  document.getElementById('themeDrop').classList.toggle('open');
+}
+function setTheme(t,icon,el){
+  document.documentElement.setAttribute('data-theme', t==='default'?'':t);
+  document.getElementById('themeIcon').textContent=icon;
+  document.querySelectorAll('.t-opt').forEach(x=>x.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('themeDrop').classList.remove('open');
+  localStorage.setItem('3dai-theme',t);
+  localStorage.setItem('3dai-icon',icon);
+}
+document.addEventListener('click',()=>{
+  const d=document.getElementById('themeDrop');
+  if(d) d.classList.remove('open');
+});
+(function(){
+  const t=localStorage.getItem('3dai-theme');
+  const ic=localStorage.getItem('3dai-icon');
+  if(t && t!=='default'){
+    document.documentElement.setAttribute('data-theme',t);
+    const el=document.getElementById('themeIcon');
+    if(ic&&el) el.textContent=ic;
+  }
+})();
+</script>
+</body>
+</html>
