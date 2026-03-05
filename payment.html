@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D.AI — Payment</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#050309;--ink:#0b0814;
+  --card:rgba(255,255,255,0.035);--card2:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.07);--border2:rgba(124,111,255,0.3);
+  --text:#f4f0ff;--text2:#7a7599;--text3:#3d3a58;
+  --a:#7c6fff;--a2:#b8aaff;--a3:#4f46e5;
+  --green:#00e5a0;--red:#ff3d6b;--amber:#ffb830;--cyan:#00d4ff;
+}
+body{
+  font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 0%,rgba(99,102,241,0.13) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 85% 100%,rgba(167,139,250,0.08) 0%,transparent 55%);
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:62px;
+  background:rgba(5,3,9,0.8);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;}
+.nav-logo em{color:var(--a);font-style:normal;}
+.nav-back{
+  display:flex;align-items:center;gap:7px;
+  background:var(--card2);border:1px solid var(--border);
+  color:var(--text2);font-size:0.8rem;font-weight:700;
+  padding:7px 18px;border-radius:50px;cursor:pointer;transition:all 0.2s;
+}
+.nav-back:hover{color:var(--a2);border-color:var(--border2);}
+
+/* SECURE BADGE */
+.secure-bar{
+  background:rgba(0,229,160,0.06);border-bottom:1px solid rgba(0,229,160,0.1);
+  padding:8px 2rem;text-align:center;
+  font-size:0.72rem;font-weight:700;color:var(--green);
+  letter-spacing:0.12em;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+
+/* PAGE */
+.page{
+  position:relative;z-index:1;
+  max-width:960px;margin:0 auto;
+  padding:2.5rem 1.5rem;
+  display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;
+}
+@media(max-width:800px){.page{grid-template-columns:1fr;}}
+
+/* STEP HEADER */
+.step-head{margin-bottom:2rem;}
+.step-label{
+  font-size:0.68rem;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--a2);margin-bottom:6px;
+}
+.step-title{
+  font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;
+  background:linear-gradient(90deg,var(--text),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* PLAN CARDS */
+.plans{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.8rem;}
+.plan-opt{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:14px;padding:1.2rem 1.4rem;
+  cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.plan-opt:hover{border-color:rgba(124,111,255,0.3);background:var(--card2);}
+.plan-opt.selected{
+  border-color:var(--a);
+  background:rgba(124,111,255,0.08);
+  box-shadow:0 0 0 1px rgba(124,111,255,0.2),0 4px 24px rgba(124,111,255,0.12);
+}
+.plan-opt.selected::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--a3),var(--a2));
+}
+.plan-radio{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.plan-opt.selected .plan-radio{border-color:var(--a);background:var(--a);}
+.plan-radio::after{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:#fff;opacity:0;transition:opacity 0.2s;
+}
+.plan-opt.selected .plan-radio::after{opacity:1;}
+.plan-info{flex:1;}
+.plan-name{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;margin-bottom:3px;}
+.plan-feats-mini{font-size:0.75rem;color:var(--text2);font-weight:500;}
+.plan-price-col{text-align:right;flex-shrink:0;}
+.plan-amt{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--text);}
+.plan-per{font-size:0.7rem;color:var(--text2);}
+.plan-badge-free{
+  background:rgba(0,229,160,0.12);color:var(--green);
+  border:1px solid rgba(0,229,160,0.2);
+  font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;
+  letter-spacing:0.08em;
+}
+.plan-badge-pop{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,var(--a3),var(--a));
+  color:#fff;font-size:0.62rem;font-weight:800;
+  padding:3px 10px;border-radius:50px;letter-spacing:0.08em;
+}
+
+/* UPI SECTION */
+.upi-section{margin-bottom:1.8rem;}
+.sec-label{
+  font-size:0.68rem;font-weight:700;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--text3);margin-bottom:0.8rem;
+}
+.upi-apps{display:flex;gap:0.7rem;flex-wrap:wrap;margin-bottom:1rem;}
+.upi-app{
+  background:var(--card);border:2px solid var(--border);
+  border-radius:12px;padding:0.7rem 1.1rem;
+  display:flex;align-items:center;gap:8px;
+  cursor:pointer;transition:all 0.2s;font-size:0.82rem;font-weight:700;
+}
+.upi-app:hover{border-color:rgba(124,111,255,0.3);}
+.upi-app.sel{border-color:var(--a);background:rgba(124,111,255,0.08);}
+.upi-app-ico{font-size:1.3rem;}
+.upi-input-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.2rem;
+}
+.upi-input-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:8px;}
+.upi-input-row{display:flex;gap:0.8rem;align-items:center;}
+.upi-inp{
+  flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  color:var(--text);padding:11px 14px;border-radius:10px;
+  font-family:'JetBrains Mono',monospace;font-size:0.9rem;
+  outline:none;transition:all 0.2s;
+}
+.upi-inp:focus{border-color:var(--border2);background:rgba(124,111,255,0.05);box-shadow:0 0 0 3px rgba(124,111,255,0.08);}
+.upi-inp::placeholder{color:var(--text3);}
+.upi-verify-btn{
+  background:var(--card2);border:1px solid var(--border);
+  color:var(--a2);padding:11px 18px;border-radius:10px;
+  font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;white-space:nowrap;
+}
+.upi-verify-btn:hover{border-color:var(--border2);}
+.upi-verified{
+  display:none;align-items:center;gap:6px;
+  margin-top:8px;font-size:0.78rem;color:var(--green);font-weight:700;
+}
+
+/* PAY BUTTON */
+.pay-btn{
+  width:100%;padding:16px;
+  background:linear-gradient(135deg,var(--a3),var(--a));
+  color:#fff;border:none;border-radius:14px;
+  font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;
+  letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  position:relative;overflow:hidden;
+}
+.pay-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,0.1),transparent);
+  transform:translateX(-100%);transition:transform 0.5s;
+}
+.pay-btn:hover::before{transform:translateX(100%);}
+.pay-btn:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 10px 30px rgba(99,102,241,0.4);}
+.pay-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.pay-note{
+  text-align:center;font-size:0.72rem;color:var(--text3);
+  margin-top:0.8rem;display:flex;align-items:center;justify-content:center;gap:5px;
+}
+
+/* ORDER SUMMARY (right col) */
+.summary-card{
+  background:linear-gradient(145deg,#0d0824,#0a0620);
+  border:1px solid rgba(124,111,255,0.15);
+  border-radius:18px;overflow:hidden;position:sticky;top:80px;
+}
+.summary-head{
+  padding:1.3rem 1.5rem;border-bottom:1px solid rgba(124,111,255,0.1);
+  font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;
+  color:var(--a2);letter-spacing:0.1em;
+}
+.summary-body{padding:1.4rem 1.5rem;}
+.summary-plan{
+  display:flex;align-items:center;gap:1rem;
+  padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:1.2rem;
+}
+.summary-plan-ico{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--a3),var(--a));
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+}
+.summary-plan-name{font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;margin-bottom:3px;}
+.summary-plan-sub{font-size:0.75rem;color:var(--text2);}
+.summary-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7rem;}
+.summary-label{font-size:0.8rem;color:var(--text2);font-weight:500;}
+.summary-val{font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;}
+.summary-div{height:1px;background:rgba(255,255,255,0.06);margin:1rem 0;}
+.summary-total-row{display:flex;justify-content:space-between;align-items:center;}
+.summary-total-label{font-size:0.85rem;font-weight:800;}
+.summary-total-val{
+  font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;
+  background:linear-gradient(90deg,var(--a),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.summary-feats{margin-top:1.2rem;}
+.sfeat{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.78rem;color:var(--text2);font-weight:600;
+  margin-bottom:0.6rem;
+}
+.sfeat-dot{width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* SUCCESS SCREEN */
+#success-screen{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:var(--bg);align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;padding:2rem;
+}
+.success-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,160,0.15),transparent 65%);
+  pointer-events:none;animation:sGlow 2s ease-in-out infinite;
+}
+@keyframes sGlow{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+.success-ring{
+  width:120px;height:120px;border-radius:50%;
+  border:3px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;margin-bottom:1.5rem;position:relative;z-index:1;
+  animation:ringPop 0.6s cubic-bezier(.17,.67,.36,1.3);
+  box-shadow:0 0 0 12px rgba(0,229,160,0.08),0 0 40px rgba(0,229,160,0.2);
+}
+@keyframes ringPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{
+  font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;
+  color:var(--green);margin-bottom:0.5rem;position:relative;z-index:1;
+  animation:fadeUp 0.5s 0.3s both;
+}
+.success-sub{
+  font-size:1rem;color:var(--text2);max-width:380px;line-height:1.7;
+  margin-bottom:0.5rem;position:relative;z-index:1;
+  animation:fadeUp 0.5s 0.4s both;
+}
+.success-plan{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.85rem;color:var(--a2);
+  background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.2);
+  padding:8px 20px;border-radius:50px;margin:0.8rem 0 1.5rem;
+  position:relative;z-index:1;
+  animation:fadeUp 0.5s 0.5s both;
+}
+.success-txn{
+  font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text3);
+  margin-bottom:2rem;position:relative;z-index:1;
+  animation:fadeUp 0.5s 0.6s both;
+}
+.success-btn{
+  background:linear-gradient(135deg,var(--a3),var(--a));
+  color:#fff;border:none;padding:14px 36px;border-radius:12px;
+  font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:900;
+  letter-spacing:0.1em;cursor:pointer;transition:all 0.25s;
+  position:relative;z-index:1;animation:fadeUp 0.5s 0.7s both;
+}
+.success-btn:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,0.4);}
+
+/* Confetti */
+.confetti-piece{
+  position:fixed;width:8px;height:8px;border-radius:2px;
+  animation:confettiFall linear forwards;pointer-events:none;z-index:201;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0;}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* Fade in */
+.fade{opacity:0;transform:translateY(16px);animation:fadeUp 0.5s cubic-bezier(.17,.67,.36,1) forwards;}
+.d1{animation-delay:.06s}.d2{animation-delay:.12s}.d3{animation-delay:.18s}.d4{animation-delay:.24s}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(124,111,255,0.3);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">3D<em>.</em>AI</div>
+  <div class="nav-back" onclick="history.back()">← Back</div>
+</nav>
+
+<!-- SECURE BAR -->
+<div class="secure-bar">
+  🔒 &nbsp; 100% Secure Payment &nbsp;·&nbsp; SSL Encrypted &nbsp;·&nbsp; Powered by Razorpay
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- LEFT — FORM -->
+  <div>
+
+    <!-- Step 1: Plan -->
+    <div class="step-head fade d1">
+      <div class="step-label">Step 1 of 2</div>
+      <div class="step-title">Choose Your Plan</div>
+    </div>
+
+    <div class="plans fade d1">
+      <!-- Free -->
+      <div class="plan-opt" id="plan-free" onclick="selectPlan('free')">
+        <div class="plan-radio"></div>
+        <div class="plan-info">
+          <div class="plan-name">🆓 Free</div>
+          <div class="plan-feats-mini">3 generations · Basic textures · Browser viewer</div>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-badge-free">FREE</div>
+        </div>
+      </div>
+
+      <!-- Basic -->
+      <div class="plan-opt" id="plan-basic" onclick="selectPlan('basic')">
+        <div class="plan-radio"></div>
+        <div class="plan-info">
+          <div class="plan-name">📦 Basic</div>
+          <div class="plan-feats-mini">20 generations · HD textures · GLB export · Photo 3D 10/day</div>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-amt">₹299</div>
+          <div class="plan-per">/month</div>
+        </div>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan-opt selected" id="plan-pro" onclick="selectPlan('pro')">
+        <div class="plan-badge-pop">POPULAR</div>
+        <div class="plan-radio"></div>
+        <div class="plan-info">
+          <div class="plan-name">⭐ Pro</div>
+          <div class="plan-feats-mini">Unlimited generations · 4K textures · VR+AR · Photo 3D unlimited</div>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-amt">₹999</div>
+          <div class="plan-per">/month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: UPI -->
+    <div class="step-head fade d2" id="upi-step" style="display:none">
+      <div class="step-label">Step 2 of 2</div>
+      <div class="step-title">Pay with UPI</div>
+    </div>
+
+    <div class="upi-section fade d2" id="upi-section" style="display:none">
+      <div class="sec-label">Select UPI App</div>
+      <div class="upi-apps">
+        <div class="upi-app sel" id="app-gpay" onclick="selectApp('gpay')">
+          <span class="upi-app-ico">🟦</span> GPay
+        </div>
+        <div class="upi-app" id="app-phonepe" onclick="selectApp('phonepe')">
+          <span class="upi-app-ico">🟣</span> PhonePe
+        </div>
+        <div class="upi-app" id="app-paytm" onclick="selectApp('paytm')">
+          <span class="upi-app-ico">🔵</span> Paytm
+        </div>
+        <div class="upi-app" id="app-bhim" onclick="selectApp('bhim')">
+          <span class="upi-app-ico">🇮🇳</span> BHIM
+        </div>
+      </div>
+
+      <div class="upi-input-wrap">
+        <div class="upi-input-label">Enter UPI ID</div>
+        <div class="upi-input-row">
+          <input class="upi-inp" id="upiId" placeholder="yourname@upi" oninput="resetVerify()">
+          <button class="upi-verify-btn" onclick="verifyUPI()">Verify</button>
+        </div>
+        <div class="upi-verified" id="upiVerified">
+          <span>✓</span> UPI ID Verified — <span id="upiName">Ujjwal Kumar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continue / Pay button -->
+    <button class="pay-btn fade d3" id="mainBtn" onclick="mainAction()">
+      Continue to Payment →
+    </button>
+    <div class="pay-note fade d3">
+      🔒 Your payment is secured by Razorpay · No data stored
+    </div>
+
+  </div>
+
+  <!-- RIGHT — ORDER SUMMARY -->
+  <div>
+    <div class="summary-card fade d2">
+      <div class="summary-head">📋 Order Summary</div>
+      <div class="summary-body">
+        <div class="summary-plan">
+          <div class="summary-plan-ico" id="sumIco">⭐</div>
+          <div>
+            <div class="summary-plan-name" id="sumName">Pro Plan</div>
+            <div class="summary-plan-sub">Monthly subscription</div>
+          </div>
+        </div>
+
+        <div class="summary-row">
+          <div class="summary-label">Plan Price</div>
+          <div class="summary-val" id="sumPrice">₹999</div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-label">GST (18%)</div>
+          <div class="summary-val" id="sumGst">₹179</div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-label">Discount</div>
+          <div class="summary-val" style="color:var(--green)" id="sumDisc">—</div>
+        </div>
+        <div class="summary-div"></div>
+        <div class="summary-total-row">
+          <div class="summary-total-label">Total</div>
+          <div class="summary-total-val" id="sumTotal">₹1,178</div>
+        </div>
+
+        <div class="summary-feats" id="sumFeats">
+          <div class="sfeat"><div class="sfeat-dot"></div>Unlimited AI Generations</div>
+          <div class="sfeat"><div class="sfeat-dot"></div>Photo → 3D Unlimited</div>
+          <div class="sfeat"><div class="sfeat-dot"></div>4K Ultra Textures</div>
+          <div class="sfeat"><div class="sfeat-dot"></div>VR + AR Access</div>
+          <div class="sfeat"><div class="sfeat-dot"></div>Priority Support</div>
+          <div class="sfeat"><div class="sfeat-dot"></div>50 GB Storage</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div id="success-screen">
+  <div class="success-glow"></div>
+  <div class="success-ring">✓</div>
+  <div class="success-title">Payment Successful!</div>
+  <div class="success-sub">Aapka plan activate ho gaya hai. 3D.AI ke saath apni journey shuru karo!</div>
+  <div class="success-plan" id="sucPlan">⭐ Pro Plan Activated</div>
+  <div class="success-txn" id="sucTxn">TXN ID: 3DAI-XXXXXXXX</div>
+  <button class="success-btn" onclick="goToDashboard()">🚀 Enter Dashboard</button>
+</div>
+
+<script>
+// Plan data
+const plans = {
+  free:  { name:'Free Plan',   ico:'🆓', price:0,   gst:0,    total:0,    feats:['3 AI Generations','Basic Textures','Browser Viewer','Community Support','Photo 3D — 10/day'] },
+  basic: { name:'Basic Plan',  ico:'📦', price:299,  gst:54,   total:353,  feats:['20 AI Generations','HD Textures','GLB Export','Email Support','Photo 3D — 10/day'] },
+  pro:   { name:'Pro Plan',    ico:'⭐', price:999,  gst:180,  total:1179, feats:['Unlimited Generations','Photo 3D Unlimited','4K Textures','VR + AR Access','Priority Support','50 GB Storage'] },
+};
+
+let currentPlan = 'pro';
+let upiVerified = false;
+let step = 1; // 1=plan, 2=upi
+
+function selectPlan(p){
+  document.querySelectorAll('.plan-opt').forEach(el=>el.classList.remove('selected'));
+  document.getElementById('plan-'+p).classList.add('selected');
+  currentPlan = p;
+  updateSummary(p);
+  // Reset step
+  step = 1;
+  upiVerified = false;
+  document.getElementById('upi-step').style.display = 'none';
+  document.getElementById('upi-section').style.display = 'none';
+  document.getElementById('mainBtn').textContent = p==='free' ? 'Activate Free Plan →' : 'Continue to Payment →';
+}
+
+function updateSummary(p){
+  const d = plans[p];
+  document.getElementById('sumIco').textContent = d.ico;
+  document.getElementById('sumName').textContent = d.name;
+  document.getElementById('sumPrice').textContent = d.price===0 ? 'FREE' : '₹'+d.price;
+  document.getElementById('sumGst').textContent = d.gst===0 ? '—' : '₹'+d.gst;
+  document.getElementById('sumDisc').textContent = '—';
+  document.getElementById('sumTotal').textContent = d.total===0 ? '₹0' : '₹'+d.total.toLocaleString('en-IN');
+  const featsEl = document.getElementById('sumFeats');
+  featsEl.innerHTML = d.feats.map(f=>`<div class="sfeat"><div class="sfeat-dot"></div>${f}</div>`).join('');
+}
+
+function selectApp(a){
+  document.querySelectorAll('.upi-app').forEach(el=>el.classList.remove('sel'));
+  document.getElementById('app-'+a).classList.add('sel');
+}
+
+function verifyUPI(){
+  const id = document.getElementById('upiId').value.trim();
+  if(!id || !id.includes('@')){ 
+    document.getElementById('upiId').style.borderColor='var(--red)';
+    setTimeout(()=>document.getElementById('upiId').style.borderColor='',1500);
+    return; 
+  }
+  const btn = document.querySelector('.upi-verify-btn');
+  btn.textContent = '⏳';btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent = '✓ Verified';btn.disabled=false;
+    btn.style.color='var(--green)';btn.style.borderColor='rgba(0,229,160,0.3)';
+    const vEl = document.getElementById('upiVerified');
+    document.getElementById('upiName').textContent = id.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+    vEl.style.display = 'flex';
+    upiVerified = true;
+    document.getElementById('mainBtn').textContent = `Pay ${plans[currentPlan].total===0?'₹0':'₹'+plans[currentPlan].total.toLocaleString('en-IN')} →`;
+  },1200);
+}
+
+function resetVerify(){
+  upiVerified = false;
+  const btn = document.querySelector('.upi-verify-btn');
+  btn.textContent='Verify';btn.style.color='';btn.style.borderColor='';
+  document.getElementById('upiVerified').style.display='none';
+  document.getElementById('mainBtn').textContent = `Pay →`;
+}
+
+function mainAction(){
+  if(currentPlan === 'free'){
+    showSuccess();
+    return;
+  }
+  if(step === 1){
+    // Show UPI section
+    step = 2;
+    document.getElementById('upi-step').style.display='block';
+    document.getElementById('upi-section').style.display='block';
+    document.getElementById('mainBtn').textContent = `Pay ₹${plans[currentPlan].total.toLocaleString('en-IN')} →`;
+    document.getElementById('upi-step').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+  if(step === 2){
+    const id = document.getElementById('upiId').value.trim();
+    if(!id || !id.includes('@')){
+      document.getElementById('upiId').focus();
+      document.getElementById('upiId').style.borderColor='var(--red)';
+      setTimeout(()=>document.getElementById('upiId').style.borderColor='',1500);
+      return;
+    }
+    if(!upiVerified){ verifyUPI(); return; }
+    // Process payment
+    const btn = document.getElementById('mainBtn');
+    btn.disabled=true;
+    btn.innerHTML='⏳ Processing...';
+    setTimeout(()=>{ showSuccess(); },2000);
+  }
+}
+
+function showSuccess(){
+  const p = plans[currentPlan];
+  document.getElementById('sucPlan').textContent = p.ico+' '+p.name+' Activated';
+  document.getElementById('sucTxn').textContent = 'TXN ID: 3DAI-'+Math.random().toString(36).substr(2,8).toUpperCase();
+  document.getElementById('success-screen').style.display='flex';
+  launchConfetti();
+}
+
+function launchConfetti(){
+  const colors=['#7c6fff','#b8aaff','#00e5a0','#00d4ff','#ffb830','#ff3d6b'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'vw';
+    el.style.top='-10px';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration=(Math.random()*2+1.5)+'s';
+    el.style.animationDelay=Math.random()*0.8+'s';
+    el.style.transform=`rotate(${Math.random()*360}deg)`;
+    el.style.width=el.style.height=(Math.random()*8+4)+'px';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4000);
+  }
+}
+
+function goToDashboard(){ location.href='3DAI-final.html'; }
+
+// Init
+updateSummary('pro');
+</script>
+</body>
+</html>
