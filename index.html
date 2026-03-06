@@ -1333,6 +1333,316 @@ nav{
 ::-webkit-scrollbar-thumb{background:rgba(124,111,255,0.3);border-radius:4px;}
 
 #payment-page{display:none;}
+
+/* ========================================
+   MOBILE RESPONSIVE — ALL PAGES
+   ======================================== */
+
+/* ── MAIN SITE MOBILE ── */
+@media(max-width:768px){
+
+  /* Navbar */
+  nav {
+    padding: 0 1rem;
+    height: 54px;
+  }
+  .nav-links { display: none !important; }
+  .theme-wrap { display: none; }
+  .nav-right { gap: 0.4rem; }
+  .btn-outline, .btn-solid {
+    padding: 7px 14px !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Hero */
+  #hero { padding: 5rem 1rem 3rem; text-align: center; }
+  .hero-eyebrow { font-size: 0.65rem; }
+  .hero-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
+  .hero-desc { font-size: 0.9rem; max-width: 100%; }
+  .hero-ctas { flex-direction: column; align-items: center; gap: 0.7rem; }
+  .hero-ctas button { width: 100%; max-width: 280px; }
+  .cube-wrap { width: 140px !important; height: 140px !important; }
+
+  /* How it works */
+  #how { padding: 3rem 1rem; }
+  .steps { grid-template-columns: 1fr !important; gap: 1rem; }
+  .step { padding: 1.2rem; }
+
+  /* Pricing */
+  #pricing { padding: 3rem 1rem; }
+  .plans { grid-template-columns: 1fr !important; max-width: 100% !important; }
+  .plan { padding: 1.4rem; }
+
+  /* Enter World */
+  #world { padding: 3rem 1rem; }
+  .world-title { font-size: 2rem !important; }
+  .globe-wrap { width: 160px !important; height: 160px !important; }
+  .enter-btn { font-size: 0.82rem; padding: 13px 24px; }
+
+  /* Drawer */
+  .drawer { width: 100% !important; max-width: 100% !important; border-radius: 20px 20px 0 0; }
+  .drawer-overlay { align-items: flex-end; }
+
+  /* Footer */
+  footer { font-size: 0.75rem; padding: 1.2rem; text-align: center; }
+
+  /* How it works container */
+  .container { padding: 0 1rem; }
+  .sec-title { font-size: 1.6rem !important; }
+}
+
+/* ── DASHBOARD MOBILE ── */
+@media(max-width:768px){
+
+  /* Dashboard nav */
+  #dashboard nav {
+    padding: 0 1rem;
+    height: 54px;
+  }
+  #dashboard .nav-plan { display: none; }
+  #dashboard .nav-logout { padding: 6px 12px; font-size: 0.72rem; }
+
+  /* Dashboard page */
+  #dashboard .page { padding: 1.2rem 1rem; }
+  #dashboard .welcome h1 { font-size: 1.1rem; }
+  #dashboard .welcome { margin-bottom: 1.2rem; }
+
+  /* Stats */
+  #dashboard .stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+  #dashboard .stat { padding: 0.9rem 1rem; }
+  #dashboard .stat-v { font-size: 1.2rem; }
+
+  /* Main grid */
+  #dashboard .grid { gap: 1rem; }
+
+  /* Worlds grid */
+  #dashboard .worlds { grid-template-columns: repeat(auto-fill, minmax(110px,1fr)) !important; gap: 0.6rem; padding: 0.8rem; }
+  #dashboard .wthumb { height: 65px; font-size: 1.6rem; }
+  #dashboard .wname { font-size: 0.72rem; }
+
+  /* Photo 3D list */
+  #dashboard .p3d-list { padding: 0.7rem 0.9rem; }
+  #dashboard .p3d-name { font-size: 0.8rem; }
+
+  /* Plan card */
+  #dashboard .plan-card { margin-bottom: 1rem; }
+  #dashboard .plan-name { font-size: 1rem; }
+
+  /* Quick gen */
+  #dashboard .tags { gap: 0.4rem; }
+  #dashboard .tag { font-size: 0.68rem; padding: 3px 8px; }
+
+  /* Card */
+  #dashboard .card-head { padding: 0.8rem 1rem; }
+  #dashboard .card-title { font-size: 0.78rem; }
+}
+
+/* ── PROFILE MOBILE ── */
+@media(max-width:768px){
+
+  /* Profile nav */
+  #profile-page nav { padding: 0 1rem; }
+
+  /* Hero band */
+  #profile-page .hero-band { height: 140px; }
+
+  /* Avatar zone */
+  #profile-page .avatar-zone {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: -50px;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  #profile-page .avatar { width: 90px; height: 90px; font-size: 1.8rem; }
+  #profile-page .avatar-name { font-size: 1.3rem; }
+  #profile-page .avatar-tags { justify-content: center; }
+
+  /* Stat strip */
+  #profile-page .stat-strip {
+    grid-template-columns: 1fr 1fr !important;
+    margin: 1rem 1rem 0;
+    padding: 0;
+  }
+  #profile-page .sstat { border-right: none; border-bottom: 1px solid var(--border); }
+  #profile-page .sstat:nth-child(odd) { border-right: 1px solid var(--border); }
+  #profile-page .sstat:nth-last-child(-n+2) { border-bottom: none; }
+
+  /* Wrap */
+  #profile-page .wrap { padding: 1.2rem 1rem; gap: 1rem; }
+  #profile-page .card-body { padding: 1rem; }
+  #profile-page .frow { grid-template-columns: 1fr !important; }
+
+  /* Plan hero */
+  #profile-page .plan-hero { margin-bottom: 1rem; }
+  #profile-page .plan-tier { font-size: 1.2rem; }
+}
+
+/* ── PAYMENT MOBILE ── */
+@media(max-width:768px){
+
+  #payment-page nav { padding: 0 1rem; }
+  #payment-page .secure-bar { font-size: 0.65rem; padding: 7px 1rem; }
+  #payment-page .page { padding: 1.5rem 1rem; gap: 1.2rem; }
+  #payment-page .step-title { font-size: 1.2rem; }
+
+  /* Plan options */
+  #payment-page .plan-opt { padding: 0.9rem 1rem; gap: 0.8rem; }
+  #payment-page .plan-name { font-size: 0.82rem; }
+  #payment-page .plan-feats-mini { font-size: 0.7rem; }
+  #payment-page .plan-amt { font-size: 1.1rem; }
+
+  /* UPI apps */
+  #payment-page .upi-apps { gap: 0.5rem; }
+  #payment-page .upi-app { padding: 0.6rem 0.8rem; font-size: 0.75rem; }
+
+  /* UPI input */
+  #payment-page .upi-input-row { flex-direction: column; gap: 0.6rem; }
+  #payment-page .upi-verify-btn { width: 100%; }
+  #payment-page .upi-inp { width: 100%; }
+
+  /* Pay button */
+  #payment-page .pay-btn { padding: 14px; font-size: 0.82rem; }
+
+  /* Summary card */
+  #payment-page .summary-card { position: static !important; }
+
+  /* Success */
+  #payment-page .success-title { font-size: 1.5rem; }
+  #payment-page .success-ring { width: 90px; height: 90px; font-size: 2.2rem; }
+}
+
+/* ── SMALL PHONES (360px) ── */
+@media(max-width:400px){
+  .hero-title { font-size: 1.8rem !important; }
+  #dashboard .stats { grid-template-columns: 1fr !important; }
+  #profile-page .stat-strip { grid-template-columns: 1fr 1fr !important; }
+  .btn-outline, .btn-solid { font-size: 0.7rem !important; padding: 8px 12px !important; }
+}
+
+/* ── HAMBURGER MENU ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text2);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+@media(max-width:768px){
+  .hamburger { display: flex; }
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 54px; left: 0; right: 0;
+  background: rgba(7,5,15,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+  padding: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: var(--text2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: block;
+}
+.mobile-menu a:hover { background: var(--card2); color: var(--text); }
+.mobile-menu .mob-btns {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+.mobile-menu .mob-btns button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
+/* ===== PAYMENT PAGE CSS ===== */
+#payment-page nav {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:62px;
+  background:rgba(5,3,9,0.95);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  position:sticky;top:0;z-index:100;
+}
+.pay-page-wrap {
+  max-width:960px;margin:0 auto;padding:2.5rem 1.5rem;
+  display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;
+}
+@media(max-width:800px){.pay-page-wrap{grid-template-columns:1fr;}}
+.pay-step-head{margin-bottom:1.5rem;}
+.pay-step-label{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b8aaff;margin-bottom:6px;}
+.pay-step-title{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(90deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pay-plans{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.5rem;}
+.plan-opt{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.2rem 1.4rem;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;display:flex;align-items:center;gap:1.2rem;}
+.plan-opt:hover{border-color:rgba(124,111,255,0.3);background:rgba(255,255,255,0.06);}
+.plan-opt.selected{border-color:#7c6fff;background:rgba(124,111,255,0.08);box-shadow:0 0 0 1px rgba(124,111,255,0.2),0 4px 24px rgba(124,111,255,0.12);}
+.plan-opt.selected::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4f46e5,#b8aaff);}
+.plan-radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.plan-opt.selected .plan-radio{border-color:#7c6fff;background:#7c6fff;}
+.plan-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transition:opacity 0.2s;}
+.plan-opt.selected .plan-radio::after{opacity:1;}
+.plan-info{flex:1;}
+.plan-name{font-family:'Orbitron',monospace;font-size:0.88rem;font-weight:900;margin-bottom:3px;}
+.plan-feats-mini{font-size:0.74rem;color:rgba(255,255,255,0.4);}
+.plan-price-col{text-align:right;flex-shrink:0;}
+.plan-amt{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;}
+.plan-per{font-size:0.7rem;color:rgba(255,255,255,0.3);}
+.plan-badge-free{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:0.08em;}
+.plan-badge-pop{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:0.08em;}
+.pay-sec-label{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.8rem;}
+.upi-app{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.7rem 1rem;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s;font-size:0.82rem;font-weight:700;}
+.upi-app:hover{border-color:rgba(124,111,255,0.3);}
+.upi-app.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);}
+.upi-inp{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;outline:none;transition:all 0.2s;min-width:0;}
+.upi-inp:focus{border-color:rgba(124,111,255,0.4);box-shadow:0 0 0 3px rgba(124,111,255,0.08);}
+.upi-inp::placeholder{color:rgba(255,255,255,0.18);}
+.upi-verify-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#b8aaff;padding:11px 18px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.upi-verify-btn:hover{border-color:rgba(124,111,255,0.3);}
+.pay-main-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:14px;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.pay-main-btn:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 10px 30px rgba(99,102,241,0.4);}
+.pay-main-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.pay-summary{background:linear-gradient(145deg,#0d0824,#0a0620);border:1px solid rgba(124,111,255,0.15);border-radius:18px;overflow:hidden;position:sticky;top:80px;}
+.sum-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7rem;}
+@keyframes sGlow{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+@keyframes ringPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+
+
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
 </style>
 </head>
 <body>
@@ -1340,208 +1650,656 @@ nav{
 <canvas id="c"></canvas>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">3D<span>.</span>AI</div>
-  <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#how">How it Works</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#world">Enter World</a></li>
+<!-- ========== UPGRADED LANDING PAGE ========== -->
+<style>
+/* ── LANDING UPGRADE CSS ── */
+.lp-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 66px;
+  background: rgba(4,2,12,0); backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s ease;
+}
+.lp-nav.scrolled {
+  background: rgba(4,2,12,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+.lp-nav-logo {
+  font-family: 'Orbitron', monospace; font-weight: 900; font-size: 1.3rem;
+  color: #fff; letter-spacing: 2px; display: flex; align-items: center; gap: 3px;
+}
+.lp-nav-logo .dot { color: #7c6fff; }
+.lp-nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.lp-nav-links a {
+  color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.06em; cursor: pointer; transition: color 0.2s;
+  font-family: 'Syne', sans-serif;
+}
+.lp-nav-links a:hover { color: #fff; }
+.lp-nav-right { display: flex; align-items: center; gap: 0.8rem; }
+.lp-theme-wrap { position: relative; }
+.lp-theme-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6); padding: 7px 14px; border-radius: 8px;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  font-family: 'Syne', sans-serif; display: flex; align-items: center; gap: 6px;
+}
+.lp-theme-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.lp-theme-drop {
+  display: none; position: absolute; top: calc(100% + 8px); right: 0;
+  background: #0d0a1a; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 0.5rem; min-width: 160px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.lp-theme-drop.open { display: block; }
+.lp-t-opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: 8px; cursor: pointer;
+  font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.5);
+  transition: all 0.15s; font-family: 'Syne', sans-serif;
+}
+.lp-t-opt:hover, .lp-t-opt.active { background: rgba(255,255,255,0.07); color: #fff; }
+.lp-t-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.lp-btn-login {
+  background: transparent; border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7); padding: 9px 20px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  font-family: 'Syne', sans-serif;
+}
+.lp-btn-login:hover { border-color: rgba(124,111,255,0.5); color: #fff; }
+.lp-btn-signup {
+  background: linear-gradient(135deg, #4f46e5, #7c6fff);
+  color: #fff; border: none; padding: 9px 22px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.25s;
+  font-family: 'Syne', sans-serif;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+}
+.lp-btn-signup:hover { filter: brightness(1.12); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(99,102,241,0.45); }
+
+/* HERO */
+.lp-hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 8rem 2rem 4rem;
+  position: relative; overflow: hidden;
+}
+.lp-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,70,229,0.18) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 20% 80%, rgba(124,111,255,0.1) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 40% at 80% 70%, rgba(34,211,238,0.06) 0%, transparent 50%);
+}
+.lp-hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(rgba(124,111,255,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(124,111,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 80%);
+}
+.lp-hero-canvas { position: absolute; inset: 0; z-index: 0; }
+
+.lp-hero-content { position: relative; z-index: 2; max-width: 860px; }
+
+.lp-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(124,111,255,0.1); border: 1px solid rgba(124,111,255,0.25);
+  color: #b8aaff; padding: 7px 18px; border-radius: 50px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 2rem;
+  animation: eyebrowIn 0.8s ease both;
+}
+@keyframes eyebrowIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none} }
+.lp-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #00e5a0;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,0.4)} 50%{box-shadow:0 0 0 6px rgba(0,229,160,0)} }
+
+.lp-hero-title {
+  font-family: 'Orbitron', monospace; font-weight: 900;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.05; margin-bottom: 1.5rem;
+  animation: titleIn 0.9s 0.2s ease both;
+}
+@keyframes titleIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+.lp-hero-title .line1 { color: #f4f0ff; display: block; }
+.lp-hero-title .line2 {
+  display: block;
+  background: linear-gradient(135deg, #7c6fff, #b8aaff, #00d4ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(124,111,255,0.4));
+}
+.lp-hero-title .line3 { color: rgba(244,240,255,0.7); display: block; font-size: 0.6em; font-weight: 700; letter-spacing: 0.1em; margin-top: 0.3em; }
+
+.lp-hero-desc {
+  font-family: 'Syne', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.5);
+  max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 400;
+  animation: titleIn 0.9s 0.4s ease both;
+}
+
+.lp-hero-btns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: titleIn 0.9s 0.6s ease both;
+}
+.lp-cta-primary {
+  background: linear-gradient(135deg, #4f46e5, #7c6fff);
+  color: #fff; border: none; padding: 15px 36px; border-radius: 50px;
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800;
+  cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(99,102,241,0.4);
+}
+.lp-cta-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%); transition: transform 0.5s;
+}
+.lp-cta-primary:hover::after { transform: translateX(100%); }
+.lp-cta-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(99,102,241,0.5); }
+
+.lp-cta-secondary {
+  background: transparent; border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7); padding: 15px 36px; border-radius: 50px;
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s;
+}
+.lp-cta-secondary:hover { border-color: rgba(124,111,255,0.5); color: #fff; background: rgba(124,111,255,0.06); }
+
+/* STATS BAR */
+.lp-stats-bar {
+  display: flex; gap: 0; justify-content: center;
+  margin-top: 4rem; position: relative; z-index: 2;
+  animation: titleIn 0.9s 0.8s ease both;
+}
+.lp-stat {
+  padding: 1rem 2.5rem; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.07);
+}
+.lp-stat:last-child { border-right: none; }
+.lp-stat-v {
+  font-family: 'Orbitron', monospace; font-size: 1.8rem; font-weight: 900;
+  background: linear-gradient(135deg, #fff, #b8aaff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 3px;
+}
+.lp-stat-n { font-size: 0.72rem; color: rgba(255,255,255,0.35); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* SCROLL INDICATOR */
+.lp-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.2); font-size: 0.7rem; letter-spacing: 0.2em;
+  animation: titleIn 1s 1s ease both; z-index: 2; cursor: pointer;
+}
+.lp-scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, rgba(124,111,255,0.8), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse { 0%,100%{transform:scaleY(1);opacity:0.5} 50%{transform:scaleY(0.5);opacity:1} }
+
+/* HOW IT WORKS */
+.lp-how {
+  padding: 8rem 2rem; max-width: 1100px; margin: 0 auto;
+}
+.lp-section-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em;
+  text-transform: uppercase; color: #7c6fff;
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+}
+.lp-section-tag::before { content: ''; flex: 0 0 30px; height: 1px; background: #7c6fff; }
+.lp-section-title {
+  font-family: 'Orbitron', monospace; font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900; color: #f4f0ff; margin-bottom: 1rem;
+}
+.lp-section-sub { color: rgba(255,255,255,0.4); font-size: 1rem; max-width: 500px; line-height: 1.8; }
+
+.lp-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; margin-top: 4rem; position: relative;
+}
+.lp-steps::before {
+  content: ''; position: absolute; top: 40px; left: 10%; right: 10%;
+  height: 1px; background: linear-gradient(90deg, transparent, rgba(124,111,255,0.3), transparent);
+  z-index: 0;
+}
+.lp-step {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; padding: 2rem 1.5rem;
+  position: relative; z-index: 1; transition: all 0.3s;
+  overflow: hidden;
+}
+.lp-step::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--sc1), var(--sc2));
+}
+.lp-step:hover { transform: translateY(-6px); border-color: rgba(124,111,255,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.lp-step-num {
+  font-family: 'Orbitron', monospace; font-size: 0.65rem; font-weight: 700;
+  color: rgba(255,255,255,0.2); letter-spacing: 0.2em; margin-bottom: 1rem;
+}
+.lp-step-ico {
+  width: 52px; height: 52px; border-radius: 14px; margin-bottom: 1.2rem;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  background: linear-gradient(135deg, var(--sc1), var(--sc2));
+  opacity: 0.9;
+}
+.lp-step-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
+.lp-step-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+/* PRICING */
+.lp-pricing {
+  padding: 8rem 2rem; text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(79,70,229,0.04) 30%, transparent);
+}
+.lp-pricing-inner { max-width: 1000px; margin: 0 auto; }
+.lp-plans {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 4rem;
+}
+.lp-plan {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px; padding: 2rem; text-align: left;
+  transition: all 0.35s; position: relative; overflow: hidden;
+}
+.lp-plan:hover { transform: translateY(-8px); border-color: rgba(124,111,255,0.25); box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+.lp-plan.featured {
+  background: linear-gradient(145deg, rgba(79,70,229,0.15), rgba(124,111,255,0.08));
+  border-color: rgba(124,111,255,0.35);
+  box-shadow: 0 0 0 1px rgba(124,111,255,0.15), 0 20px 60px rgba(79,70,229,0.2);
+}
+.lp-plan.featured::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #7c6fff, #00d4ff);
+}
+.lp-plan-badge {
+  position: absolute; top: 16px; right: 16px;
+  background: linear-gradient(135deg, #4f46e5, #7c6fff);
+  color: #fff; font-size: 0.62rem; font-weight: 800;
+  padding: 4px 12px; border-radius: 50px; letter-spacing: 0.1em;
+}
+.lp-plan-name {
+  font-family: 'Orbitron', monospace; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-bottom: 0.8rem;
+}
+.lp-plan-price {
+  font-family: 'Orbitron', monospace; font-size: 2.8rem; font-weight: 900;
+  color: #f4f0ff; line-height: 1; margin-bottom: 0.3rem;
+}
+.lp-plan-price sup { font-size: 1.2rem; vertical-align: super; }
+.lp-plan-price sub { font-size: 1rem; color: rgba(255,255,255,0.3); }
+.lp-plan-desc { font-size: 0.82rem; color: rgba(255,255,255,0.35); margin-bottom: 1.5rem; line-height: 1.6; }
+.lp-plan-divider { height: 1px; background: rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
+.lp-plan-feat {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.82rem; color: rgba(255,255,255,0.55);
+  margin-bottom: 0.7rem; font-weight: 500;
+}
+.lp-plan-feat-ico { color: #00e5a0; font-size: 0.7rem; margin-top: 3px; flex-shrink: 0; }
+.lp-plan-feat-ico.purple { color: #b8aaff; }
+.lp-plan-btn-g {
+  width: 100%; padding: 12px; margin-top: 1.5rem;
+  background: transparent; border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.7); border-radius: 12px;
+  font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+}
+.lp-plan-btn-g:hover { border-color: rgba(124,111,255,0.4); color: #fff; background: rgba(124,111,255,0.08); }
+.lp-plan-btn-s {
+  width: 100%; padding: 12px; margin-top: 1.5rem;
+  background: linear-gradient(135deg, #4f46e5, #7c6fff);
+  color: #fff; border: none; border-radius: 12px;
+  font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 6px 24px rgba(79,70,229,0.35);
+}
+.lp-plan-btn-s:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+/* ENTER WORLD */
+.lp-world {
+  padding: 8rem 2rem; text-align: center; position: relative; overflow: hidden;
+}
+.lp-world-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,70,229,0.12), transparent 65%);
+}
+.lp-world-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+.lp-world-title {
+  font-family: 'Orbitron', monospace; font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900; margin-bottom: 1rem;
+  background: linear-gradient(135deg, #f4f0ff, #b8aaff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.lp-world-sub { color: rgba(255,255,255,0.4); font-size: 1rem; line-height: 1.8; margin-bottom: 2.5rem; }
+.lp-enter-btn {
+  background: linear-gradient(135deg, #4f46e5, #7c6fff);
+  color: #fff; border: none; padding: 16px 44px; border-radius: 50px;
+  font-family: 'Orbitron', monospace; font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 8px 32px rgba(79,70,229,0.4);
+}
+.lp-enter-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(79,70,229,0.5); filter: brightness(1.1); }
+
+/* FOOTER */
+.lp-footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem; text-align: center;
+  font-size: 0.8rem; color: rgba(255,255,255,0.2);
+  font-family: 'Syne', sans-serif;
+}
+.lp-footer strong { color: rgba(255,255,255,0.5); }
+.lp-footer .lp-brand { color: #7c6fff; font-family: 'Orbitron', monospace; font-size: 0.75rem; }
+
+/* MOBILE */
+@media(max-width: 768px) {
+  .lp-nav { padding: 0 1.2rem; }
+  .lp-nav-links { display: none; }
+  .lp-hero { padding: 6rem 1.2rem 3rem; }
+  .lp-steps { grid-template-columns: 1fr 1fr; }
+  .lp-plans { grid-template-columns: 1fr; max-width: 400px; margin: 3rem auto 0; }
+  .lp-stats-bar { flex-wrap: wrap; }
+  .lp-stat { flex: 1 1 40%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .lp-how, .lp-pricing, .lp-world { padding: 5rem 1.2rem; }
+  .lp-cta-primary, .lp-cta-secondary { width: 100%; max-width: 300px; }
+}
+@media(max-width: 480px) {
+  .lp-steps { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- ── NAV ── -->
+<nav class="lp-nav" id="lpNav">
+  <div class="lp-nav-logo">3D<span class="dot">.</span>AI</div>
+  <ul class="lp-nav-links">
+    <li><a onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">How it Works</a></li>
+    <li><a onclick="document.getElementById('lp-pricing').scrollIntoView({behavior:'smooth'})">Pricing</a></li>
+    <li><a onclick="document.getElementById('lp-world').scrollIntoView({behavior:'smooth'})">Enter World</a></li>
   </ul>
-  <div class="nav-right">
-    <div class="theme-wrap">
-      <button class="theme-toggle-btn" id="themeBtn" onclick="toggleThemeDrop(event)">
+  <div class="lp-nav-right">
+    <div class="lp-theme-wrap">
+      <button class="lp-theme-btn" onclick="toggleThemeDrop(event)">
         <span id="themeIcon">🌑</span> Theme
       </button>
-      <div class="theme-drop" id="themeDrop">
-        <div class="t-opt active" onclick="setTheme('default','🌑',this)"><div class="t-dot" style="background:#6366f1"></div>Dark</div>
-        <div class="t-opt" onclick="setTheme('cyber','💠',this)"><div class="t-dot" style="background:#00c8ff"></div>Cyber Blue</div>
-        <div class="t-opt" onclick="setTheme('light','☀️',this)"><div class="t-dot" style="background:#6366f1;outline:1px solid #ccc"></div>Light</div>
-        <div class="t-opt" onclick="setTheme('neon','🟢',this)"><div class="t-dot" style="background:#00e64d"></div>Neon Green</div>
-        <div class="t-opt" onclick="setTheme('rose','🌸',this)"><div class="t-dot" style="background:#ff2d78"></div>Rose Red</div>
+      <div class="lp-theme-drop" id="themeDrop">
+        <div class="lp-t-opt active" onclick="setTheme('default','🌑',this)"><div class="lp-t-dot" style="background:#6366f1"></div>Dark</div>
+        <div class="lp-t-opt" onclick="setTheme('cyber','💠',this)"><div class="lp-t-dot" style="background:#00c8ff"></div>Cyber Blue</div>
+        <div class="lp-t-opt" onclick="setTheme('light','☀️',this)"><div class="lp-t-dot" style="background:#6366f1;outline:1px solid #ccc"></div>Light</div>
+        <div class="lp-t-opt" onclick="setTheme('neon','🟢',this)"><div class="lp-t-dot" style="background:#00e64d"></div>Neon Green</div>
+        <div class="lp-t-opt" onclick="setTheme('rose','🌸',this)"><div class="lp-t-dot" style="background:#ff2d78"></div>Rose Red</div>
       </div>
     </div>
-    <button class="btn btn-ghost" onclick="openDrawer('login')">Log In</button>
-    <button class="btn btn-accent" onclick="openDrawer('signup')">Sign Up Free</button>
+    <button class="lp-btn-login" onclick="openDrawer('login')">Log In</button>
+    <button class="lp-btn-signup" onclick="openDrawer('signup')">Sign Up Free →</button>
   </div>
-
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-eyebrow"><div class="dot-live"></div> AI-Powered 3D Platform</div>
-  <h1 class="hero-title">Build Your<br><span class="hi">3D World</span><br>With AI</h1>
-  <p class="hero-desc">Describe any world in words. Our AI builds it in 3D — fully interactive, exportable, and shareable in minutes.</p>
-  <div class="hero-ctas">
-    <button class="btn btn-accent btn-lg" onclick="openDrawer('signup')">Start Building Free →</button>
-    <button class="btn btn-ghost btn-lg" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
-  </div>
-  <div class="cube-area">
-    <div class="cube-wrap">
-      <div class="cube">
-        <div class="cf front">AI</div>
-        <div class="cf back">3D</div>
-        <div class="cf left">∞</div>
-        <div class="cf right">XR</div>
-        <div class="cf top">▲</div>
-        <div class="cf bottom">▼</div>
-      </div>
-    </div>
-    <div class="cube-label">AI Rendering Engine</div>
-  </div>
-  <div class="scroll-hint">
-    <div class="scroll-bar"></div>
-    <span>Scroll</span>
-  </div>
-</section>
+<!-- ── HERO ── -->
+<section id="hero" style="position:relative;overflow:hidden;">
+  <div class="lp-hero-bg"></div>
+  <div class="lp-hero-grid"></div>
+  <canvas class="lp-hero-canvas" id="heroCanvas"></canvas>
 
-<hr class="div">
-
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="container">
-    <div class="how-head reveal">
-      <div class="sec-tag">Process</div>
-      <h2 class="sec-title">How 3D.AI Works</h2>
-      <p class="sec-sub" style="max-width:480px;margin:0 auto">From your imagination to a full 3D world — in just 4 simple steps.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <span class="step-ico">💬</span>
-        <div class="step-n">Step 01</div>
-        <div class="step-t">Describe Your World</div>
-        <p class="step-d">Type anything — "cyberpunk city at night" or "peaceful forest village" — and our AI understands.</p>
+  <div class="lp-hero" style="padding-top:9rem;">
+    <div class="lp-hero-content">
+      <div class="lp-eyebrow">
+        <div class="lp-eyebrow-dot"></div>
+        AI-Powered 3D Generation Platform
       </div>
-      <div class="step reveal">
-        <span class="step-ico">🧠</span>
-        <div class="step-n">Step 02</div>
-        <div class="step-t">AI Builds It in 3D</div>
-        <p class="step-d">Our neural engine generates full 3D scenes, objects, lighting, and textures automatically.</p>
+      <h1 class="lp-hero-title">
+        <span class="line1">Build Any</span>
+        <span class="line2">3D World</span>
+        <span class="line3">With the Power of Artificial Intelligence</span>
+      </h1>
+      <p class="lp-hero-desc">
+        Describe your vision in words. Our AI turns it into a fully interactive 3D world — explorable, exportable, shareable — in minutes.
+      </p>
+      <div class="lp-hero-btns">
+        <button class="lp-cta-primary" onclick="openDrawer('signup')">✦ Start Building Free</button>
+        <button class="lp-cta-secondary" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">See How It Works ↓</button>
       </div>
-      <div class="step reveal">
-        <span class="step-ico">🌐</span>
-        <div class="step-n">Step 03</div>
-        <div class="step-t">Enter & Explore</div>
-        <p class="step-d">Walk inside your creation via browser or VR. Interact, modify, and customize everything.</p>
-      </div>
-      <div class="step reveal">
-        <span class="step-ico">📤</span>
-        <div class="step-n">Step 04</div>
-        <div class="step-t">Export & Share</div>
-        <p class="step-d">Export as GLB, FBX or embed in your site. Share with one link to anyone worldwide.</p>
+      <div class="lp-stats-bar">
+        <div class="lp-stat"><div class="lp-stat-v">10K+</div><div class="lp-stat-n">Worlds Created</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">50K+</div><div class="lp-stat-n">Users</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">4.9★</div><div class="lp-stat-n">Rating</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">&lt;2min</div><div class="lp-stat-n">Generation Time</div></div>
       </div>
     </div>
+  </div>
+  <div class="lp-scroll" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">
+    <div class="lp-scroll-line"></div>
+    <span>SCROLL</span>
   </div>
 </section>
 
-<hr class="div">
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="reveal">
-      <div class="sec-tag">Pricing</div>
-      <h2 class="sec-title">Simple, Clear Plans</h2>
-      <p class="sec-sub" style="max-width:440px;margin:0 auto">Pick a plan and start building. No hidden fees.</p>
-    </div>
-    <div class="plans" style="max-width:980px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
-      <!-- Free -->
-      <div class="plan reveal">
-        <div class="plan-name">Free</div>
-        <div class="plan-price">₹0<sub>/mo</sub></div>
-        <div class="plan-mo">Forever free</div>
-        <p class="plan-desc">Try 3D.AI at no cost. Perfect for exploring what's possible.</p>
-        <ul class="feats">
-          <li>3 AI World Generations</li>
-          <li>Basic Textures</li>
-          <li>Browser 3D Viewer</li>
-          <li>Community Support</li>
-          <li class="feat-highlight">Photo with 3D Model <span class="feat-badge">10/day</span></li>
-        </ul>
-        <button class="plan-cta ghost" onclick="openDrawer('signup')">Start Free →</button>
+<!-- ── HOW IT WORKS ── -->
+<section id="lp-how">
+  <div class="lp-how">
+    <div class="lp-section-tag">Process</div>
+    <h2 class="lp-section-title">How 3D.AI Works</h2>
+    <p class="lp-section-sub">From imagination to interactive 3D world in 4 simple steps.</p>
+    <div class="lp-steps">
+      <div class="lp-step" style="--sc1:#4f46e5;--sc2:#7c6fff">
+        <div class="lp-step-num">STEP 01</div>
+        <div class="lp-step-ico" style="background:rgba(79,70,229,0.2)">💬</div>
+        <div class="lp-step-title">Describe Your World</div>
+        <p class="lp-step-desc">Type anything — "cyberpunk city at night" or "peaceful forest village" — and our AI understands your vision instantly.</p>
       </div>
-
-      <!-- Basic -->
-      <div class="plan reveal">
-        <div class="plan-name">Basic</div>
-        <div class="plan-price">₹299<sub>/mo</sub></div>
-        <div class="plan-mo">Billed monthly</div>
-        <p class="plan-desc">For beginners and hobbyists exploring AI-powered 3D creation.</p>
-        <ul class="feats">
-          <li>20 AI World Generations</li>
-          <li>HD Textures & Lighting</li>
-          <li>Browser 3D Viewer</li>
-          <li>GLB Export</li>
-          <li>Email Support</li>
-          <li class="feat-highlight">Photo with Unlimited 3D Model <span class="feat-badge pro-badge">Unlimited</span></li>
-        </ul>
-        <button class="plan-cta ghost" onclick="openDrawer('signup')">Get Basic →</button>
+      <div class="lp-step" style="--sc1:#7c6fff;--sc2:#00d4ff">
+        <div class="lp-step-num">STEP 02</div>
+        <div class="lp-step-ico" style="background:rgba(124,111,255,0.15)">🧠</div>
+        <div class="lp-step-title">AI Builds in 3D</div>
+        <p class="lp-step-desc">Our neural engine generates full 3D scenes, objects, lighting, and textures — all automatically in under 2 minutes.</p>
       </div>
-
-      <!-- Pro -->
-      <div class="plan pro reveal">
-        <div class="pop-badge">Most Popular</div>
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">₹999<sub>/mo</sub></div>
-        <div class="plan-mo">Billed monthly</div>
-        <p class="plan-desc">For serious creators, developers, and freelancers building real projects.</p>
-        <ul class="feats">
-          <li>Unlimited Generations</li>
-          <li>4K Ultra Textures</li>
-          <li>VR + AR Access</li>
-          <li>Real-time Collaboration</li>
-          <li>GLB / FBX / OBJ Export</li>
-          <li>Priority AI Engine</li>
-          <li>Priority Support</li>
-          <li class="feat-highlight">Photo with Unlimited 3D Model <span class="feat-badge pro-badge">Unlimited</span></li>
-        </ul>
-        <button class="plan-cta solid" onclick="openDrawer('signup')">Get Pro →</button>
+      <div class="lp-step" style="--sc1:#00d4ff;--sc2:#00e5a0">
+        <div class="lp-step-num">STEP 03</div>
+        <div class="lp-step-ico" style="background:rgba(0,212,255,0.12)">🌐</div>
+        <div class="lp-step-title">Enter & Explore</div>
+        <p class="lp-step-desc">Walk inside your creation via browser or VR headset. Interact, modify, and customize every detail in real-time.</p>
+      </div>
+      <div class="lp-step" style="--sc1:#00e5a0;--sc2:#ffb830">
+        <div class="lp-step-num">STEP 04</div>
+        <div class="lp-step-ico" style="background:rgba(0,229,160,0.12)">📤</div>
+        <div class="lp-step-title">Export & Share</div>
+        <p class="lp-step-desc">Export as GLB, FBX or OBJ. Embed in your site or share with one link to anyone worldwide — instantly.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="div">
-
-<!-- ENTER WORLD -->
-<section id="world">
-  <div class="world-center reveal">
-    <div class="sec-tag">Ready?</div>
-    <h2 class="world-title">Enter Your<br>3D World</h2>
-    <p class="world-sub">Log in and step into your AI-generated universe. Your dimension is waiting.</p>
-
-    <!-- Animated Globe -->
-    <div class="globe-wrap">
-      <!-- Outer glow rings -->
-      <div class="glow-ring g-ring-out"></div>
-      <div class="glow-ring g-ring-mid"></div>
-      <!-- Sphere -->
-      <div class="globe-sphere">
-        <div class="sphere-lat lat1"></div>
-        <div class="sphere-lat lat2"></div>
-        <div class="sphere-lng lng1"></div>
-        <div class="sphere-lng lng2"></div>
-        <!-- Glowing core dot -->
-        <div class="sphere-core"></div>
+<!-- ── PRICING ── -->
+<section id="lp-pricing">
+  <div class="lp-pricing">
+    <div class="lp-pricing-inner">
+      <div class="lp-section-tag">Pricing</div>
+      <h2 class="lp-section-title">Simple, Transparent Plans</h2>
+      <p class="lp-section-sub" style="margin:0 auto;text-align:center;">No hidden fees. Start free, upgrade anytime.</p>
+      <div class="lp-plans">
+        <!-- Free -->
+        <div class="lp-plan">
+          <div class="lp-plan-name">Free</div>
+          <div class="lp-plan-price"><sup>₹</sup>0<sub>/mo</sub></div>
+          <p class="lp-plan-desc">Perfect for exploring what AI-powered 3D creation can do.</p>
+          <div class="lp-plan-divider"></div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>3 AI World Generations</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Basic Textures</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Browser 3D Viewer</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Community Support</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Photo with 3D Model — 10/day</div>
+          <button class="lp-plan-btn-g" onclick="openDrawer('signup')">Start Free →</button>
+        </div>
+        <!-- Basic -->
+        <div class="lp-plan">
+          <div class="lp-plan-name">Basic</div>
+          <div class="lp-plan-price"><sup>₹</sup>299<sub>/mo</sub></div>
+          <p class="lp-plan-desc">For beginners and hobbyists exploring AI-powered 3D creation.</p>
+          <div class="lp-plan-divider"></div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>20 AI World Generations</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>HD Textures & Lighting</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Browser 3D Viewer</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>GLB Export</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Email Support</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico">✦</span>Photo with Unlimited 3D Model</div>
+          <button class="lp-plan-btn-g" onclick="openDrawer('signup')" data-plan="basic">Get Basic →</button>
+        </div>
+        <!-- Pro -->
+        <div class="lp-plan featured">
+          <div class="lp-plan-badge">MOST POPULAR</div>
+          <div class="lp-plan-name">Pro</div>
+          <div class="lp-plan-price"><sup>₹</sup>999<sub>/mo</sub></div>
+          <p class="lp-plan-desc">For serious creators, developers and freelancers building real projects.</p>
+          <div class="lp-plan-divider"></div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>Unlimited Generations</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>4K Ultra Textures</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>VR + AR Access</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>Real-time Collaboration</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>GLB / FBX / OBJ Export</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>Priority AI Engine</div>
+          <div class="lp-plan-feat"><span class="lp-plan-feat-ico purple">✦</span>Photo with Unlimited 3D Model</div>
+          <button class="lp-plan-btn-s" onclick="openDrawer('signup')" data-plan="pro">Get Pro →</button>
+        </div>
       </div>
-      <!-- Orbit rings with dots -->
-      <div class="gr1"><div class="gd gd1"></div></div>
-      <div class="gr2"><div class="gd gd2"></div></div>
-      <div class="gr3"><div class="gd gd3"></div></div>
-      <div class="gr4"><div class="gd gd4"></div></div>
-      <div class="gr5"><div class="gd gd5"></div></div>
     </div>
-
-    <button class="enter-btn" onclick="openDrawer('login')">
-      🌐 Log In to Enter 3D World
-    </button>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <strong>3D.AI</strong> &nbsp;·&nbsp; © 2026 All Rights Reserved &nbsp;·&nbsp; <strong style="color:var(--accent2);font-family:Orbitron,monospace;font-size:0.82rem;">Ujjwal Production</strong>
+<!-- ── ENTER WORLD ── -->
+
+<!-- ── FOOTER ── -->
+<footer class="lp-footer">
+  <strong>3D.AI</strong> &nbsp;·&nbsp; © 2026 All Rights Reserved &nbsp;·&nbsp;
+  <span class="lp-brand">Ujjwal Production</span>
 </footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('lpNav');
+  if(nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Hero particle canvas
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const pts = Array.from({length:80}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+    vx: (Math.random()-.5)*.3, vy: (Math.random()-.5)*.3,
+    r: Math.random()*1.5+.3, p: Math.random()*Math.PI*2
+  }));
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach((p,i) => {
+      p.x+=p.vx; p.y+=p.vy; p.p+=.012;
+      if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(124,111,255,'+(0.2+Math.sin(p.p)*.1)+')';
+      ctx.fill();
+      for(let j=i+1;j<pts.length;j++){
+        const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(124,111,255,'+(1-d/120)*.08+')';ctx.lineWidth=.5;ctx.stroke();}
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== PAYMENT JS ===== */
+const payPlans = {
+  free:  { name:'Free Plan',  ico:'🆓', price:0,   gst:0,   total:0,    feats:['3 AI Generations','Basic Textures','Browser Viewer','Community Support'] },
+  basic: { name:'Basic Plan', ico:'📦', price:299,  gst:54,  total:353,  feats:['20 AI Generations','HD Textures','GLB Export','Email Support'] },
+  pro:   { name:'Pro Plan',   ico:'⭐', price:999,  gst:180, total:1179, feats:['Unlimited Generations','Photo 3D Unlimited','4K Textures','VR + AR Access','Priority Support','50 GB Storage'] },
+};
+let curPlan='pro', upiOk=false, payStep=1;
+
+function selectPlan(p){
+  document.querySelectorAll('.plan-opt').forEach(e=>e.classList.remove('selected'));
+  document.getElementById('plan-'+p).classList.add('selected');
+  curPlan=p; upiOk=false; payStep=1;
+  document.getElementById('upi-step-head').style.display='none';
+  document.getElementById('upi-section').style.display='none';
+  const btn=document.getElementById('mainBtn');
+  btn.textContent=p==='free'?'Activate Free Plan →':'Continue to Payment →';
+  updatePaySummary(p);
+}
+function updatePaySummary(p){
+  const d=payPlans[p];
+  document.getElementById('sumIco').textContent=d.ico;
+  document.getElementById('sumName').textContent=d.name;
+  document.getElementById('sumPrice').textContent=d.price===0?'FREE':'₹'+d.price;
+  document.getElementById('sumGst').textContent=d.gst===0?'—':'₹'+d.gst;
+  document.getElementById('sumTotal').textContent=d.total===0?'₹0':'₹'+d.total.toLocaleString('en-IN');
+  document.getElementById('sumFeats').innerHTML=d.feats.map(f=>`<div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;"><span style="color:#00e5a0;font-size:0.7rem;">✦</span>${f}</div>`).join('');
+}
+function selectApp(a){
+  document.querySelectorAll('.upi-app').forEach(e=>e.classList.remove('sel'));
+  document.getElementById('app-'+a).classList.add('sel');
+}
+function verifyUPI(){
+  const id=document.getElementById('upiId').value.trim();
+  if(!id||!id.includes('@')){document.getElementById('upiId').style.borderColor='#ff3d6b';setTimeout(()=>document.getElementById('upiId').style.borderColor='',1500);return;}
+  const btn=document.querySelector('.upi-verify-btn');
+  btn.textContent='⏳';btn.disabled=true;
+  setTimeout(()=>{
+    btn.textContent='✓ Verified';btn.disabled=false;btn.style.color='#00e5a0';
+    const v=document.getElementById('upiVerified');
+    document.getElementById('upiName').textContent=id.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+    v.style.display='flex'; upiOk=true;
+    document.getElementById('mainBtn').textContent='Pay ₹'+payPlans[curPlan].total.toLocaleString('en-IN')+' →';
+  },1200);
+}
+function resetVerify(){
+  upiOk=false;
+  const btn=document.querySelector('.upi-verify-btn');
+  if(btn){btn.textContent='Verify';btn.style.color='';btn.style.borderColor='';}
+  const v=document.getElementById('upiVerified');
+  if(v) v.style.display='none';
+}
+function mainAction(){
+  if(curPlan==='free'){paySuccess();return;}
+  if(payStep===1){
+    payStep=2;
+    document.getElementById('upi-step-head').style.display='block';
+    document.getElementById('upi-section').style.display='block';
+    document.getElementById('mainBtn').textContent='Pay ₹'+payPlans[curPlan].total.toLocaleString('en-IN')+' →';
+    document.getElementById('upi-step-head').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  const id=document.getElementById('upiId').value.trim();
+  if(!id||!id.includes('@')){document.getElementById('upiId').focus();return;}
+  if(!upiOk){verifyUPI();return;}
+  const btn=document.getElementById('mainBtn');
+  btn.disabled=true;btn.textContent='⏳ Processing...';
+  setTimeout(paySuccess,2000);
+}
+function paySuccess(){
+  const p=payPlans[curPlan];
+  document.getElementById('sucPlan').textContent=p.ico+' '+p.name+' Activated';
+  document.getElementById('sucTxn').textContent='TXN ID: 3DAI-'+Math.random().toString(36).substr(2,8).toUpperCase();
+  document.getElementById('pay-success').style.display='flex';
+  // confetti
+  const colors=['#7c6fff','#b8aaff','#00e5a0','#00d4ff','#ffb830'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.style.cssText=`position:fixed;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;border-radius:2px;background:${colors[i%colors.length]};left:${Math.random()*100}vw;top:-10px;z-index:400;animation:confettiFall ${1.5+Math.random()*2}s ${Math.random()*0.8}s linear forwards;`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),4000);
+  }
+}
+function paySuccessDashboard(){
+  document.getElementById('pay-success').style.display='none';
+  hidePayment();
+}
+// init payment summary
+document.addEventListener('DOMContentLoaded',()=>{ updatePaySummary('pro'); });
+
+</script>
 
 <!-- ===== DRAWER ===== -->
 <div class="drawer-overlay" id="drawerOverlay" onclick="overlayClose(event)">
@@ -1988,6 +2746,24 @@ function goToDashboard(){ hidePayment(); }
 
 // Init
 updateSummary('pro');
+
+/* ── MOBILE MENU ── */
+function toggleMobileMenu(){
+  const m = document.getElementById('mobileMenu');
+  if(m) m.classList.toggle('open');
+}
+function scrollTo(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
+document.addEventListener('click', function(e){
+  const menu = document.getElementById('mobileMenu');
+  const ham = document.getElementById('hamburger');
+  if(menu && ham && !menu.contains(e.target) && !ham.contains(e.target)){
+    menu.classList.remove('open');
+  }
+});
+
 </script>
 
 <!-- ===== DASHBOARD ===== -->
@@ -2337,4 +3113,96 @@ updateSummary('pro');
     <div class="modal-body">Yeh action permanent hai aur undo nahi hoga. Aapke saare 3D worlds, photo scans, exports — sab permanently delete ho jayenge.</div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="document.getElementById('delModal').classList.remove('open')">Cancel</button>
-      <button class="modal-del" onclick="deleteAcc()">Yes, Delete</bu
+      <button class="modal-del" onclick="deleteAcc()">Yes, Delete</b
+<!-- ===== PAYMENT PAGE ===== -->
+<div id="payment-page" style="display:none;">
+<nav>
+  <div class="nav-logo" style="font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;">3D<span style="color:#7c6fff">.</span>AI</div>
+  <div class="nav-back" onclick="hidePayment()" style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);font-size:0.8rem;font-weight:700;padding:7px 18px;border-radius:50px;cursor:pointer;">← Back</div>
+</nav>
+<div style="background:rgba(0,229,160,0.06);border-bottom:1px solid rgba(0,229,160,0.1);padding:8px 2rem;text-align:center;font-size:0.72rem;font-weight:700;color:#00e5a0;letter-spacing:0.12em;display:flex;align-items:center;justify-content:center;gap:8px;">
+  🔒 &nbsp; 100% Secure Payment &nbsp;·&nbsp; SSL Encrypted &nbsp;·&nbsp; Powered by Razorpay
+</div>
+<div class="pay-page-wrap">
+  <!-- LEFT -->
+  <div class="pay-left">
+    <div class="pay-step-head">
+      <div class="pay-step-label">Step 1 of 2</div>
+      <div class="pay-step-title">Choose Your Plan</div>
+    </div>
+    <div class="pay-plans">
+      <div class="plan-opt" id="plan-free" onclick="selectPlan('free')">
+        <div class="plan-radio"></div>
+        <div class="plan-info"><div class="plan-name">🆓 Free</div><div class="plan-feats-mini">3 generations · Basic textures · Browser viewer</div></div>
+        <div class="plan-price-col"><div class="plan-badge-free">FREE</div></div>
+      </div>
+      <div class="plan-opt" id="plan-basic" onclick="selectPlan('basic')">
+        <div class="plan-radio"></div>
+        <div class="plan-info"><div class="plan-name">📦 Basic</div><div class="plan-feats-mini">20 generations · HD textures · GLB export</div></div>
+        <div class="plan-price-col"><div class="plan-amt">₹299</div><div class="plan-per">/month</div></div>
+      </div>
+      <div class="plan-opt selected" id="plan-pro" onclick="selectPlan('pro')">
+        <div class="plan-badge-pop">POPULAR</div>
+        <div class="plan-radio"></div>
+        <div class="plan-info"><div class="plan-name">⭐ Pro</div><div class="plan-feats-mini">Unlimited generations · 4K textures · VR+AR · Photo 3D unlimited</div></div>
+        <div class="plan-price-col"><div class="plan-amt">₹999</div><div class="plan-per">/month</div></div>
+      </div>
+    </div>
+    <div id="upi-step-head" style="display:none;margin-bottom:1rem;">
+      <div class="pay-step-label">Step 2 of 2</div>
+      <div class="pay-step-title">Pay with UPI</div>
+    </div>
+    <div id="upi-section" style="display:none;margin-bottom:1.5rem;">
+      <div class="pay-sec-label">Select UPI App</div>
+      <div class="upi-apps" style="display:flex;gap:0.7rem;flex-wrap:wrap;margin-bottom:1rem;">
+        <div class="upi-app sel" id="app-gpay" onclick="selectApp('gpay')"><span style="font-size:1.2rem">🟦</span> GPay</div>
+        <div class="upi-app" id="app-phonepe" onclick="selectApp('phonepe')"><span style="font-size:1.2rem">🟣</span> PhonePe</div>
+        <div class="upi-app" id="app-paytm" onclick="selectApp('paytm')"><span style="font-size:1.2rem">🔵</span> Paytm</div>
+        <div class="upi-app" id="app-bhim" onclick="selectApp('bhim')"><span style="font-size:1.2rem">🇮🇳</span> BHIM</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.2rem;">
+        <div class="pay-sec-label">Enter UPI ID</div>
+        <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;">
+          <input class="upi-inp" id="upiId" placeholder="yourname@upi" oninput="resetVerify()">
+          <button class="upi-verify-btn" onclick="verifyUPI()">Verify</button>
+        </div>
+        <div id="upiVerified" style="display:none;align-items:center;gap:6px;margin-top:8px;font-size:0.78rem;color:#00e5a0;font-weight:700;">
+          ✓ Verified — <span id="upiName"></span>
+        </div>
+      </div>
+    </div>
+    <button class="pay-main-btn" id="mainBtn" onclick="mainAction()">Continue to Payment →</button>
+    <div style="text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.2);margin-top:0.8rem;">🔒 Secured by Razorpay · No data stored</div>
+  </div>
+  <!-- RIGHT: SUMMARY -->
+  <div class="pay-right">
+    <div class="pay-summary">
+      <div style="padding:1.2rem 1.4rem;border-bottom:1px solid rgba(124,111,255,0.1);font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;color:#b8aaff;letter-spacing:0.1em;">📋 Order Summary</div>
+      <div style="padding:1.4rem;">
+        <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:1.2rem;">
+          <div id="sumIco" style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">⭐</div>
+          <div><div id="sumName" style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;margin-bottom:3px;">Pro Plan</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Monthly subscription</div></div>
+        </div>
+        <div class="sum-row"><span style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Plan Price</span><span id="sumPrice" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;">₹999</span></div>
+        <div class="sum-row"><span style="font-size:0.8rem;color:rgba(255,255,255,0.4);">GST (18%)</span><span id="sumGst" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;">₹180</span></div>
+        <div style="height:1px;background:rgba(255,255,255,0.06);margin:1rem 0;"></div>
+        <div class="sum-row"><span style="font-size:0.9rem;font-weight:800;">Total</span><span id="sumTotal" style="font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;background:linear-gradient(90deg,#7c6fff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹1,179</span></div>
+        <div id="sumFeats" style="margin-top:1.2rem;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div id="pay-success" style="display:none;position:fixed;inset:0;z-index:300;background:#050309;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,0.15),transparent 65%);pointer-events:none;animation:sGlow 2s ease-in-out infinite;"></div>
+  <div style="width:110px;height:110px;border-radius:50%;border:3px solid #00e5a0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin-bottom:1.5rem;position:relative;z-index:1;box-shadow:0 0 0 12px rgba(0,229,160,0.08),0 0 40px rgba(0,229,160,0.2);animation:ringPop 0.6s cubic-bezier(.17,.67,.36,1.3);">✓</div>
+  <div style="font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:#00e5a0;margin-bottom:0.5rem;position:relative;z-index:1;">Payment Successful!</div>
+  <div style="font-size:1rem;color:rgba(255,255,255,0.4);max-width:380px;line-height:1.7;margin-bottom:0.5rem;position:relative;z-index:1;">Aapka plan activate ho gaya! 3D.AI ke saath apni journey shuru karo!</div>
+  <div id="sucPlan" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#b8aaff;background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.2);padding:8px 20px;border-radius:50px;margin:0.8rem 0 1.5rem;position:relative;z-index:1;">⭐ Pro Plan Activated</div>
+  <div id="sucTxn" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.2);margin-bottom:2rem;position:relative;z-index:1;"></div>
+  <button onclick="paySuccessDashboard()" style="background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:14px 36px;border-radius:12px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:900;letter-spacing:0.1em;cursor:pointer;position:relative;z-index:1;">🚀 Enter Dashboard</button>
+</div>
+</div>
+
+</body>
