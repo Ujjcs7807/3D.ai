@@ -632,7 +632,7 @@ function openDelModal(){document.getElementById('delModal').classList.add('open'
 function deleteAcc(){
   document.getElementById('delModal').classList.remove('open');
   toast('Account deleted. Goodbye!','#ff3d6b');
-  setTimeout(()=>{location.href='#';},2200)
+  setTimeout(()=>{location.href='#';},2200);
 }
 
 function toast(msg,color='#00e5a0'){
