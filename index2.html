@@ -1,0 +1,974 @@
+cat > /mnt/user-data/outputs/3DAI-final.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D.AI — Build Your World</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#07050f;--bg2:#0d0a1a;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--glow:rgba(99,102,241,0.35);--text:#f1f0f7;--text2:#8b87a8;--text3:#5f5b7a;--a:#6366f1;--a2:#a78bfa;--cyan:#22d3ee;--green:#10b981;}
+[data-theme="cyber"]{--bg:#000d1a;--bg2:#001428;--card:rgba(0,240,255,0.04);--border:rgba(0,240,255,0.1);--glow:rgba(0,240,255,0.4);--text:#e0f8ff;--text2:#5fa8bc;--text3:#2d6070;--a:#00c8ff;--a2:#00eeff;--cyan:#00eeff;--green:#00ff99;}
+[data-theme="light"]{--bg:#f5f6fa;--bg2:#eceef5;--card:rgba(0,0,0,0.04);--border:rgba(0,0,0,0.08);--glow:rgba(99,102,241,0.3);--text:#1a1830;--text2:#6b6888;--text3:#aaa8c0;--a:#6366f1;--a2:#7c73f5;--cyan:#2563eb;--green:#059669;}
+[data-theme="neon"]{--bg:#030d00;--bg2:#071200;--card:rgba(0,255,80,0.04);--border:rgba(0,255,80,0.1);--glow:rgba(0,255,80,0.4);--text:#d4ffdc;--text2:#4a9055;--text3:#2a5030;--a:#00e64d;--a2:#39ff6e;--cyan:#39ff6e;--green:#ffe600;}
+[data-theme="rose"]{--bg:#100008;--bg2:#180010;--card:rgba(255,50,120,0.05);--border:rgba(255,50,120,0.12);--glow:rgba(255,50,120,0.4);--text:#ffe8f2;--text2:#b06080;--text3:#703050;--a:#ff2d78;--a2:#ff72aa;--cyan:#ff72aa;--green:#ff9900;}
+html{scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;}
+#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4;}
+/* NAV */
+.lp-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:66px;background:rgba(4,2,12,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.4s;}
+.lp-nav.scrolled{background:rgba(4,2,12,0.92);backdrop-filter:blur(24px);border-bottom-color:rgba(255,255,255,0.06);}
+.lp-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:2px;}
+.lp-logo .dot{color:#7c6fff;}
+.lp-links{display:flex;gap:2.5rem;list-style:none;}
+.lp-links a{color:rgba(255,255,255,0.5);font-size:0.85rem;font-weight:600;cursor:pointer;transition:color 0.2s;}
+.lp-links a:hover{color:#fff;}
+.lp-nav-r{display:flex;align-items:center;gap:0.8rem;}
+.theme-wrap{position:relative;}
+.theme-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);padding:7px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;gap:6px;transition:all 0.2s;}
+.theme-btn:hover{background:rgba(255,255,255,0.1);color:#fff;}
+.theme-drop{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#0d0a1a;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:0.5rem;min-width:160px;box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:300;}
+.theme-drop.open{display:block;}
+.t-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.15s;font-family:'Syne',sans-serif;}
+.t-opt:hover,.t-opt.act{background:rgba(255,255,255,0.07);color:#fff;}
+.t-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.btn-login{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:9px 20px;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Syne',sans-serif;}
+.btn-login:hover{border-color:rgba(124,111,255,0.5);color:#fff;}
+.btn-signup{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:9px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.25s;font-family:'Syne',sans-serif;box-shadow:0 4px 20px rgba(99,102,241,0.35);}
+.btn-signup:hover{filter:brightness(1.12);transform:translateY(-1px);}
+/* HERO */
+.hero-sec{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,70,229,0.18),transparent 60%),radial-gradient(ellipse 60% 40% at 20% 80%,rgba(124,111,255,0.1),transparent 50%);}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(124,111,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 20%,transparent 80%);}
+.hero-content{position:relative;z-index:2;max-width:860px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.25);color:#b8aaff;padding:7px 18px;border-radius:50px;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:2rem;animation:fadeUp 0.8s ease both;}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#00e5a0;animation:dotP 1.5s infinite;}
+@keyframes dotP{0%,100%{box-shadow:0 0 0 0 rgba(0,229,160,0.4)}50%{box-shadow:0 0 0 6px rgba(0,229,160,0)}}
+.hero-title{font-family:'Orbitron',monospace;font-weight:900;font-size:clamp(2.8rem,7vw,6rem);line-height:1.05;margin-bottom:1.5rem;animation:fadeUp 0.9s 0.2s ease both;}
+.hero-title .l1{color:#f4f0ff;display:block;}
+.hero-title .l2{display:block;background:linear-gradient(135deg,#7c6fff,#b8aaff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-title .l3{color:rgba(244,240,255,0.7);display:block;font-size:0.6em;font-weight:700;letter-spacing:0.1em;margin-top:0.3em;}
+.hero-desc{font-size:1.1rem;color:rgba(255,255,255,0.5);max-width:520px;margin:0 auto 2.5rem;line-height:1.8;animation:fadeUp 0.9s 0.4s ease both;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.9s 0.6s ease both;}
+.cta-p{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:15px 36px;border-radius:50px;font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 32px rgba(99,102,241,0.4);}
+.cta-p:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(99,102,241,0.5);}
+.cta-s{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:15px 36px;border-radius:50px;font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.cta-s:hover{border-color:rgba(124,111,255,0.5);color:#fff;}
+.stats-bar{display:flex;justify-content:center;margin-top:4rem;animation:fadeUp 0.9s 0.8s ease both;}
+.lp-stat{padding:1rem 2.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.07);}
+.lp-stat:last-child{border-right:none;}
+.lp-stat-v{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#fff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:3px;}
+.lp-stat-n{font-size:0.72rem;color:rgba(255,255,255,0.35);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
+/* HOW */
+#lp-how{padding:8rem 2rem;background:var(--bg2);position:relative;z-index:10;}
+.how-inner{max-width:1100px;margin:0 auto;}
+.sec-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#7c6fff;display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.sec-tag::before{content:'';flex:0 0 30px;height:1px;background:#7c6fff;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#f4f0ff;margin-bottom:1rem;}
+.sec-sub{color:rgba(255,255,255,0.4);font-size:1rem;max-width:500px;line-height:1.8;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:4rem;}
+.step-c{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:2rem 1.5rem;position:relative;overflow:hidden;transition:all 0.3s;}
+.step-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));}
+.step-c:hover{transform:translateY(-6px);border-color:rgba(124,111,255,0.2);}
+.step-num{font-family:'Orbitron',monospace;font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.2);letter-spacing:0.2em;margin-bottom:1rem;}
+.step-ico{width:52px;height:52px;border-radius:14px;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.step-t{font-size:1rem;font-weight:800;margin-bottom:0.5rem;}
+.step-d{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.7;}
+/* PRICING */
+#lp-pricing{padding:8rem 2rem;text-align:center;position:relative;z-index:10;}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;max-width:1000px;margin-left:auto;margin-right:auto;}
+.plan-c{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:2rem;text-align:left;transition:all 0.35s;position:relative;overflow:hidden;}
+.plan-c:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,0.4);}
+.plan-c.featured{background:linear-gradient(145deg,rgba(79,70,229,0.15),rgba(124,111,255,0.08));border-color:rgba(124,111,255,0.35);}
+.plan-c.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#4f46e5,#7c6fff,#00d4ff);}
+.plan-badge-c{position:absolute;top:16px;right:16px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;font-size:0.62rem;font-weight:800;padding:4px 12px;border-radius:50px;}
+.plan-n{font-family:'Orbitron',monospace;font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.8rem;}
+.plan-p{font-family:'Orbitron',monospace;font-size:2.8rem;font-weight:900;color:#f4f0ff;line-height:1;margin-bottom:0.3rem;}
+.plan-p sup{font-size:1.2rem;vertical-align:super;}
+.plan-p sub{font-size:1rem;color:rgba(255,255,255,0.3);}
+.plan-d{font-size:0.82rem;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;line-height:1.6;}
+.plan-div{height:1px;background:rgba(255,255,255,0.06);margin-bottom:1.5rem;}
+.plan-f{display:flex;align-items:flex-start;gap:10px;font-size:0.82rem;color:rgba(255,255,255,0.55);margin-bottom:0.7rem;font-weight:500;}
+.plan-fi{color:#00e5a0;font-size:0.7rem;margin-top:3px;flex-shrink:0;}
+.plan-fi.pu{color:#b8aaff;}
+.btn-plan-g{width:100%;padding:12px;margin-top:1.5rem;background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);border-radius:12px;font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;}
+.btn-plan-g:hover{border-color:rgba(124,111,255,0.4);color:#fff;}
+.btn-plan-s{width:100%;padding:12px;margin-top:1.5rem;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;}
+/* ENTER WORLD */
+#lp-world{padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;}
+.world-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(79,70,229,0.12),transparent 65%);}
+.world-content{position:relative;z-index:2;max-width:600px;margin:0 auto;}
+.world-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin-bottom:1rem;background:linear-gradient(135deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.globe-wrap{width:260px;height:260px;margin:2.5rem auto 1.5rem;position:relative;display:flex;align-items:center;justify-content:center;}
+.globe-sphere{width:100px;height:100px;border-radius:50%;position:relative;z-index:2;border:2px solid rgba(99,102,241,0.8);background:radial-gradient(ellipse at 32% 28%,rgba(167,139,250,0.55),rgba(99,102,241,0.2) 50%,transparent);animation:gP 2.5s ease-in-out infinite;box-shadow:0 0 25px rgba(99,102,241,0.7),0 0 60px rgba(99,102,241,0.4),inset 0 0 30px rgba(167,139,250,0.3);}
+@keyframes gP{0%,100%{box-shadow:0 0 25px rgba(99,102,241,0.7),0 0 60px rgba(99,102,241,0.4);}50%{box-shadow:0 0 35px rgba(99,102,241,0.9),0 0 80px rgba(99,102,241,0.55);}}
+.gr{position:absolute;top:50%;left:50%;border-radius:50%;transform-style:preserve-3d;}
+.gr1{width:150px;height:150px;margin:-75px 0 0 -75px;border:2px solid rgba(34,211,238,0.6);transform:rotateX(90deg);animation:rs1 3.5s linear infinite;}
+.gr2{width:168px;height:168px;margin:-84px 0 0 -84px;border:1.5px solid rgba(99,102,241,0.55);transform:rotateX(62deg);animation:rs2 5s linear infinite;}
+.gr3{width:186px;height:186px;margin:-93px 0 0 -93px;border:1.5px solid rgba(167,139,250,0.45);transform:rotateX(62deg) rotateZ(72deg);animation:rs3 7s linear infinite reverse;}
+.gr4{width:210px;height:210px;margin:-105px 0 0 -105px;border:1px solid rgba(99,102,241,0.3);transform:rotateX(62deg) rotateZ(144deg);animation:rs4 9s linear infinite;}
+.gr5{width:240px;height:240px;margin:-120px 0 0 -120px;border:1px solid rgba(34,211,238,0.2);transform:rotateX(62deg) rotateZ(216deg);animation:rs5 11s linear infinite reverse;}
+.gd{position:absolute;top:-6px;left:50%;transform:translateX(-50%);border-radius:50%;}
+.gd1{width:13px;height:13px;background:#22d3ee;box-shadow:0 0 8px #22d3ee,0 0 22px #22d3ee;}
+.gd2{width:12px;height:12px;background:#6366f1;box-shadow:0 0 8px #6366f1,0 0 22px #6366f1;}
+.gd3{width:10px;height:10px;background:#a78bfa;box-shadow:0 0 7px #a78bfa,0 0 18px #a78bfa;}
+.gd4{width:9px;height:9px;background:#818cf8;box-shadow:0 0 6px #818cf8;}
+.gd5{width:8px;height:8px;background:#22d3ee;box-shadow:0 0 6px #22d3ee;}
+@keyframes rs1{from{transform:rotateX(90deg) rotateZ(0)}to{transform:rotateX(90deg) rotateZ(360deg)}}
+@keyframes rs2{from{transform:rotateX(62deg) rotateZ(0)}to{transform:rotateX(62deg) rotateZ(360deg)}}
+@keyframes rs3{from{transform:rotateX(62deg) rotateZ(72deg)}to{transform:rotateX(62deg) rotateZ(432deg)}}
+@keyframes rs4{from{transform:rotateX(62deg) rotateZ(144deg)}to{transform:rotateX(62deg) rotateZ(504deg)}}
+@keyframes rs5{from{transform:rotateX(62deg) rotateZ(216deg)}to{transform:rotateX(62deg) rotateZ(576deg)}}
+.enter-btn{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:16px 44px;border-radius:50px;font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 32px rgba(79,70,229,0.4);}
+.enter-btn:hover{transform:translateY(-3px);}
+/* FOOTER */
+.lp-footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.2);position:relative;z-index:10;}
+.lp-brand{color:#7c6fff;font-family:'Orbitron',monospace;font-size:0.75rem;}
+/* DRAWER */
+.drw-ov{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.35s;}
+.drw-ov.open{opacity:1;pointer-events:all;}
+.drw{position:fixed;top:0;right:-440px;bottom:0;width:100%;max-width:420px;background:var(--bg2);border-left:1px solid var(--border);z-index:501;transition:right 0.38s cubic-bezier(.25,.8,.25,1);display:flex;flex-direction:column;overflow-y:auto;}
+.drw-ov.open .drw{right:0;}
+.drw-head{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.8rem;border-bottom:1px solid var(--border);}
+.drw-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;}
+.drw-logo span{color:var(--a);}
+.drw-close{background:none;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;padding:4px 8px;border-radius:6px;}
+.d-tabs{display:flex;border-bottom:1px solid var(--border);}
+.d-tab{flex:1;padding:1rem;text-align:center;font-size:0.88rem;font-weight:600;color:var(--text2);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Syne',sans-serif;transition:all 0.2s;}
+.d-tab.act{color:var(--text);border-bottom-color:var(--a);}
+.d-form{padding:2rem 1.8rem;flex:1;}
+.d-panel{display:none;}
+.d-panel.act{display:block;}
+.d-welcome h2{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;margin-bottom:0.3rem;}
+.d-welcome p{color:var(--text2);font-size:0.88rem;margin-bottom:1.8rem;}
+.dfg{margin-bottom:1.2rem;}
+.dfg label{display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:0.45rem;}
+.dfg input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:11px 14px;border-radius:9px;font-size:0.93rem;font-family:'Syne',sans-serif;outline:none;transition:border-color 0.2s;}
+.dfg input:focus{border-color:var(--a);}
+.dfg input::placeholder{color:var(--text3);}
+.g-btn{width:100%;padding:12px;border-radius:9px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;background:#fff;color:#1a1a1a;border:1px solid rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:1rem;transition:all 0.25s;}
+.g-btn:hover{background:#f5f5f5;}
+.g-btn svg{width:20px;height:20px;flex-shrink:0;}
+.or-div{display:flex;align-items:center;gap:10px;margin-bottom:1rem;color:var(--text3);font-size:0.8rem;}
+.or-div::before,.or-div::after{content:'';flex:1;height:1px;background:var(--border);}
+.d-submit{width:100%;padding:13px;background:var(--a);color:#fff;border:none;border-radius:9px;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:0.5rem;transition:all 0.25s;}
+.d-submit:hover{filter:brightness(1.1);}
+.d-switch{text-align:center;margin-top:1.2rem;font-size:0.85rem;color:var(--text2);}
+.d-switch a{color:var(--a2);cursor:pointer;font-weight:500;}
+.plan-sel-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;margin-bottom:1.2rem;}
+.psel{border:1px solid var(--border);border-radius:9px;padding:0.7rem;cursor:pointer;text-align:center;transition:all 0.2s;}
+.psel:hover,.psel.sel{border-color:var(--a);background:rgba(99,102,241,0.08);}
+.psel .pn{font-weight:700;font-size:0.85rem;margin-bottom:2px;}
+.psel .pp{color:var(--a2);font-size:0.75rem;font-weight:600;}
+/* DASHBOARD */
+#dashboard{display:none;min-height:100vh;position:relative;z-index:1;background:var(--bg);}
+.db-nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:1rem;padding:0 2rem;height:60px;background:rgba(4,2,13,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.db-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;color:#f0ecff;margin-right:auto;}
+.db-logo span{color:#7c6fff;}
+.db-nav-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.45);padding:7px 16px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.db-nav-btn:hover{border-color:rgba(124,111,255,0.35);color:#b8aaff;}
+.db-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c6fff);display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:900;cursor:pointer;border:2px solid rgba(124,111,255,0.4);flex-shrink:0;}
+.db-pill{background:linear-gradient(135deg,rgba(79,70,229,0.2),rgba(124,111,255,0.12));border:1px solid rgba(124,111,255,0.25);color:#b8aaff;font-size:0.7rem;font-weight:800;padding:5px 12px;border-radius:50px;font-family:'Orbitron',monospace;}
+.db-wrap{max-width:1280px;margin:0 auto;padding:2rem 1.5rem;}
+.db-welcome{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;}
+.db-welcome h1{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;margin-bottom:4px;}
+.db-welcome h1 span{color:#7c6fff;}
+.db-welcome p{font-size:0.85rem;color:rgba(255,255,255,0.45);}
+.db-qa{display:flex;gap:0.6rem;}
+.db-qa-btn{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:all 0.25s;border:none;}
+.db-qa-btn.primary{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;box-shadow:0 4px 16px rgba(79,70,229,0.35);}
+.db-qa-btn.primary:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.db-qa-btn.ghost{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.45);}
+.db-qa-btn.ghost:hover{border-color:rgba(124,111,255,0.35);color:#b8aaff;}
+.db-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.db-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:1.2rem 1.4rem;position:relative;overflow:hidden;transition:all 0.25s;}
+.db-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--sc);}
+.db-stat:hover{background:rgba(255,255,255,0.055);transform:translateY(-2px);}
+.db-stat-ico{font-size:1.4rem;margin-bottom:0.7rem;}
+.db-stat-val{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;margin-bottom:2px;}
+.db-stat-lbl{font-size:0.72rem;color:rgba(255,255,255,0.45);font-weight:600;letter-spacing:0.06em;}
+.db-stat-tr{font-size:0.68rem;color:#00e5a0;font-weight:700;margin-top:4px;}
+.db-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;}
+.db-feat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;position:relative;}
+.db-feat:hover{background:rgba(255,255,255,0.055);border-color:rgba(124,111,255,0.35);transform:translateY(-4px);}
+.db-feat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--fc);opacity:0;transition:opacity 0.3s;}
+.db-feat:hover::before{opacity:1;}
+.db-feat.lg{grid-column:span 2;}
+.db-feat-h{padding:1.4rem 1.4rem 0.8rem;display:flex;align-items:flex-start;gap:1rem;}
+.db-feat-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.db-feat-title{font-size:1rem;font-weight:800;margin-bottom:3px;}
+.db-feat-sub{font-size:0.75rem;color:rgba(255,255,255,0.45);line-height:1.5;}
+.db-feat-arr{margin-left:auto;font-size:1rem;color:rgba(255,255,255,0.18);transition:all 0.3s;flex-shrink:0;margin-top:2px;}
+.db-feat:hover .db-feat-arr{color:#b8aaff;transform:translateX(4px);}
+.db-feat-prev{margin:0 1.4rem 1.4rem;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.9rem;min-height:80px;position:relative;overflow:hidden;}
+.db-feat-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:0.08em;margin-bottom:0.5rem;}
+.db-feat-items{display:flex;flex-direction:column;gap:5px;}
+.db-feat-item{display:flex;align-items:center;gap:8px;font-size:0.75rem;color:rgba(255,255,255,0.45);font-weight:600;}
+.db-feat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.db-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.db-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;}
+.db-card-h{padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;}
+.db-card-title{font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;color:#b8aaff;letter-spacing:0.1em;}
+.act-item{display:flex;align-items:center;gap:0.9rem;padding:0.8rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.04);}
+.act-item:last-child{border-bottom:none;}
+.act-ico{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(124,111,255,0.1);}
+.act-name{font-size:0.8rem;font-weight:700;margin-bottom:2px;}
+.act-time{font-size:0.7rem;color:rgba(255,255,255,0.18);}
+.act-badge{margin-left:auto;font-size:0.62rem;font-weight:800;padding:3px 9px;border-radius:50px;flex-shrink:0;}
+.bd{background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);}
+.bp{background:rgba(124,111,255,0.1);color:#b8aaff;border:1px solid rgba(124,111,255,0.2);}
+.bn{background:rgba(0,212,255,0.1);color:#00d4ff;border:1px solid rgba(0,212,255,0.2);}
+.plan-card{background:linear-gradient(145deg,#0d0824,#0a0518);border:1px solid rgba(124,111,255,0.2);border-radius:20px;padding:1.4rem;position:relative;overflow:hidden;}
+/* PROFILE */
+#profile-page{display:none;min-height:100vh;background:var(--bg);}
+.pg-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.pg-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;color:#f4f0ff;}
+.pg-logo em{color:#7c6fff;font-style:normal;}
+.pg-back{display:flex;align-items:center;gap:8px;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.07);padding:8px 18px;border-radius:50px;cursor:pointer;transition:all 0.2s;}
+.pg-back:hover{color:#b8aaff;border-color:rgba(124,111,255,0.3);}
+.hero-band{height:180px;background:linear-gradient(135deg,#0d0824,#12083a,#0a0620);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
+.band-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,111,255,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.07) 1px,transparent 1px);background-size:50px 50px;}
+.av-zone{position:relative;z-index:10;display:flex;align-items:flex-end;gap:1.8rem;max-width:900px;margin:-60px auto 0;padding:0 2rem;flex-wrap:wrap;}
+.av-ring{position:relative;flex-shrink:0;cursor:pointer;}
+.av-ring::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(#7c6fff,#b8aaff,#00d4ff,#7c6fff);animation:spinR 4s linear infinite;z-index:0;}
+.av-ring::after{content:'';position:absolute;inset:-1px;border-radius:50%;background:var(--bg,#050309);z-index:1;}
+@keyframes spinR{to{transform:rotate(360deg)}}
+.av-el{position:relative;z-index:2;width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#4f46e5,#7c6fff,#b8aaff);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;color:#fff;cursor:pointer;overflow:hidden;}
+.av-cam{position:absolute;z-index:3;bottom:4px;right:4px;width:30px;height:30px;border-radius:50%;background:#7c6fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;border:2px solid var(--bg,#050309);cursor:pointer;}
+.av-meta{padding-bottom:0.5rem;flex:1;}
+.av-name{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:6px;background:linear-gradient(90deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.av-email{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:10px;}
+.av-tags{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.atag{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;padding:4px 12px;border-radius:50px;}
+.atag-pro{background:rgba(124,111,255,0.15);color:#b8aaff;border:1px solid rgba(124,111,255,0.2);}
+.atag-g{background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.15);}
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;max-width:900px;margin:1.5rem auto 0;padding:0 2rem;}
+.sstat{padding:1.2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.06);}
+.sstat:last-child{border-right:none;}
+.sstat-n{font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.18);margin-bottom:6px;}
+.sstat-v{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;}
+.sstat-d{font-size:0.68rem;color:rgba(255,255,255,0.35);margin-top:3px;}
+.prof-wrap{max-width:900px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start;}
+.pc{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;overflow:hidden;margin-bottom:1.2rem;}
+.pc-head{display:flex;align-items:center;gap:10px;padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.06);}
+.pc-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.9rem;}
+.pc-title{font-size:0.82rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+.pc-body{padding:1.4rem;}
+.pf{display:flex;flex-direction:column;gap:5px;margin-bottom:1rem;}
+.pf label{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.18);}
+.pf input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:#f4f0ff;padding:11px 14px;border-radius:10px;font-size:0.9rem;font-family:'Syne',sans-serif;outline:none;transition:all 0.2s;}
+.pf input:focus{border-color:rgba(124,111,255,0.4);}
+.pf input::placeholder{color:rgba(255,255,255,0.18);}
+.pf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.btn-prim{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:11px 28px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;transition:all 0.25s;}
+.btn-prim:hover{filter:brightness(1.15);}
+.str-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:50px;overflow:hidden;margin-top:6px;}
+.str-fill{height:100%;border-radius:50px;width:0%;transition:all 0.35s;}
+.str-lbl{font-size:0.67rem;color:rgba(255,255,255,0.18);margin-top:4px;}
+.plan-h{background:linear-gradient(145deg,#110a30,#0e0728);border:1px solid rgba(124,111,255,0.2);border-radius:16px;overflow:hidden;margin-bottom:1.2rem;position:relative;}
+.plan-badge-p{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,#4f46e5,#b8aaff);color:#fff;font-size:0.65rem;font-weight:800;padding:4px 12px;border-radius:50px;}
+.plan-h-body{padding:1.6rem;position:relative;z-index:1;}
+.plan-tier{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;background:linear-gradient(90deg,#fff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px;}
+.plan-price{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.35);margin-bottom:1.2rem;}
+.plan-feat-r{display:flex;align-items:center;gap:8px;font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.45);margin-bottom:8px;}
+.plan-feat-dot{width:6px;height:6px;border-radius:50%;background:#00e5a0;flex-shrink:0;}
+.dcard{background:rgba(255,61,107,0.04);border:1px solid rgba(255,61,107,0.12);border-radius:16px;overflow:hidden;}
+.dcard-head{padding:0.9rem 1.4rem;border-bottom:1px solid rgba(255,61,107,0.1);display:flex;align-items:center;gap:8px;}
+.dcard-title{font-size:0.78rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ff3d6b;}
+.ditem{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;gap:1rem;border-bottom:1px solid rgba(255,61,107,0.06);flex-wrap:wrap;}
+.ditem:last-child{border-bottom:none;}
+.ditem-lbl{font-size:0.85rem;font-weight:700;}
+.ditem-sub{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:2px;}
+.dbtn{background:transparent;border:1px solid rgba(255,61,107,0.25);color:#ff3d6b;padding:7px 16px;border-radius:8px;font-family:'Syne',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.dbtn:hover{background:rgba(255,61,107,0.1);}
+.dbtn-f{background:#ff3d6b;color:#fff;border-color:#ff3d6b;}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);z-index:600;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-bg.open{display:flex;}
+.modal-box{background:linear-gradient(145deg,#110a30,#0e0728);border:1px solid rgba(255,61,107,0.2);border-radius:20px;padding:2rem;width:100%;max-width:380px;}
+.modal-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;color:#ff3d6b;text-align:center;margin-bottom:0.5rem;}
+.modal-body{font-size:0.85rem;color:rgba(255,255,255,0.45);text-align:center;line-height:1.7;margin-bottom:1.5rem;}
+.modal-btns{display:flex;gap:0.8rem;}
+.modal-cancel{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;}
+.modal-del{flex:1;background:#ff3d6b;border:none;color:#fff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;}
+/* PAYMENT */
+#payment-page{display:none;min-height:100vh;background:var(--bg);}
+.pay-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.secure-bar{background:rgba(0,229,160,0.06);border-bottom:1px solid rgba(0,229,160,0.1);padding:8px 2rem;text-align:center;font-size:0.72rem;font-weight:700;color:#00e5a0;letter-spacing:0.12em;display:flex;align-items:center;justify-content:center;gap:8px;}
+.pay-wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;}
+.pay-step-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b8aaff;margin-bottom:6px;}
+.pay-step-title{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;background:linear-gradient(90deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5rem;}
+.pay-plans{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:1.5rem;}
+.pay-opt{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:14px;padding:1.2rem 1.4rem;cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;display:flex;align-items:center;gap:1.2rem;}
+.pay-opt:hover{border-color:rgba(124,111,255,0.3);}
+.pay-opt.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);}
+.pay-opt.sel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4f46e5,#b8aaff);}
+.pay-radio{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.pay-opt.sel .pay-radio{border-color:#7c6fff;background:#7c6fff;}
+.pay-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff;opacity:0;transition:opacity 0.2s;}
+.pay-opt.sel .pay-radio::after{opacity:1;}
+.pay-plan-n{font-family:'Orbitron',monospace;font-size:0.88rem;font-weight:900;margin-bottom:3px;}
+.pay-plan-f{font-size:0.74rem;color:rgba(255,255,255,0.4);}
+.pay-plan-amt{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;text-align:right;}
+.pay-plan-per{font-size:0.7rem;color:rgba(255,255,255,0.3);text-align:right;}
+.badge-free{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;}
+.badge-pop{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:50px;}
+.upi-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.8rem;}
+.upi-apps{display:flex;gap:0.7rem;flex-wrap:wrap;margin-bottom:1rem;}
+.upi-app{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.7rem 1rem;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s;font-size:0.82rem;font-weight:700;font-family:'Syne',sans-serif;}
+.upi-app:hover{border-color:rgba(124,111,255,0.3);}
+.upi-app.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);}
+.upi-inp-wrap{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.2rem;}
+.upi-inp{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;outline:none;transition:all 0.2s;min-width:0;}
+.upi-inp:focus{border-color:rgba(124,111,255,0.4);}
+.upi-inp::placeholder{color:rgba(255,255,255,0.18);}
+.upi-v-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#b8aaff;padding:11px 18px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.pay-main-btn{width:100%;padding:16px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:14px;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.pay-main-btn:hover{filter:brightness(1.12);transform:translateY(-2px);}
+.sum-card{background:linear-gradient(145deg,#0d0824,#0a0620);border:1px solid rgba(124,111,255,0.15);border-radius:18px;overflow:hidden;position:sticky;top:80px;}
+.sum-head{padding:1.2rem 1.4rem;border-bottom:1px solid rgba(124,111,255,0.1);font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;color:#b8aaff;letter-spacing:0.1em;}
+.sum-body{padding:1.4rem;}
+.sum-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7rem;}
+.sum-lbl{font-size:0.8rem;color:rgba(255,255,255,0.4);}
+.sum-val{font-family:'JetBrains Mono',monospace;font-size:0.85rem;}
+.pay-success{display:none;position:fixed;inset:0;z-index:700;background:var(--bg,#050309);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;}
+.suc-ring{width:110px;height:110px;border-radius:50%;border:3px solid #00e5a0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin-bottom:1.5rem;box-shadow:0 0 0 12px rgba(0,229,160,0.08),0 0 40px rgba(0,229,160,0.2);}
+.suc-title{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:#00e5a0;margin-bottom:0.5rem;}
+.suc-btn{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:14px 36px;border-radius:12px;font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:900;cursor:pointer;transition:all 0.25s;}
+.conf-piece{position:fixed;width:8px;height:8px;border-radius:2px;animation:cF linear forwards;pointer-events:none;z-index:800;}
+@keyframes cF{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+/* PHOTO */
+#photo-page{display:none;min-height:100vh;background:var(--bg);}
+.ph-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);}
+.ph-wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem;display:grid;grid-template-columns:1fr 360px;gap:2rem;}
+.ph-drop{border:2px dashed rgba(124,111,255,0.3);border-radius:20px;padding:3rem 2rem;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(124,111,255,0.03);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+.ph-drop:hover,.ph-drop.drag{border-color:#7c6fff;background:rgba(124,111,255,0.07);}
+.ph-drop-ico{font-size:3rem;}
+.ph-drop-title{font-size:1.1rem;font-weight:800;}
+.ph-drop-sub{font-size:0.82rem;color:rgba(255,255,255,0.3);}
+.ph-drop-btn{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:10px 28px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;}
+.ph-cam-btn{width:100%;padding:13px;margin-top:1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border-radius:12px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.ph-cam-btn:hover{border-color:rgba(124,111,255,0.3);color:#b8aaff;}
+#ph-camview{display:none;margin-top:1rem;border-radius:16px;overflow:hidden;position:relative;}
+#ph-video{width:100%;border-radius:16px;display:block;}
+.ph-snap{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);color:#fff;width:56px;height:56px;border-radius:50%;font-size:1.5rem;cursor:pointer;}
+.ph-cam-close{position:absolute;top:0.8rem;right:0.8rem;background:rgba(0,0,0,0.5);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;}
+#ph-preview{display:none;margin-top:1.2rem;position:relative;}
+#ph-preview img{width:100%;border-radius:16px;max-height:280px;object-fit:cover;display:block;}
+.ph-prev-ov{position:absolute;inset:0;border-radius:16px;background:linear-gradient(to top,rgba(5,3,9,0.8),transparent 50%);display:flex;align-items:flex-end;padding:1rem;}
+.ph-rm-btn{margin-left:auto;background:rgba(255,61,107,0.15);border:1px solid rgba(255,61,107,0.3);color:#ff3d6b;padding:5px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;}
+.ph-conv-btn{width:100%;padding:16px;margin-top:1.2rem;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:14px;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;letter-spacing:0.08em;cursor:pointer;transition:all 0.3s;}
+.ph-conv-btn:hover{filter:brightness(1.12);transform:translateY(-2px);}
+#ph-proc{display:none;margin-top:1.2rem;}
+.ph-bar-wrap{background:rgba(255,255,255,0.06);border-radius:50px;height:6px;overflow:hidden;margin:0.8rem 0;}
+.ph-bar{height:100%;background:linear-gradient(90deg,#4f46e5,#7c6fff,#00d4ff);border-radius:50px;width:0%;transition:width 0.3s ease;}
+.ph-steps{display:flex;flex-direction:column;gap:0.5rem;}
+.ph-step{display:flex;align-items:center;gap:10px;font-size:0.8rem;color:rgba(255,255,255,0.3);font-weight:600;transition:all 0.3s;}
+.ph-step.act{color:#b8aaff;}
+.ph-step.done{color:#00e5a0;}
+.ph-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.15);flex-shrink:0;transition:all 0.3s;}
+.ph-step.act .ph-dot{background:#7c6fff;box-shadow:0 0 8px #7c6fff;}
+.ph-step.done .ph-dot{background:#00e5a0;}
+#ph-result{display:none;margin-top:1.2rem;}
+.ph-res-card{background:linear-gradient(145deg,rgba(79,70,229,0.1),rgba(124,111,255,0.05));border:1px solid rgba(124,111,255,0.2);border-radius:20px;overflow:hidden;}
+.ph-res-view{height:220px;background:linear-gradient(135deg,#0d0a20,#1a1040);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.ph-res-canvas{width:100%;height:100%;display:block;}
+.ph-res-badge{position:absolute;top:1rem;left:1rem;background:rgba(0,229,160,0.15);border:1px solid rgba(0,229,160,0.3);color:#00e5a0;font-size:0.65rem;font-weight:800;padding:4px 12px;border-radius:50px;}
+.ph-res-body{padding:1.2rem;}
+.ph-res-name{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:900;margin-bottom:0.4rem;}
+.ph-res-meta{font-size:0.75rem;color:rgba(255,255,255,0.3);margin-bottom:1rem;}
+.ph-exp-btns{display:flex;gap:0.6rem;flex-wrap:wrap;}
+.ph-exp-btn{flex:1;padding:9px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border-radius:10px;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center;}
+.ph-exp-btn:hover{border-color:rgba(124,111,255,0.4);color:#b8aaff;}
+.ph-exp-btn.prim{background:linear-gradient(135deg,#4f46e5,#7c6fff);border-color:transparent;color:#fff;}
+.ph-quota{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.5rem;}
+.ph-q-lbl{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.6rem;}
+.ph-q-bar{height:5px;border-radius:50px;background:rgba(255,255,255,0.06);}
+.ph-q-fill{height:100%;background:linear-gradient(90deg,#4f46e5,#00e5a0);border-radius:50px;}
+.ph-hist-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:0.9rem 1rem;margin-bottom:0.7rem;display:flex;align-items:center;gap:0.9rem;cursor:pointer;transition:all 0.2s;}
+.ph-hist-item:hover{border-color:rgba(124,111,255,0.25);}
+.ph-hist-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#1a1040,#2d1a6e);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.ph-hist-badge{margin-left:auto;font-size:0.65rem;font-weight:800;padding:3px 9px;border-radius:50px;flex-shrink:0;}
+/* NOTIFICATIONS */
+#notif-page{display:none;min-height:100vh;background:var(--bg);}
+.notif-wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem;}
+.notif-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;margin-bottom:8px;}
+.notif-card:hover{border-color:rgba(124,111,255,0.35);}
+.notif-card.unread{border-left:3px solid #7c6fff;}
+.notif-ico-w{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.notif-title{font-size:15px;color:#f4f0ff;margin-bottom:4px;font-weight:600;}
+.notif-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.4;}
+.notif-time{font-size:11px;color:rgba(255,255,255,0.2);margin-top:8px;}
+.unread-dot{width:8px;height:8px;border-radius:50%;background:#7c6fff;box-shadow:0 0 8px #7c6fff;flex-shrink:0;margin-top:4px;}
+.notif-dismiss{position:absolute;top:12px;right:12px;width:24px;height:24px;background:none;border:none;color:rgba(255,255,255,0.2);font-size:14px;cursor:pointer;opacity:0;transition:opacity 0.2s;border-radius:50%;}
+.notif-card:hover .notif-dismiss{opacity:1;}
+.notif-dismiss:hover{color:#ff3d6b;}
+.filter-tabs{display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:4px;margin-bottom:24px;width:fit-content;}
+.ftab{padding:8px 20px;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.2s;color:rgba(255,255,255,0.4);border:none;background:none;font-family:'Syne',sans-serif;font-weight:600;}
+.ftab.act{background:rgba(124,111,255,0.2);color:#f4f0ff;border:1px solid rgba(124,111,255,0.25);}
+.toggle-sw{width:44px;height:24px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;cursor:pointer;position:relative;transition:all 0.3s;flex-shrink:0;}
+.toggle-sw.on{background:rgba(99,102,241,0.3);border-color:#7c6fff;}
+.toggle-sw::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.4);top:2px;left:2px;transition:all 0.3s;}
+.toggle-sw.on::after{background:#7c6fff;left:22px;box-shadow:0 0 8px #7c6fff;}
+/* TOAST */
+#toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);padding:10px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:9999;font-family:'Syne',sans-serif;white-space:nowrap;background:rgba(20,15,40,0.95);border:1px solid rgba(255,255,255,0.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.fi{opacity:0;animation:fadeUp 0.5s ease forwards;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(124,111,255,0.3);border-radius:4px;}
+@media(max-width:768px){
+  .lp-nav{padding:0 1.2rem;}.lp-links{display:none;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .plans-grid{grid-template-columns:1fr;max-width:400px;}
+  .stats-bar{flex-wrap:wrap;}
+  .lp-stat{flex:1 1 40%;border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .db-stats{grid-template-columns:1fr 1fr;}
+  .db-grid{grid-template-columns:1fr 1fr;}
+  .db-feat.lg{grid-column:span 2;}
+  .db-bottom{grid-template-columns:1fr;}
+  .pay-wrap,.ph-wrap,.prof-wrap{grid-template-columns:1fr;}
+  .pf-row{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .steps-grid{grid-template-columns:1fr;}
+  .db-grid{grid-template-columns:1fr;}
+  .db-feat.lg{grid-column:span 1;}
+}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div id="toast"></div>
+
+<!-- ============ LANDING ============ -->
+<div id="landing">
+<nav class="lp-nav" id="lpNav">
+  <div class="lp-logo">3D<span class="dot">.</span>AI</div>
+  <ul class="lp-links">
+    <li><a onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">How it Works</a></li>
+    <li><a onclick="document.getElementById('lp-pricing').scrollIntoView({behavior:'smooth'})">Pricing</a></li>
+    <li><a onclick="document.getElementById('lp-world').scrollIntoView({behavior:'smooth'})">Enter World</a></li>
+  </ul>
+  <div class="lp-nav-r">
+    <div class="theme-wrap">
+      <button class="theme-btn" onclick="toggleTheme(event)"><span id="themeIco">🌑</span> Theme</button>
+      <div class="theme-drop" id="themeDrop">
+        <div class="t-opt act" onclick="setTheme('','🌑',this)"><div class="t-dot" style="background:#6366f1"></div>Dark</div>
+        <div class="t-opt" onclick="setTheme('cyber','💠',this)"><div class="t-dot" style="background:#00c8ff"></div>Cyber Blue</div>
+        <div class="t-opt" onclick="setTheme('light','☀️',this)"><div class="t-dot" style="background:#6366f1"></div>Light</div>
+        <div class="t-opt" onclick="setTheme('neon','🟢',this)"><div class="t-dot" style="background:#00e64d"></div>Neon Green</div>
+        <div class="t-opt" onclick="setTheme('rose','🌸',this)"><div class="t-dot" style="background:#ff2d78"></div>Rose Red</div>
+      </div>
+    </div>
+    <button class="btn-login" onclick="openDrawer('login')">Log In</button>
+    <button class="btn-signup" onclick="openDrawer('signup')">Sign Up Free →</button>
+  </div>
+</nav>
+<section style="position:relative;overflow:hidden;">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-sec">
+    <div class="hero-content">
+      <div class="eyebrow"><div class="eyebrow-dot"></div>AI-Powered 3D Platform</div>
+      <h1 class="hero-title">
+        <span class="l1">Convert Any</span>
+        <span class="l2">Photo to 3D</span>
+        <span class="l3">With the Power of Artificial Intelligence</span>
+      </h1>
+      <p class="hero-desc">Upload a photo — our AI converts it to a full interactive 3D model. Explore, export and share in minutes.</p>
+      <div class="hero-btns">
+        <button class="cta-p" onclick="openDrawer('signup')">✦ Start Building Free</button>
+        <button class="cta-s" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">See How It Works ↓</button>
+      </div>
+      <div class="stats-bar">
+        <div class="lp-stat"><div class="lp-stat-v">10K+</div><div class="lp-stat-n">Models Created</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">50K+</div><div class="lp-stat-n">Users</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">4.9★</div><div class="lp-stat-n">Rating</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">&lt;2min</div><div class="lp-stat-n">Convert Time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="lp-how"><div class="how-inner">
+  <div class="sec-tag">Process</div>
+  <h2 class="sec-title">How 3D.AI Works</h2>
+  <p class="sec-sub">From photo to interactive 3D model in 4 simple steps.</p>
+  <div class="steps-grid">
+    <div class="step-c" style="--c1:#4f46e5;--c2:#7c6fff"><div class="step-num">STEP 01</div><div class="step-ico" style="background:rgba(79,70,229,0.2)">📸</div><div class="step-t">Upload Your Photo</div><p class="step-d">Upload any photo from your phone or PC. AI understands the structure instantly.</p></div>
+    <div class="step-c" style="--c1:#7c6fff;--c2:#00d4ff"><div class="step-num">STEP 02</div><div class="step-ico" style="background:rgba(124,111,255,0.15)">🧠</div><div class="step-t">AI Detects Depth</div><p class="step-d">Our neural engine extracts depth, geometry and surface details automatically.</p></div>
+    <div class="step-c" style="--c1:#00d4ff;--c2:#00e5a0"><div class="step-num">STEP 03</div><div class="step-ico" style="background:rgba(0,212,255,0.12)">🧊</div><div class="step-t">3D Model Generated</div><p class="step-d">A complete 3D mesh with textures and lighting is generated and ready to view.</p></div>
+    <div class="step-c" style="--c1:#00e5a0;--c2:#ffb830"><div class="step-num">STEP 04</div><div class="step-ico" style="background:rgba(0,229,160,0.12)">📤</div><div class="step-t">Export & Share</div><p class="step-d">Export as GLB, FBX or OBJ. Use in Blender, Unity or share via one link.</p></div>
+  </div>
+</div></section>
+<section id="lp-pricing" style="padding:8rem 2rem;text-align:center;position:relative;z-index:10;">
+  <div class="sec-tag" style="justify-content:center">Pricing</div>
+  <h2 class="sec-title" style="text-align:center">Simple, Transparent Plans</h2>
+  <div class="plans-grid">
+    <div class="plan-c"><div class="plan-n">Free</div><div class="plan-p"><sup>₹</sup>0<sub>/mo</sub></div><p class="plan-d">Perfect for exploring AI-powered 3D creation.</p><div class="plan-div"></div><div class="plan-f"><span class="plan-fi">✦</span>Photo → 3D — 10/day</div><div class="plan-f"><span class="plan-fi">✦</span>Basic Textures</div><div class="plan-f"><span class="plan-fi">✦</span>Browser 3D Viewer</div><button class="btn-plan-g" onclick="openDrawer('signup')">Start Free →</button></div>
+    <div class="plan-c"><div class="plan-n">Basic</div><div class="plan-p"><sup>₹</sup>299<sub>/mo</sub></div><p class="plan-d">For beginners and hobbyists.</p><div class="plan-div"></div><div class="plan-f"><span class="plan-fi">✦</span>Photo → 3D Unlimited</div><div class="plan-f"><span class="plan-fi">✦</span>HD Textures & Lighting</div><div class="plan-f"><span class="plan-fi">✦</span>GLB Export</div><button class="btn-plan-g" onclick="openDrawer('signup')">Get Basic →</button></div>
+    <div class="plan-c featured"><div class="plan-badge-c">MOST POPULAR</div><div class="plan-n">Pro</div><div class="plan-p"><sup>₹</sup>999<sub>/mo</sub></div><p class="plan-d">For serious creators and developers.</p><div class="plan-div"></div><div class="plan-f"><span class="plan-fi pu">✦</span>Photo → 3D Unlimited</div><div class="plan-f"><span class="plan-fi pu">✦</span>4K Ultra Textures</div><div class="plan-f"><span class="plan-fi pu">✦</span>VR + AR Access</div><div class="plan-f"><span class="plan-fi pu">✦</span>GLB/FBX/OBJ Export</div><div class="plan-f"><span class="plan-fi pu">✦</span>Priority Support</div><button class="btn-plan-s" onclick="openDrawer('signup')">Get Pro →</button></div>
+  </div>
+</section>
+<section id="lp-world" style="padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;">
+  <div class="world-bg"></div>
+  <div class="world-content">
+    <div class="sec-tag" style="justify-content:center">Enter</div>
+    <h2 class="world-title">Log In to Enter 3D World</h2>
+    <p style="color:rgba(255,255,255,0.4);font-size:1rem;line-height:1.8;margin-bottom:2.5rem;">Join thousands of creators already building the future.</p>
+    <div class="globe-wrap">
+      <div class="globe-sphere"></div>
+      <div class="gr gr1"><div class="gd gd1"></div></div>
+      <div class="gr gr2"><div class="gd gd2"></div></div>
+      <div class="gr gr3"><div class="gd gd3"></div></div>
+      <div class="gr gr4"><div class="gd gd4"></div></div>
+      <div class="gr gr5"><div class="gd gd5"></div></div>
+    </div>
+    <button class="enter-btn" onclick="openDrawer('login')">🌐 Log In to Enter 3D World</button>
+  </div>
+</section>
+<footer class="lp-footer"><strong>3D.AI</strong> · © 2026 All Rights Reserved · <span class="lp-brand">Ujjwal Production</span></footer>
+</div>
+
+<!-- ============ DRAWER ============ -->
+<div class="drw-ov" id="drwOv" onclick="ovClose(event)">
+  <div class="drw">
+    <div class="drw-head">
+      <div class="drw-logo">3D<span>.</span>AI</div>
+      <button class="drw-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="d-tabs">
+      <button class="d-tab" id="tab-login" onclick="switchTab('login')">Log In</button>
+      <button class="d-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+    <div class="d-form">
+      <div class="d-panel" id="panel-login">
+        <div class="d-welcome"><h2>Welcome back 👋</h2><p>Log in to enter your 3D world.</p></div>
+        <button class="g-btn" onclick="doGoogle()"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>Continue with Google</button>
+        <div class="or-div">or</div>
+        <div class="dfg"><label>Email</label><input type="email" id="l-email" placeholder="you@example.com"></div>
+        <div class="dfg"><label>Password</label><input type="password" id="l-pass" placeholder="••••••••"></div>
+        <button class="d-submit" onclick="doLogin()">🚀 Enter My World</button>
+        <div class="d-switch">No account? <a onclick="switchTab('signup')">Sign Up Free</a></div>
+      </div>
+      <div class="d-panel" id="panel-signup">
+        <div class="d-welcome"><h2>Create Account ✦</h2><p>Start building 3D models with AI today.</p></div>
+        <button class="g-btn" onclick="doGoogle()"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>Sign Up with Google</button>
+        <div class="or-div">or</div>
+        <div class="dfg"><label>Full Name</label><input type="text" id="s-name" placeholder="Your name"></div>
+        <div class="dfg"><label>Email</label><input type="email" id="s-email" placeholder="you@example.com"></div>
+        <div class="dfg"><label>Password</label><input type="password" id="s-pass" placeholder="Create a password"></div>
+        <div class="dfg"><label>Choose Plan</label>
+          <div class="plan-sel-row">
+            <div class="psel sel" id="ps-free" onclick="selPlan('free')"><div class="pn">Free</div><div class="pp">₹0/mo</div></div>
+            <div class="psel" id="ps-basic" onclick="selPlan('basic')"><div class="pn">Basic</div><div class="pp">₹299/mo</div></div>
+            <div class="psel" id="ps-pro" onclick="selPlan('pro')"><div class="pn">Pro ⭐</div><div class="pp">₹999/mo</div></div>
+          </div>
+        </div>
+        <button class="d-submit" onclick="doSignup()">✦ Create My Account</button>
+        <div class="d-switch">Have account? <a onclick="switchTab('login')">Log In</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashboard">
+<nav class="db-nav">
+  <div class="db-logo">3D<span>.</span>AI</div>
+  <div class="db-pill">⭐ PRO</div>
+  <button class="db-nav-btn" onclick="showPage('notif')">🔔 Alerts</button>
+  <button class="db-nav-btn" onclick="showPage('profile')">👤 Profile</button>
+  <div class="db-avatar" onclick="showPage('profile')" title="Profile">UP</div>
+</nav>
+<div class="db-wrap">
+  <div class="db-welcome fi">
+    <div><h1>Welcome back, <span>Ujjwal</span> 👋</h1><p>Your 3D universe is ready — upload a photo to create your 3D model.</p></div>
+    <div class="db-qa">
+      <button class="db-qa-btn primary" onclick="showPage('photo')">📸 Photo → 3D</button>
+      <button class="db-qa-btn ghost" onclick="showPage('payment')">⭐ Upgrade Plan</button>
+    </div>
+  </div>
+  <div class="db-stats fi">
+    <div class="db-stat" style="--sc:linear-gradient(90deg,#7c6fff,#b8aaff)"><div class="db-stat-ico">📸</div><div class="db-stat-val">48</div><div class="db-stat-lbl">PHOTO SCANS</div><div class="db-stat-tr">↑ 12 this week</div></div>
+    <div class="db-stat" style="--sc:linear-gradient(90deg,#00e5a0,#00d4ff)"><div class="db-stat-ico">🧊</div><div class="db-stat-val">48</div><div class="db-stat-lbl">3D MODELS</div><div class="db-stat-tr">↑ 12 this week</div></div>
+    <div class="db-stat" style="--sc:linear-gradient(90deg,#00d4ff,#7c6fff)"><div class="db-stat-ico">⚡</div><div class="db-stat-val">∞</div><div class="db-stat-lbl">DAILY LIMIT</div><div class="db-stat-tr">Pro — Unlimited</div></div>
+    <div class="db-stat" style="--sc:linear-gradient(90deg,#ffb830,#ff3d6b)"><div class="db-stat-ico">📤</div><div class="db-stat-val">31</div><div class="db-stat-lbl">EXPORTS</div><div class="db-stat-tr">↑ 8 this week</div></div>
+  </div>
+  <div class="db-grid fi">
+    <div class="db-feat lg" style="--fc:linear-gradient(90deg,#00e5a0,#00d4ff)" onclick="showPage('photo')">
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(0,229,160,0.12)">📸</div><div><div class="db-feat-title">Photo → 3D Model</div><div class="db-feat-sub">Upload any photo — AI converts it to a full interactive 3D model instantly</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);">📸 UNLIMITED/DAY</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#00e5a0"></div>48 models created this month</div><div class="db-feat-item"><div class="db-feat-dot" style="background:#00d4ff"></div>Export GLB / FBX / OBJ</div></div></div>
+    </div>
+    <div class="db-feat" style="--fc:linear-gradient(90deg,#00d4ff,#b8aaff)" onclick="showToast('🥽 VR Viewer — coming soon!','#00d4ff')">
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(0,212,255,0.1)">🥽</div><div><div class="db-feat-title">VR / AR Viewer</div><div class="db-feat-sub">Enter your 3D models in VR or AR</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.2);">🥽 PRO FEATURE</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#00d4ff"></div>WebXR browser support</div></div></div>
+    </div>
+    <div class="db-feat" style="--fc:linear-gradient(90deg,#ffb830,#ff3d6b)" onclick="showToast('📤 Export — coming soon!','#ffb830')">
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(255,184,48,0.1)">📤</div><div><div class="db-feat-title">Export & Share</div><div class="db-feat-sub">GLB, FBX, OBJ or share with one link</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(255,184,48,0.08);color:#ffb830;border:1px solid rgba(255,184,48,0.2);">📤 31 EXPORTS</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#ffb830"></div>GLB · FBX · OBJ formats</div></div></div>
+    </div>
+    <div class="db-feat" style="--fc:linear-gradient(90deg,#ff3d6b,#b8aaff)" onclick="showToast('👥 Collaboration — coming soon!','#ff3d6b')">
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(255,61,107,0.1)">👥</div><div><div class="db-feat-title">Collaboration</div><div class="db-feat-sub">Build 3D models with your team in real-time</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(255,61,107,0.08);color:#ff3d6b;border:1px solid rgba(255,61,107,0.2);">👥 PRO FEATURE</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#ff3d6b"></div>Live edits sync</div></div></div>
+    </div>
+  </div>
+  <div class="db-bottom fi">
+    <div class="db-card">
+      <div class="db-card-h"><div class="db-card-title">🕒 Recent Activity</div></div>
+      <div class="act-item"><div class="act-ico">📸</div><div><div class="act-name">city_photo.jpg → 3D</div><div class="act-time">Today, 3:45 PM</div></div><div class="act-badge bd">DONE</div></div>
+      <div class="act-item"><div class="act-ico">📤</div><div><div class="act-name">sneaker_model.glb Exported</div><div class="act-time">Today, 2:12 PM</div></div><div class="act-badge bn">NEW</div></div>
+      <div class="act-item"><div class="act-ico">📸</div><div><div class="act-name">building_ref.jpg → 3D</div><div class="act-time">Today, 1:30 PM</div></div><div class="act-badge bd">DONE</div></div>
+      <div class="act-item"><div class="act-ico">🥽</div><div><div class="act-name">vase_model.glb — VR Preview</div><div class="act-time">Yesterday, 6:00 PM</div></div><div class="act-badge bd">DONE</div></div>
+      <div class="act-item"><div class="act-ico">📸</div><div><div class="act-name">guitar_scan.jpg → Processing</div><div class="act-time">Yesterday, 4:15 PM</div></div><div class="act-badge bp">PROC</div></div>
+    </div>
+    <div class="plan-card">
+      <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.6rem;position:relative;z-index:1;"><div style="font-size:1.4rem;">⭐</div><div style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;">Pro Plan</div><div style="margin-left:auto;background:rgba(0,229,160,0.1);border:1px solid rgba(0,229,160,0.2);color:#00e5a0;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:50px;">ACTIVE</div></div>
+      <div style="font-family:'Orbitron',monospace;font-size:2rem;font-weight:700;background:linear-gradient(135deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;position:relative;z-index:1;">₹999<span style="font-size:1rem;-webkit-text-fill-color:rgba(255,255,255,0.3);">/mo</span></div>
+      <div style="position:relative;z-index:1;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;font-weight:600;"><span style="color:#00e5a0;">✦</span>Photo → 3D Unlimited</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;font-weight:600;"><span style="color:#00e5a0;">✦</span>4K Ultra Textures</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:rgba(255,255,255,0.45);margin-bottom:0.5rem;font-weight:600;"><span style="color:#00e5a0;">✦</span>VR + AR Access</div>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:1rem 0;"></div>
+        <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.3);"><span>Renews Mar 31, 2026</span><span style="color:#7c6fff;cursor:pointer;font-weight:700;" onclick="showPage('payment')">Manage →</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ PROFILE PAGE ============ -->
+<div id="profile-page">
+<nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
+<div class="hero-band"><div class="band-grid"></div></div>
+<div class="av-zone">
+  <div class="av-ring">
+    <div class="av-el" id="avEl">UP</div>
+    <div class="av-cam" onclick="document.getElementById('avInp').click()">📷</div>
+    <input type="file" id="avInp" accept="image/*" style="display:none" onchange="changeAvatar(this)">
+  </div>
+  <div class="av-meta">
+    <div class="av-name" id="dispName">Ujjwal</div>
+    <div class="av-email" id="dispEmail">ujjwal@example.com</div>
+    <div class="av-tags">
+      <span class="atag atag-pro">⭐ Pro Plan</span>
+      <span class="atag atag-g">✓ Verified</span>
+    </div>
+  </div>
+</div>
+<div class="stat-strip">
+  <div class="sstat"><div class="sstat-n">Photo Scans</div><div class="sstat-v">48</div><div class="sstat-d">Total</div></div>
+  <div class="sstat"><div class="sstat-n">3D Models</div><div class="sstat-v">48</div><div class="sstat-d">Created</div></div>
+  <div class="sstat"><div class="sstat-n">Exports</div><div class="sstat-v">31</div><div class="sstat-d">Files</div></div>
+  <div class="sstat"><div class="sstat-n">Storage</div><div class="sstat-v">2.4<span style="font-size:0.8rem;color:rgba(255,255,255,0.35)">GB</span></div><div class="sstat-d">of 50 GB</div></div>
+</div>
+<div class="prof-wrap">
+  <div>
+    <div class="pc"><div class="pc-head"><div class="pc-ico" style="background:rgba(124,111,255,0.12)">👤</div><div class="pc-title">Edit Profile</div></div>
+      <div class="pc-body">
+        <div class="pf-row"><div class="pf"><label>Full Name</label><input type="text" id="fname" value="Ujjwal"></div><div class="pf"><label>Username</label><input type="text" id="uname" value="ujjwal_3d"></div></div>
+        <div class="pf-row"><div class="pf"><label>Email</label><input type="email" id="femail" value="ujjwal@example.com"></div><div class="pf"><label>Phone</label><input type="tel" id="fphone" placeholder="+91 00000 00000"></div></div>
+        <button class="btn-prim" onclick="saveProfile()">💾 Save Changes</button>
+      </div>
+    </div>
+    <div class="pc"><div class="pc-head"><div class="pc-ico" style="background:rgba(0,212,255,0.1)">🔒</div><div class="pc-title">Change Password</div></div>
+      <div class="pc-body">
+        <div class="pf"><label>Current Password</label><input type="password" id="curPass" placeholder="••••••••"></div>
+        <div class="pf-row">
+          <div class="pf"><label>New Password</label><input type="password" id="newPass" placeholder="••••••••" oninput="checkStrength(this.value)"><div class="str-bar"><div class="str-fill" id="sFill"></div></div><div class="str-lbl" id="sLabel"></div></div>
+          <div class="pf"><label>Confirm Password</label><input type="password" id="confPass" placeholder="••••••••"></div>
+        </div>
+        <button class="btn-prim" onclick="changePassword()">🔒 Update Password</button>
+      </div>
+    </div>
+    <div class="dcard"><div class="dcard-head"><span>⚠️</span><span class="dcard-title">Danger Zone</span></div>
+      <div class="ditem"><div><div class="ditem-lbl">Log Out All Devices</div><div class="ditem-sub">All active sessions will end</div></div><button class="dbtn" onclick="showToast('✓ All devices logged out','#ffb830')">Log Out All</button></div>
+      <div class="ditem"><div><div class="ditem-lbl">Deactivate Account</div><div class="ditem-sub">Account temporarily disabled</div></div><button class="dbtn" onclick="showToast('Account deactivated','#ffb830')">Deactivate</button></div>
+      <div class="ditem"><div><div class="ditem-lbl" style="color:#ff3d6b">Delete Account</div><div class="ditem-sub">Permanent — all data erased</div></div><button class="dbtn dbtn-f" onclick="document.getElementById('delModal').classList.add('open')">Delete Forever</button></div>
+    </div>
+  </div>
+  <div>
+    <div class="plan-h"><div class="plan-badge-p">ACTIVE</div>
+      <div class="plan-h-body">
+        <div class="plan-tier">⭐ Pro</div>
+        <div class="plan-price">₹999 / month</div>
+        <div class="plan-feat-r"><div class="plan-feat-dot"></div>Photo → 3D Unlimited</div>
+        <div class="plan-feat-r"><div class="plan-feat-dot"></div>4K Ultra Textures</div>
+        <div class="plan-feat-r"><div class="plan-feat-dot"></div>VR + AR Access</div>
+        <div class="plan-feat-r"><div class="plan-feat-dot"></div>50 GB Storage</div>
+        <div style="height:1px;background:rgba(255,255,255,0.06);margin:1rem 0;"></div>
+        <button onclick="showPage('payment')" style="width:100%;padding:11px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;">⚡ Manage Plan</button>
+      </div>
+    </div>
+    <div class="pc"><div class="pc-head"><div class="pc-ico" style="background:rgba(0,229,160,0.1)">🛡️</div><div class="pc-title">Account Info</div></div>
+      <div class="pc-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;"><span style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Member Since</span><span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;">Jan 2026</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;"><span style="font-size:0.8rem;color:rgba(255,255,255,0.45);">Plan</span><span style="background:linear-gradient(135deg,#4f46e5,#7c6fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:0.8rem;font-weight:700;">Pro</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.8rem;color:rgba(255,255,255,0.45);">2FA</span><span style="color:#00e5a0;font-size:0.8rem;font-weight:700;">✓ Enabled</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-bg" id="delModal">
+  <div class="modal-box">
+    <div style="font-size:2.5rem;text-align:center;margin-bottom:1rem;">⚠️</div>
+    <div class="modal-title">Delete Account?</div>
+    <div class="modal-body">This will permanently delete your account and all 3D models. This cannot be undone.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="document.getElementById('delModal').classList.remove('open')">Cancel</button>
+      <button class="modal-del" onclick="deleteAcc()">Delete Forever</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ PAYMENT PAGE ============ -->
+<div id="payment-page">
+<nav class="pay-nav"><div style="font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;">3D<span style="color:#7c6fff">.</span>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Back</div></nav>
+<div class="secure-bar">🔒 &nbsp;100% Secure Payment &nbsp;·&nbsp; SSL Encrypted &nbsp;·&nbsp; Powered by Razorpay</div>
+<div class="pay-wrap">
+  <div>
+    <div class="pay-step-lbl">Step 1 of 2</div>
+    <div class="pay-step-title">Choose Your Plan</div>
+    <div class="pay-plans">
+      <div class="pay-opt" id="pp-free" onclick="selPayPlan('free')"><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">🆓 Free</div><div class="pay-plan-f">10 scans/day · Basic textures</div></div><div><div class="badge-free">FREE</div></div></div>
+      <div class="pay-opt" id="pp-basic" onclick="selPayPlan('basic')"><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">📦 Basic</div><div class="pay-plan-f">Unlimited · HD textures · GLB export</div></div><div><div class="pay-plan-amt">₹299</div><div class="pay-plan-per">/month</div></div></div>
+      <div class="pay-opt sel" id="pp-pro" onclick="selPayPlan('pro')"><div class="badge-pop">POPULAR</div><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">⭐ Pro</div><div class="pay-plan-f">Unlimited · 4K · VR+AR · Priority support</div></div><div><div class="pay-plan-amt">₹999</div><div class="pay-plan-per">/month</div></div></div>
+    </div>
+    <div id="upi-head" style="display:none;margin-bottom:1rem;"><div class="pay-step-lbl">Step 2 of 2</div><div class="pay-step-title">Pay with UPI</div></div>
+    <div id="upi-sec" style="display:none;margin-bottom:1.5rem;">
+      <div class="upi-lbl">Select UPI App</div>
+      <div class="upi-apps">
+        <div class="upi-app sel" id="ua-gpay" onclick="selApp('gpay')"><span>🟦</span> GPay</div>
+        <div class="upi-app" id="ua-pp" onclick="selApp('pp')"><span>🟣</span> PhonePe</div>
+        <div class="upi-app" id="ua-pt" onclick="selApp('pt')"><span>🔵</span> Paytm</div>
+        <div class="upi-app" id="ua-bh" onclick="selApp('bh')"><span>🇮🇳</span> BHIM</div>
+      </div>
+      <div class="upi-inp-wrap">
+        <div class="upi-lbl">Enter UPI ID</div>
+        <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;">
+          <input class="upi-inp" id="upiId" placeholder="yourname@upi" oninput="resetUpi()">
+          <button class="upi-v-btn" onclick="verifyUpi()">Verify</button>
+        </div>
+        <div id="upiOk" style="display:none;align-items:center;gap:6px;margin-top:8px;font-size:0.78rem;color:#00e5a0;font-weight:700;">✓ Verified — <span id="upiName"></span></div>
+      </div>
+    </div>
+    <button class="pay-main-btn" id="payBtn" onclick="payAction()">Continue to Payment →</button>
+    <div style="text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.2);margin-top:0.8rem;">🔒 Secured by Razorpay · No data stored</div>
+  </div>
+  <div>
+    <div class="sum-card">
+      <div class="sum-head">📋 Order Summary</div>
+      <div class="sum-body">
+        <div style="display:flex;align-items:center;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:1.2rem;"><div id="sumIco" style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">⭐</div><div><div id="sumName" style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:900;margin-bottom:3px;">Pro Plan</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Monthly subscription</div></div></div>
+        <div class="sum-row"><span class="sum-lbl">Plan Price</span><span class="sum-val" id="sumPrice">₹999</span></div>
+        <div class="sum-row"><span class="sum-lbl">GST (18%)</span><span class="sum-val" id="sumGst">₹180</span></div>
+        <div style="height:1px;background:rgba(255,255,255,0.06);margin:1rem 0;"></div>
+        <div class="sum-row"><span style="font-size:0.9rem;font-weight:800;">Total</span><span id="sumTotal" style="font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;background:linear-gradient(90deg,#7c6fff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹1,179</span></div>
+        <div id="sumFeats" style="margin-top:1.2rem;font-size:0.78rem;color:rgba(255,255,255,0.4);"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pay-success" id="paySuccess">
+  <div class="suc-ring">✓</div>
+  <div class="suc-title">Payment Successful!</div>
+  <div style="font-size:1rem;color:rgba(255,255,255,0.4);max-width:380px;line-height:1.7;margin-bottom:0.5rem;">Aapka plan activate ho gaya!</div>
+  <div id="sucPlan" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#b8aaff;background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.2);padding:8px 20px;border-radius:50px;margin:0.8rem 0 1rem;">⭐ Pro Plan Activated</div>
+  <div id="sucTxn" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.2);margin-bottom:2rem;"></div>
+  <button class="suc-btn" onclick="showPage('dashboard')">🚀 Enter Dashboard</button>
+</div>
+</div>
+
+<!-- ============ PHOTO PAGE ============ -->
+<div id="photo-page">
+<nav class="ph-nav">
+  <div style="font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:900;">📸 Photo <span style="color:#7c6fff">→</span> 3D</div>
+  <div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div>
+</nav>
+<div class="ph-wrap">
+  <div>
+    <div class="ph-drop" id="phDrop" ondragover="phDragOver(event)" ondragleave="phDragLeave(event)" ondrop="phDrop_(event)" onclick="document.getElementById('phFile').click()">
+      <div class="ph-drop-ico">🖼️</div>
+      <div class="ph-drop-title">Drop your photo here</div>
+      <div class="ph-drop-sub">Ya neeche se select karo</div>
+      <button class="ph-drop-btn" onclick="event.stopPropagation();document.getElementById('phFile').click()">📂 Browse Photo</button>
+      <div style="font-size:0.7rem;color:rgba(255,255,255,0.2);">JPG · PNG · WEBP — Max 20MB</div>
+      <input type="file" id="phFile" accept="image/*" style="display:none" onchange="phFileSelect(this)">
+    </div>
+    <button class="ph-cam-btn" onclick="toggleCam()">📷 &nbsp;Use Camera — Live Photo</button>
+    <div id="ph-camview">
+      <video id="ph-video" autoplay playsinline></video>
+      <button class="ph-snap" onclick="snapPhoto()">📸</button>
+      <button class="ph-cam-close" onclick="closeCam()">✕</button>
+    </div>
+    <div id="ph-preview">
+      <img id="ph-prev-img" src="" alt="preview">
+      <div class="ph-prev-ov">
+        <div><div style="font-size:0.82rem;font-weight:700;" id="phFname">photo.jpg</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.4);" id="phFsize">—</div></div>
+        <button class="ph-rm-btn" onclick="removePhoto()">✕ Remove</button>
+      </div>
+    </div>
+    <button class="ph-conv-btn" id="phConvBtn" onclick="startConvert()" style="display:none">🔮 Convert to 3D Model</button>
+    <div id="ph-proc">
+      <div style="font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;color:#b8aaff;margin-bottom:0.5rem;">⚙️ Processing...</div>
+      <div class="ph-bar-wrap"><div class="ph-bar" id="phBar"></div></div>
+      <div class="ph-steps">
+        <div class="ph-step" id="ps1"><div class="ph-dot"></div>Analyzing image structure</div>
+        <div class="ph-step" id="ps2"><div class="ph-dot"></div>Detecting depth & geometry</div>
+        <div class="ph-step" id="ps3"><div class="ph-dot"></div>Generating 3D mesh</div>
+        <div class="ph-step" id="ps4"><div class="ph-dot"></div>Applying textures & lighting</div>
+        <div class="ph-step" id="ps5"><div class="ph-dot"></div>Finalizing 3D model</div>
+      </div>
+    </div>
+    <div id="ph-result">
+      <div class="ph-res-card">
+        <div class="ph-res-view"><canvas id="phCanvas" class="ph-res-canvas"></canvas><div class="ph-res-badge">✓ 3D READY</div></div>
+        <div class="ph-res-body">
+          <div class="ph-res-name" id="phResName">model_output.glb</div>
+          <div class="ph-res-meta" id="phResMeta">Polygons: 24,800 · Textures: 4K · Size: 8.2 MB</div>
+          <div class="ph-exp-btns">
+            <button class="ph-exp-btn prim" onclick="showToast('⬇ Downloading GLB...','#00e5a0')">⬇ GLB</button>
+            <button class="ph-exp-btn" onclick="showToast('⬇ Downloading FBX...','#00e5a0')">⬇ FBX</button>
+            <button class="ph-exp-btn" onclick="showToast('⬇ Downloading OBJ...','#00e5a0')">⬇ OBJ</button>
+            <button class="ph-exp-btn" onclick="showToast('✓ Saved to My Worlds!','#00e5a0')">💾 Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="ph-quota">
+      <div class="ph-q-lbl">Daily Usage — Photo → 3D</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;"><span style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Scans Today</span><span style="font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:#00e5a0;">∞</span></div>
+      <div class="ph-q-bar"><div class="ph-q-fill" style="width:100%"></div></div>
+      <div style="font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:0.4rem;">Pro Plan — Unlimited</div>
+    </div>
+    <div style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;">🕒 Recent Scans</div>
+    <div class="ph-hist-item"><div class="ph-hist-thumb">🏠</div><div><div style="font-size:0.8rem;font-weight:700;">house_scan.jpg</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">Today · 8.2 MB · GLB</div></div><div class="ph-hist-badge bd">DONE</div></div>
+    <div class="ph-hist-item"><div class="ph-hist-thumb">👟</div><div><div style="font-size:0.8rem;font-weight:700;">sneaker_scan.jpg</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">Yesterday · 12.4 MB · FBX</div></div><div class="ph-hist-badge bd">DONE</div></div>
+    <div class="ph-hist-item"><div class="ph-hist-thumb">🎸</div><div><div style="font-size:0.8rem;font-weight:700;">guitar_ref.jpg</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">2 days ago · 6.8 MB · OBJ</div></div><div class="ph-hist-badge bd">DONE</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ============ NOTIFICATIONS PAGE ============ -->
+<div id="notif-page">
+<nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
+<div class="notif-wrap">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+    <h1 style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#22d3ee,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Notifications</h1>
+    <span id="unreadBadge" style="background:#6366f1;color:#fff;font-size:12px;font-family:'Orbitron',monospace;padding:4px 10px;border-radius:20px;">4 New</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem;">
+    <div class="filter-tabs">
+      <button class="ftab act" onclick="filterNotif(this,'all')">All</button>
+      <button class="ftab" onclick="filterNotif(this,'model')">3D Models</button>
+      <button class="ftab" onclick="filterNotif(this,'system')">System</button>
+      <button class="ftab" onclick="filterNotif(this,'promo')">Offers</button>
+    </div>
+    <div style="display:flex;gap:0.5rem;">
+      <button onclick="markAllRead()" style="background:none;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;">✓ Mark All Read</button>
+      <button onclick="clearAllNotif()" style="background:none;border:1px solid rgba(255,61,107,0.2);color:rgba(255,61,107,0.6);padding:7px 14px;border-radius:8px;cursor:pointer;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;">🗑 Clear All</button>
+    </div>
+  </div>
+  <div id="notifList">
+    <div class="notif-card unread" data-type="model"><div class="notif-ico-w" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)">✅</div><div style="flex:1"><div class="notif-title">3D Model Ready — Sneaker Scan</div><div class="notif-desc">Aapka "Nike Air Max" ka 3D model successfully generate ho gaya hai. 48,291 polygons ready.</div><div class="notif-time">2 minutes ago · 3D MODEL</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+    <div class="notif-card unread" data-type="model"><div class="notif-ico-w" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2)">🌐</div><div style="flex:1"><div class="notif-title">Export Successful</div><div class="notif-desc">building_ref.glb export ho gaya. File size: 12.4 MB.</div><div class="notif-time">15 minutes ago · EXPORT</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+    <div class="notif-card unread" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎁</div><div style="flex:1"><div class="notif-title">Pro Plan — 30% Off This Week!</div><div class="notif-desc">Sirf aapke liye special offer — Pro plan pe ₹300 off. Unlimited generations, 4K textures.</div><div class="notif-time">1 hour ago · OFFER</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+    <div class="notif-card unread" data-type="system"><div class="notif-ico-w" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)">⚡</div><div style="flex:1"><div class="notif-title">Daily Limit — 8/10 Used</div><div class="notif-desc">Aaj 8 Photo→3D generations use ho gayi. Sirf 2 aur baaki hain.</div><div class="notif-time">3 hours ago · USAGE</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+    <div class="notif-card" data-type="system"><div class="notif-ico-w" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2)">🔒</div><div style="flex:1"><div class="notif-title">New Device Login Detected</div><div class="notif-desc">Chrome on Windows se login hua. Agar yeh aap nahi the toh password change karo.</div><div class="notif-time">Yesterday · SECURITY</div></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+    <div class="notif-card" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎉</div><div style="flex:1"><div class="notif-title">Welcome to 3D.AI!</div><div class="notif-desc">Aapka account create ho gaya. Pehle 3 generations bilkul free hain!</div><div class="notif-time">7 days ago · WELCOME</div></div><button class="notif-dismiss" onclick="dismissNotif(this)">✕</button></div>
+  </div>
+  <div style="margin-top:2rem;">
+    <div style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;">Notification Settings</div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.04);"><div><div style="font-size:0.85rem;font-weight:700;">3D Model Complete</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);">When model is ready</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.04);"><div><div style="font-size:0.85rem;font-weight:700;">Usage Alerts</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);">Near daily limit</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.04);"><div><div style="font-size:0.85rem;font-weight:700;">Security Alerts</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);">New login or suspicious activity</div></div><div class="toggle-sw on" onclick="this.classList.toggle('on')"></div></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;"><div><div style="font-size:0.85rem;font-weight:700;">Offers & Promotions</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.35);">Discounts and deals</div></div><div class="toggle-sw" onclick="this.classList.toggle('on')"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// ===== PARTICLE BG =====
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let particles=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+function initParticles(){particles=[];for(let i=0;i<80;i++)particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,r:Math.random()*1.5+0.5,o:Math.random()*0.4+0.1});}
+initParticles();
+function drawParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(124,111,255,${p.o})`;ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>canvas.width)p.vx*=-1;if(p.y<0||p.y>canvas.height)p.vy*=-1;});requestAnimationFrame(drawParticles);}
+drawParticles();
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll',()=>{document.getElementById('lpNav').classList.toggle('scrolled',window.scrollY>40);});
+
+// ===== THEME =====
+function toggleTheme(e){e.stopPropagation();document.getElementById('themeDrop').classList.toggle('open');}
+document.addEventListener('click',()=>document.getElementById('themeDrop').classList.remove('open'));
+function setTheme(t,ico,el){document.documentElement.setAttribute('data-theme',t);document.getElementById('themeIco').textContent=ico;document.querySelectorAll('.t-opt').forEach(x=>x.classList.remove('act'));el.classList.add('act');}
+
+// ===== DRAWER =====
+function openDrawer(tab){document.getElementById('drwOv').classList.add('open');switchTab(tab);}
+function closeDrawer(){document.getElementById('drwOv').classList.remove('open');}
+function ovClose(e){if(e.target===document.getElementById('drwOv'))closeDrawer();}
+function switchTab(t){document.querySelectorAll('.d-tab').forEach(x=>x.classList.remove('act'));document.querySelectorAll('.d-panel').forEach(x=>x.classList.remove('act'));document.getElementById('tab-'+t).classList.add('act');document.getElementById('panel-'+t).classList.add('act');}
+
+// ===== PLAN SELECT (DRAWER) =====
+let selPlanVal='free';
+function selPlan(p){selPlanVal=p;['free','basic','pro'].forEach(x=>document.getElementById('ps-'+x).classList.remove('sel'));document.getElementById('ps-'+p).classList.add('sel');}
+
+// ===== AUTH =====
+function doGoogle(){closeDrawer();showDashboard();}
+function doLogin(){const e=document.getElementById('l-email').value;if(!e){showToast('Email daalo!','#ff3d6b');return;}closeDrawer();showDashboard();}
+function doSignup(){const n=document.getElementById('s-name').value;if(!n){showToast('Naam daalo!','#ff3d6b');return;}closeDrawer();showDashboard();}
+
+// ===== DASHBOARD =====
+function showDashboard(){document.getElementById('landing').style.display='none';document.getElementById('dashboard').style.display='block';document.querySelectorAll('#dashboard .fi').forEach((el,i)=>{el.style.animationDelay=(i*0.1)+'s';});}
+function hideDashboard(){document.getElementById('dashboard').style.display='none';document.getElementById('landing').style.display='block';}
+
+// ===== PAGE NAVIGATION =====
+const pages=['dashboard','profile-page','payment-page','photo-page','notif-page'];
+function showPage(key){
+  pages.forEach(p=>document.getElementById(p).style.display='none');
+  if(key==='dashboard'){document.getElementById('dashboard').style.display='block';}
+  else if(key==='profile'){document.getElementById('profile-page').style.display='block';window.scrollTo(0,0);}
+  else if(key==='payment'){document.getElementById('payment-page').style.display='block';selPayPlan('pro');window.scrollTo(0,0);}
+  else if(key==='photo'){document.getElementById('photo-page').style.display='block';window.scrollTo(0,0);}
+  else if(key==='notif'){document.getElementById('notif-page').style.display='block';window.scrollTo(0,0);}
+  else{document.getElementById('dashboard').style.display='block';showToast('🚧 '+key+' — coming soon!','#7c6fff');}
+}
+
+// ===== TOAST =====
+function showToast(msg,col='#7c6fff'){const t=document.getElementById('toast');t.textContent=msg;t.style.color=col;t.style.borderColor=col+'44';t.style.opacity='1';clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity='0',2800);}
+
+// ===== PROFILE =====
+function saveProfile(){const n=document.getElementById('fname').value;document.getElementById('dispName').textContent=n;document.getElementById('dispEmail').textContent=document.getElementById('femail').value;showToast('✓ Profile saved!','#00e5a0');}
+function checkStrength(v){const f=document.getElementById('sFill');const l=document.getElementById('sLabel');const s=v.length>10&&/[A-Z]/.test(v)&&/[0-9]/.test(v)&&/[^a-zA-Z0-9]/.test(v)?4:v.length>8&&/[A-Z]/.test(v)&&/[0-9]/.test(v)?3:v.length>5?2:v.length>0?1:0;const c=['','#ff3d6b','#ffb830','#3b82f6','#00e5a0'];const t=['','Weak','Fair','Good','Strong'];f.style.width=(s*25)+'%';f.style.background=c[s];l.textContent=t[s];l.style.color=c[s];}
+function changePassword(){const n=document.getElementById('newPass').value;const c=document.getElementById('confPass').value;if(!n){showToast('New password daalo!','#ff3d6b');return;}if(n!==c){showToast('Passwords match nahi karte!','#ff3d6b');return;}showToast('✓ Password updated!','#00e5a0');document.getElementById('curPass').value='';document.getElementById('newPass').value='';document.getElementById('confPass').value='';}
+function changeAvatar(inp){if(inp.files[0]){const r=new FileReader();r.onload=e=>{const el=document.getElementById('avEl');el.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';showToast('✓ Avatar updated!','#00e5a0');};r.readAsDataURL(inp.files[0]);}}
+function deleteAcc(){document.getElementById('delModal').classList.remove('open');hideDashboard();showToast('Account deleted.','#ff3d6b');}
+
+// ===== PAYMENT =====
+const planData={free:{name:'Free Plan',ico:'🆓',price:0,gst:0,total:0},basic:{name:'Basic Plan',ico:'📦',price:299,gst:54,total:353},pro:{name:'Pro Plan',ico:'⭐',price:999,gst:180,total:1179}};
+let curPayPlan='pro',payStep=1,upiVerified=false;
+function selPayPlan(p){curPayPlan=p;document.querySelectorAll('.pay-opt').forEach(x=>x.classList.remove('sel'));document.getElementById('pp-'+p).classList.add('sel');const d=planData[p];document.getElementById('sumName').textContent=d.name;document.getElementById('sumIco').textContent=d.ico;document.getElementById('sumPrice').textContent=p==='free'?'₹0':'₹'+d.price;document.getElementById('sumGst').textContent=p==='free'?'₹0':'₹'+d.gst;document.getElementById('sumTotal').textContent=p==='free'?'Free':'₹'+d.total.toLocaleString('en-IN');document.getElementById('payBtn').textContent=p==='free'?'Activate Free Plan →':'Continue to Payment →';}
+function selApp(a){document.querySelectorAll('.upi-app').forEach(x=>x.classList.remove('sel'));document.getElementById('ua-'+a).classList.add('sel');}
+function resetUpi(){upiVerified=false;document.getElementById('upiOk').style.display='none';}
+function verifyUpi(){const v=document.getElementById('upiId').value;if(!v||!v.includes('@')){showToast('Valid UPI ID daalo!','#ff3d6b');return;}const names=['Ujjwal Kumar','Rahul Singh','Priya Sharma'];const n=names[Math.floor(Math.random()*names.length)];document.getElementById('upiName').textContent=n;document.getElementById('upiOk').style.display='flex';upiVerified=true;showToast('✓ UPI verified!','#00e5a0');}
+function payAction(){
+  if(curPayPlan==='free'){document.getElementById('paySuccess').style.display='flex';document.getElementById('sucPlan').textContent='🆓 Free Plan Activated';document.getElementById('sucTxn').textContent='No payment required';launchConfetti();return;}
+  if(payStep===1){payStep=2;document.getElementById('upi-head').style.display='block';document.getElementById('upi-sec').style.display='block';document.getElementById('payBtn').textContent='🚀 Pay ₹'+planData[curPayPlan].total.toLocaleString('en-IN');return;}
+  if(!upiVerified){showToast('Pehle UPI verify karo!','#ff3d6b');return;}
+  document.getElementById('payBtn').textContent='Processing...';document.getElementById('payBtn').disabled=true;
+  setTimeout(()=>{document.getElementById('paySuccess').style.display='flex';document.getElementById('sucPlan').textContent='⭐ '+planData[curPayPlan].name+' Activated';document.getElementById('sucTxn').textContent='TXN-'+Math.random().toString(36).substr(2,9).toUpperCase();launchConfetti();},2000);
+}
+function launchConfetti(){const colors=['#7c6fff','#00e5a0','#00d4ff','#ffb830','#ff3d6b'];for(let i=0;i<80;i++){const c=document.createElement('div');c.className='conf-piece';c.style.left=Math.random()*100+'vw';c.style.top='-10px';c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDuration=(Math.random()*2+2)+'s';c.style.animationDelay=Math.random()*1+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),(Math.random()*2+2)*1000+500);}}
+
+// ===== PHOTO PAG
+
+
+
+
