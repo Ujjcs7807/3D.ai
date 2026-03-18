@@ -23,7 +23,7 @@ html{scroll-behavior:smooth;}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;}
 #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4;}
 
-/* ===== LANDING NAV ===== */
+/* LANDING NAV */
 .lp-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:66px;background:rgba(4,2,12,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.4s;}
 .lp-nav.scrolled{background:rgba(4,2,12,0.92);backdrop-filter:blur(24px);border-bottom-color:rgba(255,255,255,0.06);}
 .lp-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:2px;}
@@ -45,7 +45,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .btn-signup{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:9px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 0.25s;font-family:'Syne',sans-serif;box-shadow:0 4px 20px rgba(99,102,241,0.35);}
 .btn-signup:hover{filter:brightness(1.12);transform:translateY(-1px);}
 
-/* ===== HERO ===== */
+/* HERO */
 .hero-sec{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 4rem;position:relative;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,70,229,0.18),transparent 60%),radial-gradient(ellipse 60% 40% at 20% 80%,rgba(124,111,255,0.1),transparent 50%);}
 .hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(124,111,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 20%,transparent 80%);}
@@ -69,7 +69,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .lp-stat-v{font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#fff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:3px;}
 .lp-stat-n{font-size:0.72rem;color:rgba(255,255,255,0.35);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
 
-/* ===== HOW IT WORKS ===== */
+/* HOW IT WORKS */
 #lp-how{padding:8rem 2rem;background:var(--bg2);position:relative;z-index:10;}
 .how-inner{max-width:1100px;margin:0 auto;}
 .sec-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#7c6fff;display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
@@ -85,7 +85,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .step-t{font-size:1rem;font-weight:800;margin-bottom:0.5rem;}
 .step-d{font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.7;}
 
-/* ===== PRICING ===== */
+/* PRICING */
 #lp-pricing{padding:8rem 2rem;text-align:center;position:relative;z-index:10;}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:4rem auto 0;}
 .plan-c{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:2rem;text-align:left;transition:all 0.35s;position:relative;overflow:hidden;}
@@ -107,7 +107,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .btn-plan-s{width:100%;padding:12px;margin-top:1.5rem;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;}
 .btn-plan-s:hover{filter:brightness(1.1);transform:translateY(-1px);}
 
-/* ===== ENTER WORLD ===== */
+/* GLOBE SECTION */
 #lp-world{padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;}
 .world-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(79,70,229,0.12),transparent 65%);}
 .world-content{position:relative;z-index:2;max-width:600px;margin:0 auto;}
@@ -136,12 +136,12 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .enter-btn{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:16px 44px;border-radius:50px;font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 32px rgba(79,70,229,0.4);}
 .enter-btn:hover{transform:translateY(-3px);filter:brightness(1.1);}
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .lp-footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.2);font-family:'Syne',sans-serif;position:relative;z-index:10;}
 .lp-footer strong{color:rgba(255,255,255,0.5);}
 .lp-brand{color:#7c6fff;font-family:'Orbitron',monospace;font-size:0.75rem;}
 
-/* ===== DRAWER ===== */
+/* DRAWER */
 .drw-ov{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);z-index:500;opacity:0;pointer-events:none;transition:opacity 0.35s;}
 .drw-ov.open{opacity:1;pointer-events:all;}
 .drw{position:fixed;top:0;right:-440px;bottom:0;width:100%;max-width:420px;background:var(--bg2);border-left:1px solid var(--border);z-index:501;transition:right 0.38s cubic-bezier(.25,.8,.25,1);display:flex;flex-direction:column;overflow-y:auto;}
@@ -180,7 +180,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .psel .pn{font-weight:700;font-size:0.85rem;margin-bottom:2px;}
 .psel .pp{color:var(--a2);font-size:0.75rem;font-weight:600;}
 
-/* ===== DASHBOARD ===== */
+/* DASHBOARD */
 #dashboard{display:none;min-height:100vh;background:var(--bg);}
 .db-nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:1rem;padding:0 2rem;height:60px;background:rgba(4,2,13,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);}
 .db-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;color:#f0ecff;margin-right:auto;}
@@ -221,7 +221,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .db-feat-sub{font-size:0.75rem;color:rgba(255,255,255,0.45);line-height:1.5;}
 .db-feat-arr{margin-left:auto;font-size:1rem;color:rgba(255,255,255,0.18);transition:all 0.3s;flex-shrink:0;margin-top:2px;}
 .db-feat:hover .db-feat-arr{color:#b8aaff;transform:translateX(4px);}
-.db-feat-prev{margin:0 1.4rem 1.4rem;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.9rem;min-height:80px;position:relative;overflow:hidden;}
+.db-feat-prev{margin:0 1.4rem 1.4rem;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.9rem;min-height:80px;}
 .db-feat-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;letter-spacing:0.08em;margin-bottom:0.5rem;}
 .db-feat-items{display:flex;flex-direction:column;gap:5px;}
 .db-feat-item{display:flex;align-items:center;gap:8px;font-size:0.75rem;color:rgba(255,255,255,0.45);font-weight:600;}
@@ -242,13 +242,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .bnew{background:rgba(0,212,255,0.1);color:#00d4ff;border:1px solid rgba(0,212,255,0.2);}
 .plan-card{background:linear-gradient(145deg,#0d0824,#0a0518);border:1px solid rgba(124,111,255,0.2);border-radius:20px;padding:1.4rem;position:relative;overflow:hidden;}
 
-/* ===== PROFILE ===== */
-#profile-page{display:none;min-height:100vh;background:var(--bg);}
+/* SHARED PAGE NAV */
 .pg-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.06);}
 .pg-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;color:#f4f0ff;}
 .pg-logo em{color:#7c6fff;font-style:normal;}
 .pg-back{display:flex;align-items:center;gap:8px;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.07);padding:8px 18px;border-radius:50px;cursor:pointer;transition:all 0.2s;}
 .pg-back:hover{color:#b8aaff;border-color:rgba(124,111,255,0.3);}
+
+/* PROFILE PAGE */
+#profile-page{display:none;min-height:100vh;background:var(--bg);}
 .hero-band{height:180px;background:linear-gradient(135deg,#0d0824,#12083a,#0a0620);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 .band-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,111,255,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.07) 1px,transparent 1px);background-size:50px 50px;}
 .av-zone{position:relative;z-index:10;display:flex;align-items:flex-end;gap:1.8rem;max-width:900px;margin:-60px auto 0;padding:0 2rem;flex-wrap:wrap;}
@@ -267,6 +269,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .atag-pro{background:rgba(124,111,255,0.15);color:#b8aaff;border:1px solid rgba(124,111,255,0.2);}
 .atag-g{background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.15);}
 .atag-c{background:rgba(0,212,255,0.1);color:#00d4ff;border:1px solid rgba(0,212,255,0.15);}
+
+/* STAT STRIP — Photo Scans, 3D Models, Exports, Storage (NO 3D Worlds) */
 .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;max-width:900px;margin:1.5rem auto 0;padding:0 2rem;}
 .sstat{padding:1.2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.06);}
 .sstat:last-child{border-right:none;}
@@ -319,9 +323,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .modal-cancel{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;}
 .modal-del{flex:1;background:#ff3d6b;border:none;color:#fff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;}
 
-/* ===== PAYMENT PAGE ===== */
+/* PAYMENT PAGE */
 #payment-page{display:none;min-height:100vh;background:var(--bg);}
-.pay-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);}
 .secure-bar{background:rgba(0,229,160,0.06);border-bottom:1px solid rgba(0,229,160,0.1);padding:8px 2rem;text-align:center;font-size:0.72rem;font-weight:700;color:#00e5a0;letter-spacing:0.12em;display:flex;align-items:center;justify-content:center;gap:8px;}
 .pay-wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;}
 .pay-step-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#b8aaff;margin-bottom:6px;}
@@ -341,11 +344,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .pay-plan-per{font-size:0.7rem;color:rgba(255,255,255,0.3);text-align:right;}
 .badge-free{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;}
 .badge-pop{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:50px;}
+
+/* UPI APPS — Real SVG logos, grid layout */
+.upi-apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;margin-bottom:1rem;}
+.upi-app-card{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:14px;padding:0.9rem 0.5rem;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all 0.2s;font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.55);}
+.upi-app-card:hover{border-color:rgba(124,111,255,0.3);background:rgba(255,255,255,0.06);}
+.upi-app-card.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);color:#b8aaff;}
+.upi-app-card svg{width:36px;height:36px;}
+
 .upi-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.8rem;}
-.upi-apps{display:flex;gap:0.7rem;flex-wrap:wrap;margin-bottom:1rem;}
-.upi-app{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:12px;padding:0.7rem 1rem;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all 0.2s;font-size:0.82rem;font-weight:700;font-family:'Syne',sans-serif;}
-.upi-app:hover{border-color:rgba(124,111,255,0.3);}
-.upi-app.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);}
 .upi-inp-wrap{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.2rem;}
 .upi-inp{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;outline:none;transition:all 0.2s;min-width:0;}
 .upi-inp:focus{border-color:rgba(124,111,255,0.4);}
@@ -367,9 +374,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .conf-piece{position:fixed;width:8px;height:8px;border-radius:2px;animation:cF linear forwards;pointer-events:none;z-index:800;}
 @keyframes cF{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
 
-/* ===== PHOTO PAGE ===== */
+/* PHOTO PAGE */
 #photo-page{display:none;min-height:100vh;background:var(--bg);}
-.ph-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;background:rgba(5,3,9,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);}
 .ph-nav-title{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:900;color:#f4f0ff;}
 .ph-nav-title span{color:#7c6fff;}
 .ph-wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem;display:grid;grid-template-columns:1fr 360px;gap:2rem;}
@@ -423,7 +429,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .ph-hist-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#1a1040,#2d1a6e);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
 .ph-hist-badge{margin-left:auto;font-size:0.65rem;font-weight:800;padding:3px 9px;border-radius:50px;flex-shrink:0;}
 
-/* ===== NOTIFICATIONS PAGE ===== */
+/* NOTIFICATIONS PAGE */
 #notif-page{display:none;min-height:100vh;background:var(--bg);}
 .notif-wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem;}
 .notif-card-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;margin-bottom:8px;}
@@ -445,10 +451,9 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .toggle-sw::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,0.4);top:2px;left:2px;transition:all 0.3s;}
 .toggle-sw.on::after{background:#7c6fff;left:22px;box-shadow:0 0 8px #7c6fff;}
 
-/* ===== TOAST ===== */
+/* TOAST */
 #toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);padding:10px 22px;border-radius:50px;font-size:0.82rem;font-weight:700;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:9999;font-family:'Syne',sans-serif;white-space:nowrap;background:rgba(20,15,40,0.95);border:1px solid rgba(124,111,255,0.3);color:#b8aaff;}
 
-/* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .fi{opacity:0;animation:fadeUp 0.5s ease forwards;}
 .d1{animation-delay:0.05s}.d2{animation-delay:0.1s}.d3{animation-delay:0.15s}
@@ -457,7 +462,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-thumb{background:rgba(124,111,255,0.3);border-radius:4px;}
 
-/* RESPONSIVE */
 @media(max-width:768px){
   .lp-nav{padding:0 1.2rem;}.lp-nav-links{display:none;}
   .hero-sec{padding:6rem 1.2rem 3rem;}
@@ -472,6 +476,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   .pay-wrap,.ph-wrap,.prof-wrap{grid-template-columns:1fr;}
   .pf-row{grid-template-columns:1fr;}
   .stat-strip{grid-template-columns:1fr 1fr;}
+  .upi-apps-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:480px){
   .steps-grid{grid-template-columns:1fr;}
@@ -485,12 +490,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 <canvas id="bgCanvas"></canvas>
 <div id="toast"></div>
 
-<!-- ============================================================
-     LANDING PAGE
-     ============================================================ -->
+<!-- ===== LANDING PAGE ===== -->
 <div id="landing">
-
-<!-- NAV -->
 <nav class="lp-nav" id="lpNav">
   <div class="lp-logo">3D<span class="dot">.</span>AI</div>
   <ul class="lp-nav-links">
@@ -514,25 +515,24 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </nav>
 
-<!-- HERO -->
 <section style="position:relative;overflow:hidden;">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-sec">
     <div class="hero-content">
-      <div class="eyebrow"><div class="eyebrow-dot"></div>AI-Powered 3D Generation Platform</div>
+      <div class="eyebrow"><div class="eyebrow-dot"></div>AI-Powered Photo to 3D Platform</div>
       <h1 class="hero-title">
-        <span class="l1">Build Any</span>
-        <span class="l2">3D World</span>
+        <span class="l1">Turn Any Photo</span>
+        <span class="l2">Into 3D</span>
         <span class="l3">With the Power of Artificial Intelligence</span>
       </h1>
-      <p class="hero-desc">Describe your vision in words or upload a photo. Our AI builds a complete interactive 3D world — explorable, exportable, shareable — in minutes.</p>
+      <p class="hero-desc">Upload any photo. Our AI converts it into a complete interactive 3D model — explorable, exportable, shareable — in minutes.</p>
       <div class="hero-btns">
-        <button class="cta-p" onclick="openDrawer('signup')">✦ Start Building Free</button>
+        <button class="cta-p" onclick="openDrawer('signup')">📸 Start Converting Free</button>
         <button class="cta-s" onclick="goSection('lp-how')">See How It Works ↓</button>
       </div>
       <div class="stats-bar">
-        <div class="lp-stat"><div class="lp-stat-v">10K+</div><div class="lp-stat-n">Worlds Created</div></div>
+        <div class="lp-stat"><div class="lp-stat-v">50K+</div><div class="lp-stat-n">Photos Converted</div></div>
         <div class="lp-stat"><div class="lp-stat-v">50K+</div><div class="lp-stat-n">Users</div></div>
         <div class="lp-stat"><div class="lp-stat-v">4.9★</div><div class="lp-stat-n">Rating</div></div>
         <div class="lp-stat"><div class="lp-stat-v">&lt;2min</div><div class="lp-stat-n">Gen Time</div></div>
@@ -541,18 +541,17 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section id="lp-how">
   <div class="how-inner">
     <div class="sec-tag">Process</div>
     <h2 class="sec-title">How 3D.AI Works</h2>
-    <p class="sec-sub">From imagination to interactive 3D world in 4 simple steps.</p>
+    <p class="sec-sub">From photo to interactive 3D model in 4 simple steps.</p>
     <div class="steps-grid">
       <div class="step-c" style="--c1:#4f46e5;--c2:#7c6fff">
         <div class="step-num">STEP 01</div>
         <div class="step-ico" style="background:rgba(79,70,229,0.2)">📸</div>
-        <div class="step-t">Upload or Describe</div>
-        <p class="step-d">Upload a photo of any object or describe your 3D world in words. AI understands both instantly.</p>
+        <div class="step-t">Upload a Photo</div>
+        <p class="step-d">Upload any photo of an object, building, or scene. AI understands your image instantly.</p>
       </div>
       <div class="step-c" style="--c1:#7c6fff;--c2:#00d4ff">
         <div class="step-num">STEP 02</div>
@@ -563,8 +562,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
       <div class="step-c" style="--c1:#00d4ff;--c2:#00e5a0">
         <div class="step-num">STEP 03</div>
         <div class="step-ico" style="background:rgba(0,212,255,0.12)">🌐</div>
-        <div class="step-t">Enter & Explore</div>
-        <p class="step-d">Walk inside your creation via browser or VR headset. Interact and customize every detail in real-time.</p>
+        <div class="step-t">View in 3D</div>
+        <p class="step-d">Explore your 3D model in the browser or VR headset. Interact and inspect every detail.</p>
       </div>
       <div class="step-c" style="--c1:#00e5a0;--c2:#ffb830">
         <div class="step-num">STEP 04</div>
@@ -576,65 +575,60 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </section>
 
-<!-- PRICING -->
 <section id="lp-pricing" style="padding:8rem 2rem;text-align:center;position:relative;z-index:10;">
   <div class="sec-tag" style="justify-content:center">Pricing</div>
   <h2 class="sec-title" style="text-align:center">Simple, Transparent Plans</h2>
   <p style="color:rgba(255,255,255,0.4);text-align:center;max-width:400px;margin:0.5rem auto 0;line-height:1.7;">No hidden fees. Start free, upgrade anytime.</p>
   <div class="plans-grid">
-    <!-- FREE -->
     <div class="plan-c">
       <div class="plan-n">Free</div>
       <div class="plan-p"><sup>₹</sup>0<sub>/mo</sub></div>
-      <p class="plan-d">Perfect for exploring AI-powered 3D creation.</p>
+      <p class="plan-d">Perfect for exploring AI Photo → 3D conversion.</p>
       <div class="plan-div"></div>
-      <div class="plan-f"><span class="plan-fi">✦</span>3 AI World Generations</div>
+      <div class="plan-f"><span class="plan-fi">✦</span>3 Photo → 3D Conversions</div>
       <div class="plan-f"><span class="plan-fi">✦</span>Basic Textures</div>
       <div class="plan-f"><span class="plan-fi">✦</span>Browser 3D Viewer</div>
       <div class="plan-f"><span class="plan-fi">✦</span>Community Support</div>
-      <div class="plan-f"><span class="plan-fi">✦</span>Photo with 3D Model — 10/day</div>
+      <div class="plan-f"><span class="plan-fi">✦</span>10 Scans/day</div>
       <button class="btn-plan-g" onclick="openDrawer('signup')">Start Free →</button>
     </div>
-    <!-- BASIC -->
     <div class="plan-c">
       <div class="plan-n">Basic</div>
       <div class="plan-p"><sup>₹</sup>299<sub>/mo</sub></div>
-      <p class="plan-d">For beginners and hobbyists exploring 3D creation.</p>
+      <p class="plan-d">For beginners and hobbyists.</p>
       <div class="plan-div"></div>
-      <div class="plan-f"><span class="plan-fi">✦</span>20 AI World Generations</div>
+      <div class="plan-f"><span class="plan-fi">✦</span>20 Photo → 3D Conversions</div>
       <div class="plan-f"><span class="plan-fi">✦</span>HD Textures & Lighting</div>
       <div class="plan-f"><span class="plan-fi">✦</span>Browser 3D Viewer</div>
       <div class="plan-f"><span class="plan-fi">✦</span>GLB Export</div>
       <div class="plan-f"><span class="plan-fi">✦</span>Email Support</div>
-      <div class="plan-f"><span class="plan-fi">✦</span>Photo with Unlimited 3D Model</div>
+      <div class="plan-f"><span class="plan-fi">✦</span>Unlimited Scans/day</div>
       <button class="btn-plan-g" onclick="openDrawer('signup')">Get Basic →</button>
     </div>
-    <!-- PRO -->
     <div class="plan-c featured">
       <div class="plan-badge">MOST POPULAR</div>
       <div class="plan-n">Pro</div>
       <div class="plan-p"><sup>₹</sup>999<sub>/mo</sub></div>
-      <p class="plan-d">For serious creators, developers and freelancers.</p>
+      <p class="plan-d">For serious creators and developers.</p>
       <div class="plan-div"></div>
-      <div class="plan-f"><span class="plan-fi pu">✦</span>Unlimited Generations</div>
+      <div class="plan-f"><span class="plan-fi pu">✦</span>Unlimited Conversions</div>
       <div class="plan-f"><span class="plan-fi pu">✦</span>4K Ultra Textures</div>
       <div class="plan-f"><span class="plan-fi pu">✦</span>VR + AR Access</div>
       <div class="plan-f"><span class="plan-fi pu">✦</span>Real-time Collaboration</div>
       <div class="plan-f"><span class="plan-fi pu">✦</span>GLB / FBX / OBJ Export</div>
       <div class="plan-f"><span class="plan-fi pu">✦</span>Priority AI Engine</div>
-      <div class="plan-f"><span class="plan-fi pu">✦</span>Photo with Unlimited 3D Model</div>
+      <div class="plan-f"><span class="plan-fi pu">✦</span>50 GB Storage</div>
       <button class="btn-plan-s" onclick="openDrawer('signup')">Get Pro →</button>
     </div>
   </div>
 </section>
 
-<!-- ENTER WORLD -->
 <section id="lp-world" style="padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;">
   <div class="world-bg"></div>
   <div class="world-content">
     <div class="sec-tag" style="justify-content:center">Enter</div>
-    <h2 class="world-title">Log In to Enter 3D World</h2>
-    <p class="world-sub">Join thousands of creators already building the future with AI-powered 3D technology.</p>
+    <h2 class="world-title">Log In to Get Started</h2>
+    <p class="world-sub">Join thousands of creators already converting photos to stunning 3D models with AI.</p>
     <div class="globe-wrap">
       <div class="globe-sphere"></div>
       <div class="gr gr1"><div class="gd gd1"></div></div>
@@ -643,7 +637,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
       <div class="gr gr4"><div class="gd gd4"></div></div>
       <div class="gr gr5"><div class="gd gd5"></div></div>
     </div>
-    <button class="enter-btn" onclick="openDrawer('login')">🌐 Log In to Enter 3D World</button>
+    <button class="enter-btn" onclick="openDrawer('login')">📸 Start Converting Photos</button>
   </div>
 </section>
 
@@ -651,11 +645,9 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   <strong>3D.AI</strong> &nbsp;·&nbsp; © 2026 All Rights Reserved &nbsp;·&nbsp;
   <span class="lp-brand">Ujjwal Production</span>
 </footer>
-</div><!-- /landing -->
+</div>
 
-<!-- ============================================================
-     LOGIN / SIGNUP DRAWER
-     ============================================================ -->
+<!-- ===== LOGIN/SIGNUP DRAWER ===== -->
 <div class="drw-ov" id="drwOv" onclick="ovClose(event)">
   <div class="drw">
     <div class="drw-head">
@@ -667,9 +659,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
       <button class="d-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
     </div>
     <div class="d-form">
-      <!-- LOGIN PANEL -->
       <div class="d-panel" id="panel-login">
-        <div class="d-welcome"><h2>Welcome back 👋</h2><p>Log in to enter your 3D world.</p></div>
+        <div class="d-welcome"><h2>Welcome back 👋</h2><p>Log in to start converting photos to 3D.</p></div>
         <button class="g-btn" onclick="doGoogle()">
           <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>
           Continue with Google
@@ -677,12 +668,11 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
         <div class="or-div">or</div>
         <div class="dfg"><label>Email</label><input type="email" id="l-email" placeholder="you@example.com"></div>
         <div class="dfg"><label>Password</label><input type="password" id="l-pass" placeholder="••••••••"></div>
-        <button class="d-submit" onclick="doLogin()">🚀 Enter My World</button>
+        <button class="d-submit" onclick="doLogin()">🚀 Log In</button>
         <div class="d-switch">No account? <a onclick="switchTab('signup')">Sign Up Free</a></div>
       </div>
-      <!-- SIGNUP PANEL -->
       <div class="d-panel" id="panel-signup">
-        <div class="d-welcome"><h2>Create Account ✦</h2><p>Start building 3D worlds with AI today.</p></div>
+        <div class="d-welcome"><h2>Create Account ✦</h2><p>Start converting photos to 3D with AI today.</p></div>
         <button class="g-btn" onclick="doGoogle()">
           <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20H24v8h11.3C33.6 33.1 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20c11 0 20-9 20-20 0-1.3-.1-2.7-.4-4z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 19 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.5 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-1.9 13.5-5l-6.2-5.2C29.4 35.6 26.8 36 24 36c-5.2 0-9.6-2.9-11.8-7.2l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20H24v8h11.3c-.9 2.5-2.6 4.6-4.8 6l6.2 5.2C40.6 35.5 44 30.1 44 24c0-1.3-.1-2.7-.4-4z"/></svg>
           Sign Up with Google
@@ -706,9 +696,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </div>
 
-<!-- ============================================================
-     DASHBOARD
-     ============================================================ -->
+<!-- ===== DASHBOARD ===== -->
 <div id="dashboard">
 <nav class="db-nav">
   <div class="db-logo">3D<span>.</span>AI</div>
@@ -721,7 +709,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   <div class="db-welcome fi d1">
     <div>
       <h1>Welcome back, <span>Ujjwal</span> 👋</h1>
-      <p>Your 3D universe is ready — let's create something today.</p>
+      <p>Your AI studio is ready — let's convert some photos today.</p>
     </div>
     <div class="db-qa">
       <button class="db-qa-btn primary" onclick="showPage('photo')">📸 Photo → 3D</button>
@@ -735,7 +723,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     <div class="db-stat" style="--sc:linear-gradient(90deg,#ffb830,#ff3d6b)"><div class="db-stat-ico">📤</div><div class="db-stat-val">31</div><div class="db-stat-lbl">EXPORTS</div><div class="db-stat-tr">↑ 8 this week</div></div>
   </div>
   <div class="db-grid fi d3">
-    <!-- Photo → 3D LARGE -->
     <div class="db-feat lg" style="--fc:linear-gradient(90deg,#00e5a0,#00d4ff)" onclick="showPage('photo')">
       <div class="db-feat-h">
         <div class="db-feat-ico" style="background:rgba(0,229,160,0.12)">📸</div>
@@ -751,23 +738,19 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
         </div>
       </div>
     </div>
-    <!-- VR/AR -->
     <div class="db-feat" style="--fc:linear-gradient(90deg,#00d4ff,#b8aaff)" onclick="showToast('🥽 VR Viewer — coming soon!','#00d4ff')">
-      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(0,212,255,0.1)">🥽</div><div><div class="db-feat-title">VR / AR Viewer</div><div class="db-feat-sub">Enter your 3D models in VR or AR</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(0,212,255,0.1)">🥽</div><div><div class="db-feat-title">VR / AR Viewer</div><div class="db-feat-sub">View your 3D models in VR or AR</div></div><div class="db-feat-arr">→</div></div>
       <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(0,212,255,0.08);color:#00d4ff;border:1px solid rgba(0,212,255,0.2);">🥽 PRO FEATURE</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#00d4ff"></div>WebXR browser support</div><div class="db-feat-item"><div class="db-feat-dot" style="background:#b8aaff"></div>Share VR link with anyone</div></div></div>
     </div>
-    <!-- Export -->
     <div class="db-feat" style="--fc:linear-gradient(90deg,#ffb830,#ff3d6b)" onclick="showToast('📤 Export — coming soon!','#ffb830')">
       <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(255,184,48,0.1)">📤</div><div><div class="db-feat-title">Export & Share</div><div class="db-feat-sub">GLB, FBX, OBJ or share with one link</div></div><div class="db-feat-arr">→</div></div>
       <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(255,184,48,0.08);color:#ffb830;border:1px solid rgba(255,184,48,0.2);">📤 31 EXPORTS</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#ffb830"></div>GLB · FBX · OBJ</div><div class="db-feat-item"><div class="db-feat-dot" style="background:#ff3d6b"></div>One-click shareable link</div></div></div>
     </div>
-    <!-- Collab -->
     <div class="db-feat" style="--fc:linear-gradient(90deg,#ff3d6b,#b8aaff)" onclick="showToast('👥 Collaboration — coming soon!','#ff3d6b')">
-      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(255,61,107,0.1)">👥</div><div><div class="db-feat-title">Collaboration</div><div class="db-feat-sub">Build 3D models with your team in real-time</div></div><div class="db-feat-arr">→</div></div>
+      <div class="db-feat-h"><div class="db-feat-ico" style="background:rgba(255,61,107,0.1)">👥</div><div><div class="db-feat-title">Collaboration</div><div class="db-feat-sub">Build 3D models with your team</div></div><div class="db-feat-arr">→</div></div>
       <div class="db-feat-prev"><div class="db-feat-badge" style="background:rgba(255,61,107,0.08);color:#ff3d6b;border:1px solid rgba(255,61,107,0.2);">👥 PRO FEATURE</div><div class="db-feat-items"><div class="db-feat-item"><div class="db-feat-dot" style="background:#ff3d6b"></div>Invite team members</div><div class="db-feat-item"><div class="db-feat-dot" style="background:#b8aaff"></div>Live cursor & edits sync</div></div></div>
     </div>
   </div>
-  <!-- BOTTOM -->
   <div class="db-bottom fi d4">
     <div class="db-card">
       <div class="db-card-h"><div class="db-card-title">🕒 Recent Activity</div><div style="font-size:0.72rem;color:rgba(255,255,255,0.18);cursor:pointer;">View All →</div></div>
@@ -790,11 +773,9 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
 </div>
-</div><!-- /dashboard -->
+</div>
 
-<!-- ============================================================
-     PROFILE PAGE
-     ============================================================ -->
+<!-- ===== PROFILE PAGE ===== -->
 <div id="profile-page">
 <nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
 <div class="hero-band"><div class="band-grid"></div></div>
@@ -814,6 +795,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
 </div>
+<!-- STAT STRIP: Photo Scans, 3D Models, Exports, Storage — NO 3D Worlds -->
 <div class="stat-strip">
   <div class="sstat"><div class="sstat-n">Photo Scans</div><div class="sstat-v">48</div><div class="sstat-d">Total</div></div>
   <div class="sstat"><div class="sstat-n">3D Models</div><div class="sstat-v">48</div><div class="sstat-d">Created</div></div>
@@ -873,21 +855,19 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   <div class="modal-box">
     <div style="font-size:2.5rem;text-align:center;margin-bottom:1rem;">⚠️</div>
     <div class="modal-title">Delete Account?</div>
-    <div class="modal-body">This will permanently delete your account and all 3D models. This cannot be undone.</div>
+    <div class="modal-body">This is permanent and cannot be undone. All your photo scans, 3D models, and exports will be permanently deleted.</div>
     <div class="modal-btns">
       <button class="modal-cancel" onclick="document.getElementById('delModal').classList.remove('open')">Cancel</button>
       <button class="modal-del" onclick="deleteAcc()">Delete Forever</button>
     </div>
   </div>
 </div>
-</div><!-- /profile-page -->
+</div>
 
-<!-- ============================================================
-     PAYMENT PAGE
-     ============================================================ -->
+<!-- ===== PAYMENT PAGE ===== -->
 <div id="payment-page">
-<nav class="pay-nav">
-  <div style="font-family:'Orbitron',monospace;font-weight:900;font-size:1.1rem;">3D<span style="color:#7c6fff">.</span>AI</div>
+<nav class="pg-nav">
+  <div class="pg-logo">3D<em>.</em>AI</div>
   <div class="pg-back" onclick="showPage('dashboard')">← Back</div>
 </nav>
 <div class="secure-bar">🔒 &nbsp;100% Secure Payment &nbsp;·&nbsp; SSL Encrypted &nbsp;·&nbsp; Powered by Razorpay</div>
@@ -898,18 +878,18 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     <div class="pay-plans">
       <div class="pay-opt" id="pp-free" onclick="selPayPlan('free')">
         <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">🆓 Free</div><div class="pay-plan-f">3 generations · Basic textures · Browser viewer</div></div>
+        <div style="flex:1"><div class="pay-plan-n">🆓 Free</div><div class="pay-plan-f">3 generations · Basic textures · Browser viewer · 10 scans/day</div></div>
         <div><div class="badge-free">FREE</div></div>
       </div>
       <div class="pay-opt" id="pp-basic" onclick="selPayPlan('basic')">
         <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">📦 Basic</div><div class="pay-plan-f">20 generations · HD textures · Photo 3D — 10/day · GLB export</div></div>
+        <div style="flex:1"><div class="pay-plan-n">📦 Basic</div><div class="pay-plan-f">20 generations · HD textures · Photo 3D Unlimited · GLB export</div></div>
         <div><div class="pay-plan-amt">₹299</div><div class="pay-plan-per">/month</div></div>
       </div>
       <div class="pay-opt sel" id="pp-pro" onclick="selPayPlan('pro')">
         <div class="badge-pop">POPULAR</div>
         <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">⭐ Pro</div><div class="pay-plan-f">Unlimited generations · 4K textures · VR+AR · Photo 3D unlimited</div></div>
+        <div style="flex:1"><div class="pay-plan-n">⭐ Pro</div><div class="pay-plan-f">Unlimited generations · 4K textures · VR+AR · Photo 3D Unlimited</div></div>
         <div><div class="pay-plan-amt">₹999</div><div class="pay-plan-per">/month</div></div>
       </div>
     </div>
@@ -919,11 +899,54 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
     <div id="upi-s" style="display:none;margin-bottom:1.5rem;">
       <div class="upi-lbl">Select UPI App</div>
-      <div class="upi-apps">
-        <div class="upi-app sel" id="ua-gp" onclick="selApp('gp')"><span>🟦</span> GPay</div>
-        <div class="upi-app" id="ua-pp" onclick="selApp('pp')"><span>🟣</span> PhonePe</div>
-        <div class="upi-app" id="ua-pt" onclick="selApp('pt')"><span>🔵</span> Paytm</div>
-        <div class="upi-app" id="ua-bh" onclick="selApp('bh')"><span>🇮🇳</span> BHIM</div>
+      <!-- REAL UPI LOGOS - SVG -->
+      <div class="upi-apps-grid">
+        <!-- Google Pay -->
+        <div class="upi-app-card sel" id="ua-gp" onclick="selApp('gp')">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M24 9.5c3.9 0 6.7 1.7 8.2 3.1l6.1-6.1C34.5 3.1 29.8 1 24 1 14.8 1 7 6.7 3.7 14.6l7.1 5.5C12.5 13.6 17.8 9.5 24 9.5z"/>
+            <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-2.8-.4-4H24v7.6h12.5c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.3-4 6.8-9.9 7-16.5z"/>
+            <path fill="#FBBC05" d="M10.8 28.6c-.5-1.3-.7-2.7-.7-4.1s.3-2.8.7-4.1l-7.1-5.5C2.1 17.6 1 20.7 1 24s1.1 6.4 2.7 9.1l7.1-4.5z"/>
+            <path fill="#EA4335" d="M24 47c5.8 0 10.7-1.9 14.3-5.2l-7.4-5.7c-1.9 1.3-4.4 2.1-6.9 2.1-6.2 0-11.5-4.1-13.2-9.7l-7.1 4.5C7 40.3 14.8 47 24 47z"/>
+          </svg>
+          <span>GPay</span>
+        </div>
+        <!-- PhonePe -->
+        <div class="upi-app-card" id="ua-pp" onclick="selApp('pp')">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="10" fill="#5f259f"/>
+            <path fill="#fff" d="M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16c2.2 0 4.3-.4 6.2-1.2v-5.4c-1.8.9-3.9 1.4-6.2 1.4-6.1 0-11-4.9-11-11s4.9-11 11-11c3.9 0 7.3 2 9.3 5h-5.8v5.2h12.8V14C38 10.7 31.5 8 24 8z"/>
+          </svg>
+          <span>PhonePe</span>
+        </div>
+        <!-- Paytm -->
+        <div class="upi-app-card" id="ua-pt" onclick="selApp('pt')">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="10" fill="#00B9F1"/>
+            <rect x="6" y="18" width="36" height="12" rx="2" fill="#fff"/>
+            <text x="24" y="28" text-anchor="middle" font-family="Arial" font-weight="900" font-size="9" fill="#00B9F1">PAYTM</text>
+          </svg>
+          <span>Paytm</span>
+        </div>
+        <!-- BHIM -->
+        <div class="upi-app-card" id="ua-bh" onclick="selApp('bh')">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="16" fill="#FF9933"/>
+            <rect y="16" width="48" height="16" fill="#fff"/>
+            <rect y="32" width="48" height="16" fill="#138808"/>
+            <circle cx="24" cy="24" r="6" fill="none" stroke="#000080" stroke-width="1.2"/>
+            <circle cx="24" cy="24" r="1.2" fill="#000080"/>
+            <g stroke="#000080" stroke-width="0.6">
+              <line x1="24" y1="18" x2="24" y2="30"/>
+              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(30 24 24)"/>
+              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(60 24 24)"/>
+              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(90 24 24)"/>
+              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(120 24 24)"/>
+              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(150 24 24)"/>
+            </g>
+          </svg>
+          <span>BHIM</span>
+        </div>
       </div>
       <div class="upi-inp-wrap">
         <div class="upi-lbl">Enter UPI ID</div>
@@ -954,24 +977,20 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
 </div>
-<!-- Success screen -->
 <div class="pay-success" id="paySuccess">
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,0.15),transparent 65%);pointer-events:none;animation:sGl 2s ease-in-out infinite;"></div>
-  <div class="suc-ring" style="position:relative;z-index:1;">✓</div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,0.15),transparent 65%);pointer-events:none;"></div>
+  <div class="suc-ring">✓</div>
   <div class="suc-title">Payment Successful!</div>
   <div style="font-size:1rem;color:rgba(255,255,255,0.4);max-width:380px;line-height:1.7;margin-bottom:0.5rem;position:relative;z-index:1;">Aapka plan activate ho gaya! 3D.AI ke saath apni journey shuru karo!</div>
   <div id="sucPlan" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#b8aaff;background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.2);padding:8px 20px;border-radius:50px;margin:0.8rem 0 1.5rem;position:relative;z-index:1;">⭐ Pro Plan Activated</div>
   <div id="sucTxn" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.2);margin-bottom:2rem;position:relative;z-index:1;"></div>
   <button class="suc-btn" onclick="showPage('dashboard')">🚀 Enter Dashboard</button>
 </div>
-@keyframes sGl{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
-</div><!-- /payment-page -->
+</div>
 
-<!-- ============================================================
-     PHOTO → 3D PAGE
-     ============================================================ -->
+<!-- ===== PHOTO → 3D PAGE ===== -->
 <div id="photo-page">
-<nav class="ph-nav">
+<nav class="pg-nav">
   <div class="ph-nav-title">📸 Photo <span>→</span> 3D</div>
   <div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div>
 </nav>
@@ -1020,7 +1039,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
             <button class="ph-exp-btn prim" onclick="showToast('⬇ Downloading GLB...','#00e5a0')">⬇ GLB</button>
             <button class="ph-exp-btn" onclick="showToast('⬇ Downloading FBX...','#00e5a0')">⬇ FBX</button>
             <button class="ph-exp-btn" onclick="showToast('⬇ Downloading OBJ...','#00e5a0')">⬇ OBJ</button>
-            <button class="ph-exp-btn" onclick="showToast('✓ Saved to My Worlds!','#00e5a0')">💾 Save</button>
+            <button class="ph-exp-btn" onclick="showToast('✓ Saved to My Models!','#00e5a0')">💾 Save</button>
           </div>
         </div>
       </div>
@@ -1039,17 +1058,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     <div class="ph-hist-item"><div class="ph-hist-thumb">🎸</div><div><div style="font-size:0.82rem;font-weight:700;">guitar_ref.jpg</div><div style="font-size:0.7rem;color:rgba(255,255,255,0.3);">2 days ago · 6.8 MB · OBJ</div></div><div class="ph-hist-badge" style="background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);">DONE</div></div>
   </div>
 </div>
-</div><!-- /photo-page -->
+</div>
 
-<!-- ============================================================
-     NOTIFICATIONS PAGE
-     ============================================================ -->
+<!-- ===== NOTIFICATIONS PAGE ===== -->
 <div id="notif-page">
 <nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
 <div class="notif-wrap">
   <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
     <h1 style="font-family:'Orbitron',monospace;font-size:1.8rem;font-weight:900;background:linear-gradient(135deg,#22d3ee,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Notifications</h1>
-    <span id="unreadBadge" style="background:#6366f1;color:#fff;font-size:12px;font-family:'Orbitron',monospace;padding:4px 10px;border-radius:20px;">4 New</span>
+    <span id="unreadBadge" style="background:#6366f1;color:#fff;font-size:12px;font-family:'Orbitron',monospace;padding:4px 10px;border-radius:20px;">3 New</span>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.5rem;">
     <div class="filter-tabs">
@@ -1064,14 +1081,20 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
   <div id="notifList">
+    <!-- 3D Model Ready - RAKHA -->
     <div class="notif-card-item unread" data-type="model"><div class="notif-ico-w" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)">✅</div><div style="flex:1"><div class="notif-title">3D Model Ready — Sneaker Scan</div><div class="notif-desc">Aapka "Nike Air Max" ka 3D model successfully generate ho gaya. 48,291 polygons, HD textures ready.</div><div class="notif-time">2 minutes ago · 3D MODEL</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <div class="notif-card-item unread" data-type="model"><div class="notif-ico-w" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2)">📸</div><div style="flex:1"><div class="notif-title">Export Successful</div><div class="notif-desc">building_ref.glb export ho gaya. File size: 12.4 MB.</div><div class="notif-time">15 minutes ago · EXPORT</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
+    <!-- World Generation — REMOVED -->
+    <!-- Pro Plan Offer - RAKHA -->
     <div class="notif-card-item unread" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎁</div><div style="flex:1"><div class="notif-title">Pro Plan — 30% Off This Week!</div><div class="notif-desc">Sirf aapke liye special offer — Pro plan pe ₹300 off. Unlimited generations, 4K textures.</div><div class="notif-time">1 hour ago · OFFER</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <div class="notif-card-item unread" data-type="system"><div class="notif-ico-w" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)">⚡</div><div style="flex:1"><div class="notif-title">Daily Limit — 8/10 Used</div><div class="notif-desc">Aaj 8 Photo→3D generations use ho gayi. Sirf 2 aur baaki hain.</div><div class="notif-time">3 hours ago · USAGE</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
+    <!-- Daily Limit - RAKHA -->
+    <div class="notif-card-item unread" data-type="system"><div class="notif-ico-w" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)">⚡</div><div style="flex:1"><div class="notif-title">Daily Limit — 8/10 Used</div><div class="notif-desc">Aaj 8 Photo→3D generations use ho gayi. Sirf 2 aur baaki hain. Pro upgrade karoge toh unlimited milega.</div><div class="notif-time">3 hours ago · USAGE</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
+    <!-- Export - RAKHA -->
+    <div class="notif-card-item" data-type="model"><div class="notif-ico-w" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2)">📸</div><div style="flex:1"><div class="notif-title">Export Successful — Guitar Model</div><div class="notif-desc">guitar_ref.glb export ho gaya. File size: 6.8 MB.</div><div class="notif-time">Yesterday · EXPORT</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
+    <!-- Security - RAKHA -->
     <div class="notif-card-item" data-type="system"><div class="notif-ico-w" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2)">🔒</div><div style="flex:1"><div class="notif-title">New Device Login Detected</div><div class="notif-desc">Chrome on Windows se login hua. Agar yeh aap nahi the toh password change karo.</div><div class="notif-time">Yesterday · SECURITY</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <div class="notif-card-item" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎉</div><div style="flex:1"><div class="notif-title">Welcome to 3D.AI!</div><div class="notif-desc">Aapka account create ho gaya. Pehle 3 generations bilkul free hain!</div><div class="notif-time">7 days ago · WELCOME</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
+    <!-- Welcome - RAKHA, updated text -->
+    <div class="notif-card-item" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎉</div><div style="flex:1"><div class="notif-title">Welcome to 3D.AI!</div><div class="notif-desc">Aapka account create ho gaya. Pehle 3 Photo→3D scans bilkul free hain!</div><div class="notif-time">7 days ago · WELCOME</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
   </div>
-  <!-- Notif Settings -->
   <div style="margin-top:2rem;">
     <div style="font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.25);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;">Notification Settings</div>
     <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;">
@@ -1082,19 +1105,16 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
 </div>
-</div><!-- /notif-page -->
+</div>
 
-<!-- ============================================================
-     ALL JAVASCRIPT
-     ============================================================ -->
+<!-- ===== JAVASCRIPT ===== -->
 <script>
-// ===== BG CANVAS =====
+// BG CANVAS
 (function(){
-  const c=document.getElementById('bgCanvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('bgCanvas'),ctx=c.getContext('2d');
   function resize(){c.width=innerWidth;c.height=innerHeight;}
   resize();window.addEventListener('resize',resize);
-  const pts=Array.from({length:80},()=>({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1+.4,p:Math.random()*Math.PI*2}));
+  const pts=Array.from({length:80},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1+.4,p:Math.random()*Math.PI*2}));
   function draw(){
     ctx.clearRect(0,0,c.width,c.height);
     pts.forEach((p,i)=>{
@@ -1107,19 +1127,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
         const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
         if(d<120){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(124,111,255,'+(1-d/120)*.07+')';ctx.lineWidth=.5;ctx.stroke();}
       }
-    });
-    requestAnimationFrame(draw);
+    });requestAnimationFrame(draw);
   }
   draw();
 })();
 
-// ===== NAV SCROLL =====
-window.addEventListener('scroll',()=>{
-  const n=document.getElementById('lpNav');
-  if(n) n.classList.toggle('scrolled',window.scrollY>40);
-});
+// NAV SCROLL
+window.addEventListener('scroll',()=>document.getElementById('lpNav')?.classList.toggle('scrolled',window.scrollY>40));
 
-// ===== THEME =====
+// THEME
 function toggleThemeDrop(e){e.stopPropagation();document.getElementById('themeDrop').classList.toggle('open');}
 document.addEventListener('click',()=>document.getElementById('themeDrop')?.classList.remove('open'));
 function setTheme(t,ico,el){
@@ -1130,13 +1146,11 @@ function setTheme(t,ico,el){
   document.getElementById('themeDrop').classList.remove('open');
   localStorage.setItem('3dai-t',t);localStorage.setItem('3dai-i',ico);
 }
-(()=>{const t=localStorage.getItem('3dai-t'),i=localStorage.getItem('3dai-i');
-  if(t){document.documentElement.setAttribute('data-theme',t);if(i)document.getElementById('themeIco').textContent=i;}})();
+(()=>{const t=localStorage.getItem('3dai-t'),i=localStorage.getItem('3dai-i');if(t){document.documentElement.setAttribute('data-theme',t);if(i)document.getElementById('themeIco').textContent=i;}})();
 
-// ===== SCROLL HELPER =====
 function goSection(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
 
-// ===== DRAWER =====
+// DRAWER
 function openDrawer(tab){document.getElementById('drwOv').classList.add('open');switchTab(tab);}
 function closeDrawer(){document.getElementById('drwOv').classList.remove('open');}
 function ovClose(e){if(e.target===document.getElementById('drwOv'))closeDrawer();}
@@ -1148,63 +1162,41 @@ function switchTab(t){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
 
-// ===== PLAN SELECT (DRAWER) =====
 let selPlanVal='free';
-function selPlan(p){
-  selPlanVal=p;
-  ['free','basic','pro'].forEach(x=>document.getElementById('ps-'+x)?.classList.remove('sel'));
-  document.getElementById('ps-'+p)?.classList.add('sel');
-}
+function selPlan(p){selPlanVal=p;['free','basic','pro'].forEach(x=>document.getElementById('ps-'+x)?.classList.remove('sel'));document.getElementById('ps-'+p)?.classList.add('sel');}
 
-// ===== AUTH =====
-function doGoogle(){
-  document.querySelectorAll('.g-btn').forEach(b=>{b.innerHTML='⏳ Connecting...';b.disabled=true;});
-  setTimeout(enterDashboard,1500);
-}
+// AUTH
+function doGoogle(){document.querySelectorAll('.g-btn').forEach(b=>{b.innerHTML='⏳ Connecting...';b.disabled=true;});setTimeout(enterDashboard,1500);}
 function doLogin(){
   const btn=document.querySelector('#panel-login .d-submit');
-  const e=document.getElementById('l-email').value.trim();
-  const p=document.getElementById('l-pass').value.trim();
-  if(!e||!p){btn.style.background='#ff3d6b';btn.textContent='⚠️ Fill all fields!';setTimeout(()=>{btn.style.background='';btn.textContent='🚀 Enter My World';},1500);return;}
-  btn.textContent='⏳ Logging in...';btn.disabled=true;
-  setTimeout(enterDashboard,1500);
+  const e=document.getElementById('l-email').value.trim(),p=document.getElementById('l-pass').value.trim();
+  if(!e||!p){btn.style.background='#ff3d6b';btn.textContent='⚠️ Fill all fields!';setTimeout(()=>{btn.style.background='';btn.textContent='🚀 Log In';},1500);return;}
+  btn.textContent='⏳ Logging in...';btn.disabled=true;setTimeout(enterDashboard,1500);
 }
 function doSignup(){
   const btn=document.querySelector('#panel-signup .d-submit');
-  const n=document.getElementById('s-name').value.trim();
-  const e=document.getElementById('s-email').value.trim();
-  const p=document.getElementById('s-pass').value.trim();
+  const n=document.getElementById('s-name').value.trim(),e=document.getElementById('s-email').value.trim(),p=document.getElementById('s-pass').value.trim();
   if(!n||!e||!p){btn.style.background='#ff3d6b';btn.textContent='⚠️ Fill all fields!';setTimeout(()=>{btn.style.background='';btn.textContent='✦ Create My Account';},1500);return;}
-  btn.textContent='⏳ Creating...';btn.disabled=true;
-  setTimeout(enterDashboard,1800);
+  btn.textContent='⏳ Creating...';btn.disabled=true;setTimeout(enterDashboard,1800);
 }
 
-// ===== PAGE NAVIGATION =====
+// PAGE NAVIGATION
 const ALL_PAGES=['landing','dashboard','profile-page','payment-page','photo-page','notif-page'];
-
 function hideAll(){ALL_PAGES.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});}
-
-function enterDashboard(){
-  closeDrawer();
-  hideAll();
-  document.getElementById('dashboard').style.display='block';
-  window.scrollTo(0,0);
-}
-
+function enterDashboard(){closeDrawer();hideAll();document.getElementById('dashboard').style.display='block';window.scrollTo(0,0);}
 function showPage(key){
-  hideAll();
-  window.scrollTo(0,0);
-  if(key==='dashboard'){document.getElementById('dashboard').style.display='block';return;}
-  if(key==='profile'){document.getElementById('profile-page').style.display='block';return;}
-  if(key==='payment'){document.getElementById('payment-page').style.display='block';initPaySummary();return;}
-  if(key==='photo'){document.getElementById('photo-page').style.display='block';return;}
-  if(key==='notif'){document.getElementById('notif-page').style.display='block';return;}
-  // fallback stubs
+  hideAll();window.scrollTo(0,0);
+  const map={dashboard:'dashboard',profile:'profile-page',payment:'payment-page',photo:'photo-page',notif:'notif-page'};
+  if(map[key]){
+    document.getElementById(map[key]).style.display='block';
+    if(key==='payment')initPaySummary();
+    return;
+  }
   document.getElementById('dashboard').style.display='block';
   showToast('🚧 '+key+' — coming soon!','#b8aaff');
 }
 
-// ===== TOAST =====
+// TOAST
 function showToast(msg,col='#b8aaff'){
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.color=col;t.style.borderColor=col+'55';
@@ -1212,10 +1204,9 @@ function showToast(msg,col='#b8aaff'){
   t._to=setTimeout(()=>t.style.opacity='0',2800);
 }
 
-// ===== PROFILE =====
+// PROFILE
 function saveProfile(){
-  const n=document.getElementById('fname').value.trim();
-  document.getElementById('dispName').textContent=n||'Ujjwal';
+  document.getElementById('dispName').textContent=document.getElementById('fname').value.trim()||'Ujjwal';
   document.getElementById('dispEmail').textContent=document.getElementById('femail').value.trim();
   showToast('✓ Profile saved!','#00e5a0');
 }
@@ -1230,24 +1221,18 @@ function checkStr(v){
   l.textContent=v?lb[s]||'':'';l.style.color=c[s]||'';
 }
 function changePass(){
-  const n=document.getElementById('newPass').value.trim();
-  const cf=document.getElementById('confPass').value.trim();
+  const n=document.getElementById('newPass').value.trim(),cf=document.getElementById('confPass').value.trim();
   if(!n||!cf){showToast('⚠️ Fill all fields','#ffb830');return;}
   if(n!==cf){showToast('⚠️ Passwords do not match','#ff3d6b');return;}
   ['curPass','newPass','confPass'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('sFill').style.width='0%';
-  document.getElementById('sLabel').textContent='';
+  document.getElementById('sFill').style.width='0%';document.getElementById('sLabel').textContent='';
   showToast('✓ Password updated!','#00e5a0');
 }
 function changeAvatar(inp){
   if(!inp.files[0])return;
   const r=new FileReader();
-  r.onload=e=>{
-    const av=document.getElementById('avEl');
-    av.innerHTML=`<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
-  };
-  r.readAsDataURL(inp.files[0]);
-  showToast('✓ Photo updated!','#00e5a0');
+  r.onload=e=>{const av=document.getElementById('avEl');av.innerHTML=`<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`; };
+  r.readAsDataURL(inp.files[0]);showToast('✓ Photo updated!','#00e5a0');
 }
 function deleteAcc(){
   document.getElementById('delModal').classList.remove('open');
@@ -1255,14 +1240,13 @@ function deleteAcc(){
   setTimeout(()=>{hideAll();document.getElementById('landing').style.display='block';},2200);
 }
 
-// ===== PAYMENT =====
+// PAYMENT
 const planData={
-  free: {name:'Free Plan',ico:'🆓',price:0,gst:0,total:0,feats:['3 AI Generations','Basic Textures','Browser Viewer','Community Support','Photo 3D — 10/day']},
-  basic:{name:'Basic Plan',ico:'📦',price:299,gst:54,total:353,feats:['20 AI Generations','HD Textures','GLB Export','Email Support','Photo 3D — 10/day']},
-  pro:  {name:'Pro Plan',ico:'⭐',price:999,gst:180,total:1179,feats:['Unlimited Generations','Photo 3D Unlimited','4K Textures','VR + AR Access','Priority Support','50 GB Storage']},
+  free: {name:'Free Plan',ico:'🆓',price:0,gst:0,total:0,feats:['3 Photo → 3D Conversions','Basic Textures','Browser Viewer','Community Support','10 Scans/day']},
+  basic:{name:'Basic Plan',ico:'📦',price:299,gst:54,total:353,feats:['20 Photo → 3D Conversions','HD Textures','GLB Export','Email Support','Unlimited Scans/day']},
+  pro:  {name:'Pro Plan',ico:'⭐',price:999,gst:180,total:1179,feats:['Unlimited Conversions','Photo 3D Unlimited','4K Textures','VR + AR Access','Priority Support','50 GB Storage']},
 };
 let curPayPlan='pro',upiVerified=false,payStep=1;
-
 function initPaySummary(){curPayPlan='pro';upiVerified=false;payStep=1;selPayPlan('pro');}
 function selPayPlan(p){
   curPayPlan=p;upiVerified=false;payStep=1;
@@ -1280,7 +1264,7 @@ function selPayPlan(p){
   document.getElementById('sumTotal').textContent=d.total===0?'₹0':'₹'+d.total.toLocaleString('en-IN');
   document.getElementById('sumFeats').innerHTML=d.feats.map(f=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><span style="color:#00e5a0;font-size:0.7rem;">✦</span><span>${f}</span></div>`).join('');
 }
-function selApp(a){document.querySelectorAll('.upi-app').forEach(e=>e.classList.remove('sel'));document.getElementById('ua-'+a).classList.add('sel');}
+function selApp(a){document.querySelectorAll('.upi-app-card').forEach(e=>e.classList.remove('sel'));document.getElementById('ua-'+a).classList.add('sel');}
 function upiReset(){upiVerified=false;document.getElementById('upiOk').style.display='none';document.querySelector('.upi-v-btn').textContent='Verify';document.querySelector('.upi-v-btn').style.color='';}
 function verifyUPI(){
   const id=document.getElementById('upiId').value.trim();
@@ -1296,13 +1280,7 @@ function verifyUPI(){
 }
 function payAction(){
   if(curPayPlan==='free'){showPaySuccess();return;}
-  if(payStep===1){
-    payStep=2;
-    document.getElementById('upi-h').style.display='block';
-    document.getElementById('upi-s').style.display='block';
-    document.getElementById('payBtn').textContent='Pay ₹'+planData[curPayPlan].total.toLocaleString('en-IN')+' →';
-    document.getElementById('upi-h').scrollIntoView({behavior:'smooth'});return;
-  }
+  if(payStep===1){payStep=2;document.getElementById('upi-h').style.display='block';document.getElementById('upi-s').style.display='block';document.getElementById('payBtn').textContent='Pay ₹'+planData[curPayPlan].total.toLocaleString('en-IN')+' →';document.getElementById('upi-h').scrollIntoView({behavior:'smooth'});return;}
   const id=document.getElementById('upiId').value.trim();
   if(!id||!id.includes('@')){document.getElementById('upiId').focus();return;}
   if(!upiVerified){verifyUPI();return;}
@@ -1319,8 +1297,7 @@ function showPaySuccess(){
 function launchConfetti(){
   const cols=['#7c6fff','#b8aaff','#00e5a0','#00d4ff','#ffb830','#ff3d6b'];
   for(let i=0;i<60;i++){
-    const el=document.createElement('div');
-    el.className='conf-piece';
+    const el=document.createElement('div');el.className='conf-piece';
     el.style.left=Math.random()*100+'vw';el.style.top='-10px';
     el.style.background=cols[Math.floor(Math.random()*cols.length)];
     el.style.animationDuration=(Math.random()*2+1.5)+'s';
@@ -1329,7 +1306,7 @@ function launchConfetti(){
   }
 }
 
-// ===== PHOTO TO 3D =====
+// PHOTO TO 3D
 let phStream=null;
 function phDragOver(e){e.preventDefault();document.getElementById('phDrop').classList.add('drag');}
 function phDragLeave(){document.getElementById('phDrop').classList.remove('drag');}
@@ -1359,8 +1336,7 @@ function removePhoto(){
 async function toggleCam(){
   const v=document.getElementById('ph-camview');
   if(v.style.display==='block'){closeCam();return;}
-  try{phStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
-    document.getElementById('ph-video').srcObject=phStream;v.style.display='block';}
+  try{phStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});document.getElementById('ph-video').srcObject=phStream;v.style.display='block';}
   catch(e){showToast('Camera access denied!','#ff3d6b');}
 }
 function closeCam(){if(phStream){phStream.getTracks().forEach(t=>t.stop());phStream=null;}document.getElementById('ph-camview').style.display='none';}
@@ -1374,33 +1350,26 @@ function startConvert(){
   document.getElementById('phConvBtn').style.display='none';
   document.getElementById('ph-proc').style.display='block';
   document.getElementById('ph-result').style.display='none';
-  const steps=['ps1','ps2','ps3','ps4','ps5'];
-  const pcts=[20,40,60,80,100];
+  const steps=['ps1','ps2','ps3','ps4','ps5'],pcts=[20,40,60,80,100];
   let cur=0;
   function next(){
     if(cur>0){document.getElementById(steps[cur-1]).classList.remove('act');document.getElementById(steps[cur-1]).classList.add('done');}
-    if(cur<steps.length){
-      document.getElementById(steps[cur]).classList.add('act');
-      document.getElementById('phBar').style.width=pcts[cur]+'%';
-      cur++;setTimeout(next,900+Math.random()*400);
-    }else{setTimeout(()=>{
+    if(cur<steps.length){document.getElementById(steps[cur]).classList.add('act');document.getElementById('phBar').style.width=pcts[cur]+'%';cur++;setTimeout(next,900+Math.random()*400);}
+    else{setTimeout(()=>{
       document.getElementById('ph-proc').style.display='none';
       document.getElementById('ph-result').style.display='block';
       const name=document.getElementById('phFname').textContent.replace(/\.[^.]+$/,'');
       document.getElementById('phResName').textContent=name+'_3d.glb';
       document.getElementById('phResMeta').textContent='Polygons: '+Math.floor(20000+Math.random()*15000).toLocaleString()+' · Textures: 4K · Size: '+(6+Math.random()*6).toFixed(1)+' MB';
-      initCubeCanvas();
-      showToast('✓ 3D Model ready!','#00e5a0');
+      initCubeCanvas();showToast('✓ 3D Model ready!','#00e5a0');
     },600);}
   }
   next();
 }
 function initCubeCanvas(){
   const cv=document.getElementById('phCanvas');if(!cv)return;
-  const ctx=cv.getContext('2d');
-  cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;
-  let t=0;
-  const W=cv.width,H=cv.height,cx=W/2,cy=H/2;
+  const ctx=cv.getContext('2d');cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;
+  let t=0;const W=cv.width,H=cv.height,cx=W/2,cy=H/2;
   const V=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
   const F=[[4,5,6,7],[0,1,2,3],[0,4,7,3],[1,5,6,2],[3,7,6,2],[0,4,5,1]];
   const C=['rgba(124,111,255,0.7)','rgba(79,70,229,0.6)','rgba(99,102,241,0.65)','rgba(167,139,250,0.6)','rgba(60,50,180,0.7)','rgba(140,120,255,0.65)'];
@@ -1410,10 +1379,8 @@ function initCubeCanvas(){
   function prj(v){const fov=W*0.5,dz=v[2]+3.5;return{x:cx+v[0]*fov/dz,y:cy+v[1]*fov/dz};}
   function draw(){
     ctx.clearRect(0,0,W,H);
-    const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,W*0.6);
-    bg.addColorStop(0,'#1a1040');bg.addColorStop(1,'#050309');
-    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-    t+=0.018;
+    const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,W*0.6);bg.addColorStop(0,'#1a1040');bg.addColorStop(1,'#050309');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);t+=0.018;
     let verts=V.map(v=>{let r=ry(v,t);return rx(r,0.4+Math.sin(t*0.3)*0.15);});
     let pts=verts.map(prj);
     F.map((fi,idx)=>({idx,avgZ:fi.reduce((s,vi)=>s+verts[vi][2],0)/4,fp:fi.map(vi=>pts[vi]),
@@ -1423,31 +1390,22 @@ function initCubeCanvas(){
     .sort((a,b)=>a.avgZ-b.avgZ)
     .forEach(({idx,fp,nm})=>{
       if(nm>=0)return;
-      ctx.beginPath();ctx.moveTo(fp[0].x,fp[0].y);
-      fp.forEach(p=>ctx.lineTo(p.x,p.y));ctx.closePath();
-      ctx.fillStyle=C[idx];ctx.fill();
-      ctx.strokeStyle='rgba(200,180,255,0.4)';ctx.lineWidth=1.5;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(fp[0].x,fp[0].y);fp.forEach(p=>ctx.lineTo(p.x,p.y));ctx.closePath();
+      ctx.fillStyle=C[idx];ctx.fill();ctx.strokeStyle='rgba(200,180,255,0.4)';ctx.lineWidth=1.5;ctx.stroke();
     });
     requestAnimationFrame(draw);
   }
   draw();
 }
 
-// ===== NOTIFICATIONS =====
+// NOTIFICATIONS
 function filterN(tab,type){
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('act'));
-  tab.classList.add('act');
-  document.querySelectorAll('#notifList .notif-card-item').forEach(c=>{
-    c.style.display=(type==='all'||c.dataset.type===type)?'flex':'none';
-  });
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('act'));tab.classList.add('act');
+  document.querySelectorAll('#notifList .notif-card-item').forEach(c=>{c.style.display=(type==='all'||c.dataset.type===type)?'flex':'none';});
 }
 function markAllRead(){
-  document.querySelectorAll('.notif-card-item.unread').forEach(c=>{
-    c.classList.remove('unread');
-    c.querySelector('.unread-dot')?.remove();
-  });
-  document.getElementById('unreadBadge').textContent='0';
-  document.getElementById('unreadBadge').style.background='rgba(255,255,255,0.1)';
+  document.querySelectorAll('.notif-card-item.unread').forEach(c=>{c.classList.remove('unread');c.querySelector('.unread-dot')?.remove();});
+  document.getElementById('unreadBadge').textContent='0';document.getElementById('unreadBadge').style.background='rgba(255,255,255,0.1)';
 }
 function clearNotifs(){
   document.getElementById('notifList').innerHTML='<div style="text-align:center;padding:3rem;color:rgba(255,255,255,0.2);font-size:0.9rem;">🔔 Koi notification nahi</div>';
