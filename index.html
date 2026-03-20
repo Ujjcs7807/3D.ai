@@ -15,13 +15,126 @@
   --a:#6366f1;--a2:#a78bfa;--cyan:#22d3ee;--green:#10b981;
 }
 [data-theme="cyber"]{--bg:#000d1a;--bg2:#001428;--card:rgba(0,240,255,0.04);--border:rgba(0,240,255,0.1);--glow:rgba(0,240,255,0.4);--text:#e0f8ff;--text2:#5fa8bc;--text3:#2d6070;--a:#00c8ff;--a2:#00eeff;--cyan:#00eeff;--green:#00ff99;}
-[data-theme="light"]{--bg:#f5f6fa;--bg2:#eceef5;--card:rgba(0,0,0,0.04);--border:rgba(0,0,0,0.08);--glow:rgba(99,102,241,0.3);--text:#1a1830;--text2:#6b6888;--text3:#aaa8c0;--a:#6366f1;--a2:#7c73f5;--cyan:#2563eb;--green:#059669;}
+
+/* ===== LIGHT THEME FIX ===== */
+[data-theme="light"]{
+  --bg:#f0f2f8;--bg2:#e4e7f2;
+  --card:rgba(0,0,0,0.04);--border:rgba(0,0,0,0.1);
+  --glow:rgba(99,102,241,0.2);
+  --text:#1a1830;--text2:#4a4768;--text3:#8a88a8;
+  --a:#4f46e5;--a2:#7c6fff;--cyan:#2563eb;--green:#059669;
+}
+
 [data-theme="neon"]{--bg:#030d00;--bg2:#071200;--card:rgba(0,255,80,0.04);--border:rgba(0,255,80,0.1);--glow:rgba(0,255,80,0.4);--text:#d4ffdc;--text2:#4a9055;--text3:#2a5030;--a:#00e64d;--a2:#39ff6e;--cyan:#39ff6e;--green:#ffe600;}
 [data-theme="rose"]{--bg:#100008;--bg2:#180010;--card:rgba(255,50,120,0.05);--border:rgba(255,50,120,0.12);--glow:rgba(255,50,120,0.4);--text:#ffe8f2;--text2:#b06080;--text3:#703050;--a:#ff2d78;--a2:#ff72aa;--cyan:#ff72aa;--green:#ff9900;}
 
 html{scroll-behavior:smooth;}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;}
 #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4;}
+
+/* Light theme — canvas hide karo (white pe white dots nahi dikhte achhe) */
+[data-theme="light"] #bgCanvas{opacity:0.08;}
+[data-theme="light"] .lp-nav.scrolled{background:rgba(240,242,248,0.95);}
+[data-theme="light"] .lp-logo{color:#1a1830;}
+[data-theme="light"] .lp-nav-links a{color:rgba(26,24,48,0.6);}
+[data-theme="light"] .lp-nav-links a:hover{color:#1a1830;}
+[data-theme="light"] .btn-login{border-color:rgba(26,24,48,0.2);color:rgba(26,24,48,0.7);}
+[data-theme="light"] .btn-login:hover{color:#1a1830;}
+[data-theme="light"] .hero-title .l1{color:#1a1830;}
+[data-theme="light"] .hero-title .l3{color:rgba(26,24,48,0.6);}
+[data-theme="light"] .hero-desc{color:rgba(26,24,48,0.6);}
+[data-theme="light"] .cta-s{border-color:rgba(26,24,48,0.2);color:rgba(26,24,48,0.7);}
+[data-theme="light"] .lp-stat-v{background:linear-gradient(135deg,#1a1830,#4f46e5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+[data-theme="light"] .lp-stat-n{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .lp-stat{border-right-color:rgba(26,24,48,0.1);}
+[data-theme="light"] .step-c{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .step-d{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .step-num{color:rgba(26,24,48,0.2);}
+[data-theme="light"] .plan-c{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .plan-n{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .plan-p{color:#1a1830;}
+[data-theme="light"] .plan-p sub{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .plan-d{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .plan-div{background:rgba(0,0,0,0.08);}
+[data-theme="light"] .plan-f{color:rgba(26,24,48,0.6);}
+[data-theme="light"] .btn-plan-g{border-color:rgba(26,24,48,0.15);color:rgba(26,24,48,0.6);}
+[data-theme="light"] .btn-plan-g:hover{color:#1a1830;}
+[data-theme="light"] .lp-footer{border-top-color:rgba(0,0,0,0.1);color:rgba(26,24,48,0.35);}
+[data-theme="light"] .lp-footer strong{color:rgba(26,24,48,0.6);}
+[data-theme="light"] .sec-title{color:#1a1830;}
+[data-theme="light"] .sec-sub{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .db-nav{background:rgba(240,242,248,0.95);}
+[data-theme="light"] .db-logo{color:#1a1830;}
+[data-theme="light"] .db-nav-btn{color:rgba(26,24,48,0.5);border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .db-stat{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .db-stat-lbl{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .db-welcome h1{color:#1a1830;}
+[data-theme="light"] .db-welcome p{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .db-feat{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .db-feat-title{color:#1a1830;}
+[data-theme="light"] .db-feat-sub{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .db-feat-sub2{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .db-card{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .act-name{color:#1a1830;}
+[data-theme="light"] .act-time{color:rgba(26,24,48,0.35);}
+[data-theme="light"] .db-feat-item{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .pg-nav{background:rgba(240,242,248,0.95);border-bottom-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .pg-logo{color:#1a1830;}
+[data-theme="light"] .pg-back{color:rgba(26,24,48,0.5);background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .pc{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .pc-title{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .pf input{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:#1a1830;}
+[data-theme="light"] .pf label{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .sstat-n{color:rgba(26,24,48,0.3);}
+[data-theme="light"] .sstat-v{color:#1a1830;}
+[data-theme="light"] .sstat-d{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .stat-strip{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .sstat{border-right-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .notif-card-item{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .notif-title{color:#1a1830;}
+[data-theme="light"] .notif-desc{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .notif-time{color:rgba(26,24,48,0.35);}
+[data-theme="light"] .ftab{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .ftab.act{color:#1a1830;}
+[data-theme="light"] .filter-tabs{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .ph-drop{background:rgba(79,70,229,0.04);border-color:rgba(79,70,229,0.2);}
+[data-theme="light"] .ph-drop-title{color:#1a1830;}
+[data-theme="light"] .ph-drop-sub{color:rgba(26,24,48,0.45);}
+[data-theme="light"] .ph-step{color:rgba(26,24,48,0.35);}
+[data-theme="light"] .ph-step.act{color:#4f46e5;}
+[data-theme="light"] .ph-hist-item{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .ph-quota{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .ph-cam-btn{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:rgba(26,24,48,0.6);}
+[data-theme="light"] #toast{background:rgba(240,242,248,0.98);border-color:rgba(79,70,229,0.3);color:#4f46e5;}
+[data-theme="light"] .sum-lbl{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .pay-plan-f{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .pay-opt{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .upi-inp-wrap{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .upi-inp{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:#1a1830;}
+[data-theme="light"] .upi-app-card{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.1);color:rgba(26,24,48,0.6);}
+[data-theme="light"] .hero-grid{background-image:linear-gradient(rgba(79,70,229,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(79,70,229,0.06) 1px,transparent 1px);}
+[data-theme="light"] .theme-btn{background:rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.12);color:rgba(26,24,48,0.6);}
+[data-theme="light"] .theme-btn:hover{background:rgba(0,0,0,0.1);color:#1a1830;}
+[data-theme="light"] .theme-drop{background:#e8eaf4;border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .t-opt{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .t-opt:hover,.t-opt.act{background:rgba(0,0,0,0.06);color:#1a1830;}
+[data-theme="light"] .drw{background:var(--bg2);}
+[data-theme="light"] .dfg input{background:rgba(0,0,0,0.04);border-color:rgba(0,0,0,0.1);color:#1a1830;}
+[data-theme="light"] .dfg input::placeholder{color:rgba(26,24,48,0.3);}
+[data-theme="light"] .dfg label{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .d-welcome h2{color:#1a1830;}
+[data-theme="light"] .d-welcome p{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .or-div{color:rgba(26,24,48,0.3);}
+[data-theme="light"] .d-switch{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .psel{border-color:rgba(0,0,0,0.1);}
+[data-theme="light"] .psel .pn{color:#1a1830;}
+[data-theme="light"] .plan-feat-r{color:rgba(26,24,48,0.5);}
+[data-theme="light"] .ditem-lbl{color:#1a1830;}
+[data-theme="light"] .ditem-sub{color:rgba(26,24,48,0.4);}
+[data-theme="light"] .db-feat-prev{background:rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .db-card-h{border-bottom-color:rgba(0,0,0,0.08);}
+[data-theme="light"] .act-item{border-bottom-color:rgba(0,0,0,0.05);}
+[data-theme="light"] .hero-bg{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,70,229,0.1),transparent 60%),radial-gradient(ellipse 60% 40% at 20% 80%,rgba(124,111,255,0.06),transparent 50%);}
 
 /* LANDING NAV */
 .lp-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:66px;background:rgba(4,2,12,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.4s;}
@@ -106,35 +219,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .btn-plan-g:hover{border-color:rgba(124,111,255,0.4);color:#fff;}
 .btn-plan-s{width:100%;padding:12px;margin-top:1.5rem;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.25s;}
 .btn-plan-s:hover{filter:brightness(1.1);transform:translateY(-1px);}
-
-/* GLOBE SECTION */
-#lp-world{padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;}
-.world-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(79,70,229,0.12),transparent 65%);}
-.world-content{position:relative;z-index:2;max-width:600px;margin:0 auto;}
-.world-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;margin-bottom:1rem;background:linear-gradient(135deg,#f4f0ff,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.world-sub{color:rgba(255,255,255,0.4);font-size:1rem;line-height:1.8;margin-bottom:2.5rem;}
-.globe-wrap{width:260px;height:260px;margin:2.5rem auto 1.5rem;position:relative;display:flex;align-items:center;justify-content:center;}
-.globe-sphere{width:100px;height:100px;border-radius:50%;position:relative;z-index:2;flex-shrink:0;border:2px solid rgba(99,102,241,0.8);background:radial-gradient(ellipse at 32% 28%,rgba(167,139,250,0.55),rgba(99,102,241,0.2) 50%,transparent);animation:gPulse 2.5s ease-in-out infinite;box-shadow:0 0 25px rgba(99,102,241,0.7),0 0 60px rgba(99,102,241,0.4),inset 0 0 30px rgba(167,139,250,0.3);}
-@keyframes gPulse{0%,100%{box-shadow:0 0 25px rgba(99,102,241,0.7),0 0 60px rgba(99,102,241,0.4);}50%{box-shadow:0 0 35px rgba(99,102,241,0.9),0 0 80px rgba(99,102,241,0.55);}}
-.gr{position:absolute;top:50%;left:50%;border-radius:50%;transform-style:preserve-3d;}
-.gr1{width:150px;height:150px;margin:-75px 0 0 -75px;border:2px solid rgba(34,211,238,0.6);transform:rotateX(90deg);animation:rs1 3.5s linear infinite;}
-.gr2{width:168px;height:168px;margin:-84px 0 0 -84px;border:1.5px solid rgba(99,102,241,0.55);transform:rotateX(62deg);animation:rs2 5s linear infinite;}
-.gr3{width:186px;height:186px;margin:-93px 0 0 -93px;border:1.5px solid rgba(167,139,250,0.45);transform:rotateX(62deg) rotateZ(72deg);animation:rs3 7s linear infinite reverse;}
-.gr4{width:210px;height:210px;margin:-105px 0 0 -105px;border:1px solid rgba(99,102,241,0.3);transform:rotateX(62deg) rotateZ(144deg);animation:rs4 9s linear infinite;}
-.gr5{width:240px;height:240px;margin:-120px 0 0 -120px;border:1px solid rgba(34,211,238,0.2);transform:rotateX(62deg) rotateZ(216deg);animation:rs5 11s linear infinite reverse;}
-.gd{position:absolute;top:-6px;left:50%;transform:translateX(-50%);border-radius:50%;}
-.gd1{width:13px;height:13px;background:#22d3ee;box-shadow:0 0 8px #22d3ee,0 0 22px #22d3ee;}
-.gd2{width:12px;height:12px;background:#6366f1;box-shadow:0 0 8px #6366f1,0 0 22px #6366f1;}
-.gd3{width:10px;height:10px;background:#a78bfa;box-shadow:0 0 7px #a78bfa,0 0 18px #a78bfa;}
-.gd4{width:9px;height:9px;background:#818cf8;box-shadow:0 0 6px #818cf8;}
-.gd5{width:8px;height:8px;background:#22d3ee;box-shadow:0 0 6px #22d3ee;}
-@keyframes rs1{from{transform:rotateX(90deg) rotateZ(0)}to{transform:rotateX(90deg) rotateZ(360deg)}}
-@keyframes rs2{from{transform:rotateX(62deg) rotateZ(0)}to{transform:rotateX(62deg) rotateZ(360deg)}}
-@keyframes rs3{from{transform:rotateX(62deg) rotateZ(72deg)}to{transform:rotateX(62deg) rotateZ(432deg)}}
-@keyframes rs4{from{transform:rotateX(62deg) rotateZ(144deg)}to{transform:rotateX(62deg) rotateZ(504deg)}}
-@keyframes rs5{from{transform:rotateX(62deg) rotateZ(216deg)}to{transform:rotateX(62deg) rotateZ(576deg)}}
-.enter-btn{background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;border:none;padding:16px 44px;border-radius:50px;font-family:'Orbitron',monospace;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 32px rgba(79,70,229,0.4);}
-.enter-btn:hover{transform:translateY(-3px);filter:brightness(1.1);}
 
 /* FOOTER */
 .lp-footer{border-top:1px solid rgba(255,255,255,0.06);padding:2rem;text-align:center;font-size:0.8rem;color:rgba(255,255,255,0.2);font-family:'Syne',sans-serif;position:relative;z-index:10;}
@@ -249,7 +333,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .pg-back{display:flex;align-items:center;gap:8px;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.07);padding:8px 18px;border-radius:50px;cursor:pointer;transition:all 0.2s;}
 .pg-back:hover{color:#b8aaff;border-color:rgba(124,111,255,0.3);}
 
-/* PROFILE PAGE */
+/* PROFILE */
 #profile-page{display:none;min-height:100vh;background:var(--bg);}
 .hero-band{height:180px;background:linear-gradient(135deg,#0d0824,#12083a,#0a0620);border-bottom:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;}
 .band-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,111,255,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(124,111,255,0.07) 1px,transparent 1px);background-size:50px 50px;}
@@ -269,8 +353,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .atag-pro{background:rgba(124,111,255,0.15);color:#b8aaff;border:1px solid rgba(124,111,255,0.2);}
 .atag-g{background:rgba(0,229,160,0.1);color:#00e5a0;border:1px solid rgba(0,229,160,0.15);}
 .atag-c{background:rgba(0,212,255,0.1);color:#00d4ff;border:1px solid rgba(0,212,255,0.15);}
-
-/* STAT STRIP — Photo Scans, 3D Models, Exports, Storage (NO 3D Worlds) */
 .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;max-width:900px;margin:1.5rem auto 0;padding:0 2rem;}
 .sstat{padding:1.2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,0.06);}
 .sstat:last-child{border-right:none;}
@@ -323,7 +405,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .modal-cancel{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;}
 .modal-del{flex:1;background:#ff3d6b;border:none;color:#fff;padding:11px;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;}
 
-/* PAYMENT PAGE */
+/* PAYMENT */
 #payment-page{display:none;min-height:100vh;background:var(--bg);}
 .secure-bar{background:rgba(0,229,160,0.06);border-bottom:1px solid rgba(0,229,160,0.1);padding:8px 2rem;text-align:center;font-size:0.72rem;font-weight:700;color:#00e5a0;letter-spacing:0.12em;display:flex;align-items:center;justify-content:center;gap:8px;}
 .pay-wrap{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start;}
@@ -344,14 +426,11 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .pay-plan-per{font-size:0.7rem;color:rgba(255,255,255,0.3);text-align:right;}
 .badge-free{background:rgba(0,229,160,0.12);color:#00e5a0;border:1px solid rgba(0,229,160,0.2);font-size:0.65rem;font-weight:800;padding:3px 10px;border-radius:50px;}
 .badge-pop{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#4f46e5,#7c6fff);color:#fff;font-size:0.62rem;font-weight:800;padding:3px 10px;border-radius:50px;}
-
-/* UPI APPS — Real SVG logos, grid layout */
 .upi-apps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;margin-bottom:1rem;}
 .upi-app-card{background:rgba(255,255,255,0.035);border:2px solid rgba(255,255,255,0.07);border-radius:14px;padding:0.9rem 0.5rem;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:all 0.2s;font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.55);}
 .upi-app-card:hover{border-color:rgba(124,111,255,0.3);background:rgba(255,255,255,0.06);}
 .upi-app-card.sel{border-color:#7c6fff;background:rgba(124,111,255,0.08);color:#b8aaff;}
 .upi-app-card svg{width:36px;height:36px;}
-
 .upi-lbl{font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.8rem;}
 .upi-inp-wrap{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:1.2rem;}
 .upi-inp{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#f4f0ff;padding:11px 14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;outline:none;transition:all 0.2s;min-width:0;}
@@ -429,7 +508,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 .ph-hist-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#1a1040,#2d1a6e);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
 .ph-hist-badge{margin-left:auto;font-size:0.65rem;font-weight:800;padding:3px 9px;border-radius:50px;flex-shrink:0;}
 
-/* NOTIFICATIONS PAGE */
+/* NOTIF */
 #notif-page{display:none;min-height:100vh;background:var(--bg);}
 .notif-wrap{max-width:720px;margin:0 auto;padding:2rem 1.5rem;}
 .notif-card-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;margin-bottom:8px;}
@@ -490,14 +569,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 <canvas id="bgCanvas"></canvas>
 <div id="toast"></div>
 
-<!-- ===== LANDING PAGE ===== -->
+<!-- ===== LANDING ===== -->
 <div id="landing">
 <nav class="lp-nav" id="lpNav">
   <div class="lp-logo">3D<span class="dot">.</span>AI</div>
   <ul class="lp-nav-links">
     <li><a onclick="goSection('lp-how')">How it Works</a></li>
     <li><a onclick="goSection('lp-pricing')">Pricing</a></li>
-    <li><a onclick="goSection('lp-world')">Enter World</a></li>
   </ul>
   <div class="lp-nav-r">
     <div class="theme-wrap">
@@ -575,6 +653,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </section>
 
+<!-- PRICING -->
 <section id="lp-pricing" style="padding:8rem 2rem;text-align:center;position:relative;z-index:10;">
   <div class="sec-tag" style="justify-content:center">Pricing</div>
   <h2 class="sec-title" style="text-align:center">Simple, Transparent Plans</h2>
@@ -623,23 +702,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   </div>
 </section>
 
-<section id="lp-world" style="padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;z-index:10;">
-  <div class="world-bg"></div>
-  <div class="world-content">
-    <div class="sec-tag" style="justify-content:center">Enter</div>
-    <h2 class="world-title">Log In to Get Started</h2>
-    <p class="world-sub">Join thousands of creators already converting photos to stunning 3D models with AI.</p>
-    <div class="globe-wrap">
-      <div class="globe-sphere"></div>
-      <div class="gr gr1"><div class="gd gd1"></div></div>
-      <div class="gr gr2"><div class="gd gd2"></div></div>
-      <div class="gr gr3"><div class="gd gd3"></div></div>
-      <div class="gr gr4"><div class="gd gd4"></div></div>
-      <div class="gr gr5"><div class="gd gd5"></div></div>
-    </div>
-    <button class="enter-btn" onclick="openDrawer('login')">📸 Start Converting Photos</button>
-  </div>
-</section>
+<!-- ❌ "Log In to Get Started" section HATA DIYA -->
 
 <footer class="lp-footer">
   <strong>3D.AI</strong> &nbsp;·&nbsp; © 2026 All Rights Reserved &nbsp;·&nbsp;
@@ -647,7 +710,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 </footer>
 </div>
 
-<!-- ===== LOGIN/SIGNUP DRAWER ===== -->
+<!-- ===== DRAWER ===== -->
 <div class="drw-ov" id="drwOv" onclick="ovClose(event)">
   <div class="drw">
     <div class="drw-head">
@@ -775,7 +838,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 </div>
 </div>
 
-<!-- ===== PROFILE PAGE ===== -->
+<!-- ===== PROFILE ===== -->
 <div id="profile-page">
 <nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
 <div class="hero-band"><div class="band-grid"></div></div>
@@ -795,7 +858,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
 </div>
-<!-- STAT STRIP: Photo Scans, 3D Models, Exports, Storage — NO 3D Worlds -->
 <div class="stat-strip">
   <div class="sstat"><div class="sstat-n">Photo Scans</div><div class="sstat-v">48</div><div class="sstat-d">Total</div></div>
   <div class="sstat"><div class="sstat-n">3D Models</div><div class="sstat-v">48</div><div class="sstat-d">Created</div></div>
@@ -864,87 +926,37 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 </div>
 </div>
 
-<!-- ===== PAYMENT PAGE ===== -->
+<!-- ===== PAYMENT ===== -->
 <div id="payment-page">
-<nav class="pg-nav">
-  <div class="pg-logo">3D<em>.</em>AI</div>
-  <div class="pg-back" onclick="showPage('dashboard')">← Back</div>
-</nav>
+<nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Back</div></nav>
 <div class="secure-bar">🔒 &nbsp;100% Secure Payment &nbsp;·&nbsp; SSL Encrypted &nbsp;·&nbsp; Powered by Razorpay</div>
 <div class="pay-wrap">
   <div>
     <div class="pay-step-lbl">Step 1 of 2</div>
     <div class="pay-step-title">Choose Your Plan</div>
     <div class="pay-plans">
-      <div class="pay-opt" id="pp-free" onclick="selPayPlan('free')">
-        <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">🆓 Free</div><div class="pay-plan-f">3 generations · Basic textures · Browser viewer · 10 scans/day</div></div>
-        <div><div class="badge-free">FREE</div></div>
-      </div>
-      <div class="pay-opt" id="pp-basic" onclick="selPayPlan('basic')">
-        <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">📦 Basic</div><div class="pay-plan-f">20 generations · HD textures · Photo 3D Unlimited · GLB export</div></div>
-        <div><div class="pay-plan-amt">₹299</div><div class="pay-plan-per">/month</div></div>
-      </div>
-      <div class="pay-opt sel" id="pp-pro" onclick="selPayPlan('pro')">
-        <div class="badge-pop">POPULAR</div>
-        <div class="pay-radio"></div>
-        <div style="flex:1"><div class="pay-plan-n">⭐ Pro</div><div class="pay-plan-f">Unlimited generations · 4K textures · VR+AR · Photo 3D Unlimited</div></div>
-        <div><div class="pay-plan-amt">₹999</div><div class="pay-plan-per">/month</div></div>
-      </div>
+      <div class="pay-opt" id="pp-free" onclick="selPayPlan('free')"><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">🆓 Free</div><div class="pay-plan-f">3 generations · Basic textures · 10 scans/day</div></div><div><div class="badge-free">FREE</div></div></div>
+      <div class="pay-opt" id="pp-basic" onclick="selPayPlan('basic')"><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">📦 Basic</div><div class="pay-plan-f">20 generations · HD textures · Photo 3D Unlimited · GLB export</div></div><div><div class="pay-plan-amt">₹299</div><div class="pay-plan-per">/month</div></div></div>
+      <div class="pay-opt sel" id="pp-pro" onclick="selPayPlan('pro')"><div class="badge-pop">POPULAR</div><div class="pay-radio"></div><div style="flex:1"><div class="pay-plan-n">⭐ Pro</div><div class="pay-plan-f">Unlimited · 4K textures · VR+AR · Photo 3D Unlimited</div></div><div><div class="pay-plan-amt">₹999</div><div class="pay-plan-per">/month</div></div></div>
     </div>
-    <div id="upi-h" style="display:none;margin-bottom:1rem;">
-      <div class="pay-step-lbl">Step 2 of 2</div>
-      <div class="pay-step-title">Pay with UPI</div>
-    </div>
+    <div id="upi-h" style="display:none;margin-bottom:1rem;"><div class="pay-step-lbl">Step 2 of 2</div><div class="pay-step-title">Pay with UPI</div></div>
     <div id="upi-s" style="display:none;margin-bottom:1.5rem;">
       <div class="upi-lbl">Select UPI App</div>
-      <!-- REAL UPI LOGOS - SVG -->
       <div class="upi-apps-grid">
-        <!-- Google Pay -->
         <div class="upi-app-card sel" id="ua-gp" onclick="selApp('gp')">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#4285F4" d="M24 9.5c3.9 0 6.7 1.7 8.2 3.1l6.1-6.1C34.5 3.1 29.8 1 24 1 14.8 1 7 6.7 3.7 14.6l7.1 5.5C12.5 13.6 17.8 9.5 24 9.5z"/>
-            <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-2.8-.4-4H24v7.6h12.5c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.3-4 6.8-9.9 7-16.5z"/>
-            <path fill="#FBBC05" d="M10.8 28.6c-.5-1.3-.7-2.7-.7-4.1s.3-2.8.7-4.1l-7.1-5.5C2.1 17.6 1 20.7 1 24s1.1 6.4 2.7 9.1l7.1-4.5z"/>
-            <path fill="#EA4335" d="M24 47c5.8 0 10.7-1.9 14.3-5.2l-7.4-5.7c-1.9 1.3-4.4 2.1-6.9 2.1-6.2 0-11.5-4.1-13.2-9.7l-7.1 4.5C7 40.3 14.8 47 24 47z"/>
-          </svg>
+          <svg viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.9 0 6.7 1.7 8.2 3.1l6.1-6.1C34.5 3.1 29.8 1 24 1 14.8 1 7 6.7 3.7 14.6l7.1 5.5C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.5c0-1.6-.1-2.8-.4-4H24v7.6h12.5c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.3-4 6.8-9.9 7-16.5z"/><path fill="#FBBC05" d="M10.8 28.6c-.5-1.3-.7-2.7-.7-4.1s.3-2.8.7-4.1l-7.1-5.5C2.1 17.6 1 20.7 1 24s1.1 6.4 2.7 9.1l7.1-4.5z"/><path fill="#EA4335" d="M24 47c5.8 0 10.7-1.9 14.3-5.2l-7.4-5.7c-1.9 1.3-4.4 2.1-6.9 2.1-6.2 0-11.5-4.1-13.2-9.7l-7.1 4.5C7 40.3 14.8 47 24 47z"/></svg>
           <span>GPay</span>
         </div>
-        <!-- PhonePe -->
         <div class="upi-app-card" id="ua-pp" onclick="selApp('pp')">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="48" rx="10" fill="#5f259f"/>
-            <path fill="#fff" d="M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16c2.2 0 4.3-.4 6.2-1.2v-5.4c-1.8.9-3.9 1.4-6.2 1.4-6.1 0-11-4.9-11-11s4.9-11 11-11c3.9 0 7.3 2 9.3 5h-5.8v5.2h12.8V14C38 10.7 31.5 8 24 8z"/>
-          </svg>
+          <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#5f259f"/><path fill="#fff" d="M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16c2.2 0 4.3-.4 6.2-1.2v-5.4c-1.8.9-3.9 1.4-6.2 1.4-6.1 0-11-4.9-11-11s4.9-11 11-11c3.9 0 7.3 2 9.3 5h-5.8v5.2h12.8V14C38 10.7 31.5 8 24 8z"/></svg>
           <span>PhonePe</span>
         </div>
-        <!-- Paytm -->
         <div class="upi-app-card" id="ua-pt" onclick="selApp('pt')">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="48" rx="10" fill="#00B9F1"/>
-            <rect x="6" y="18" width="36" height="12" rx="2" fill="#fff"/>
-            <text x="24" y="28" text-anchor="middle" font-family="Arial" font-weight="900" font-size="9" fill="#00B9F1">PAYTM</text>
-          </svg>
+          <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10" fill="#00B9F1"/><rect x="6" y="18" width="36" height="12" rx="2" fill="#fff"/><text x="24" y="28" text-anchor="middle" font-family="Arial" font-weight="900" font-size="9" fill="#00B9F1">PAYTM</text></svg>
           <span>Paytm</span>
         </div>
-        <!-- BHIM -->
         <div class="upi-app-card" id="ua-bh" onclick="selApp('bh')">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <rect width="48" height="16" fill="#FF9933"/>
-            <rect y="16" width="48" height="16" fill="#fff"/>
-            <rect y="32" width="48" height="16" fill="#138808"/>
-            <circle cx="24" cy="24" r="6" fill="none" stroke="#000080" stroke-width="1.2"/>
-            <circle cx="24" cy="24" r="1.2" fill="#000080"/>
-            <g stroke="#000080" stroke-width="0.6">
-              <line x1="24" y1="18" x2="24" y2="30"/>
-              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(30 24 24)"/>
-              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(60 24 24)"/>
-              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(90 24 24)"/>
-              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(120 24 24)"/>
-              <line x1="24" y1="18" x2="24" y2="30" transform="rotate(150 24 24)"/>
-            </g>
-          </svg>
+          <svg viewBox="0 0 48 48"><rect width="48" height="16" fill="#FF9933"/><rect y="16" width="48" height="16" fill="#fff"/><rect y="32" width="48" height="16" fill="#138808"/><circle cx="24" cy="24" r="6" fill="none" stroke="#000080" stroke-width="1.2"/><circle cx="24" cy="24" r="1.2" fill="#000080"/><g stroke="#000080" stroke-width="0.6"><line x1="24" y1="18" x2="24" y2="30"/><line x1="24" y1="18" x2="24" y2="30" transform="rotate(30 24 24)"/><line x1="24" y1="18" x2="24" y2="30" transform="rotate(60 24 24)"/><line x1="24" y1="18" x2="24" y2="30" transform="rotate(90 24 24)"/><line x1="24" y1="18" x2="24" y2="30" transform="rotate(120 24 24)"/><line x1="24" y1="18" x2="24" y2="30" transform="rotate(150 24 24)"/></g></svg>
           <span>BHIM</span>
         </div>
       </div>
@@ -981,14 +993,14 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,0.15),transparent 65%);pointer-events:none;"></div>
   <div class="suc-ring">✓</div>
   <div class="suc-title">Payment Successful!</div>
-  <div style="font-size:1rem;color:rgba(255,255,255,0.4);max-width:380px;line-height:1.7;margin-bottom:0.5rem;position:relative;z-index:1;">Aapka plan activate ho gaya! 3D.AI ke saath apni journey shuru karo!</div>
+  <div style="font-size:1rem;color:rgba(255,255,255,0.4);max-width:380px;line-height:1.7;margin-bottom:0.5rem;position:relative;z-index:1;">Aapka plan activate ho gaya!</div>
   <div id="sucPlan" style="font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#b8aaff;background:rgba(124,111,255,0.1);border:1px solid rgba(124,111,255,0.2);padding:8px 20px;border-radius:50px;margin:0.8rem 0 1.5rem;position:relative;z-index:1;">⭐ Pro Plan Activated</div>
   <div id="sucTxn" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.2);margin-bottom:2rem;position:relative;z-index:1;"></div>
   <button class="suc-btn" onclick="showPage('dashboard')">🚀 Enter Dashboard</button>
 </div>
 </div>
 
-<!-- ===== PHOTO → 3D PAGE ===== -->
+<!-- ===== PHOTO → 3D ===== -->
 <div id="photo-page">
 <nav class="pg-nav">
   <div class="ph-nav-title">📸 Photo <span>→</span> 3D</div>
@@ -1005,11 +1017,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
       <input type="file" id="phFile" accept="image/*" style="display:none" onchange="phFileSelect(this)">
     </div>
     <button class="ph-cam-btn" onclick="toggleCam()">📷 &nbsp;Use Camera — Live Photo</button>
-    <div id="ph-camview">
-      <video id="ph-video" autoplay playsinline></video>
-      <button class="ph-snap" onclick="snapPhoto()">📸</button>
-      <button class="ph-cam-close" onclick="closeCam()">✕</button>
-    </div>
+    <div id="ph-camview"><video id="ph-video" autoplay playsinline></video><button class="ph-snap" onclick="snapPhoto()">📸</button><button class="ph-cam-close" onclick="closeCam()">✕</button></div>
     <div id="ph-preview">
       <img id="ph-prev-img" src="" alt="preview">
       <div class="ph-prev-ov">
@@ -1039,7 +1047,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
             <button class="ph-exp-btn prim" onclick="showToast('⬇ Downloading GLB...','#00e5a0')">⬇ GLB</button>
             <button class="ph-exp-btn" onclick="showToast('⬇ Downloading FBX...','#00e5a0')">⬇ FBX</button>
             <button class="ph-exp-btn" onclick="showToast('⬇ Downloading OBJ...','#00e5a0')">⬇ OBJ</button>
-            <button class="ph-exp-btn" onclick="showToast('✓ Saved to My Models!','#00e5a0')">💾 Save</button>
+            <button class="ph-exp-btn" onclick="showToast('✓ Saved!','#00e5a0')">💾 Save</button>
           </div>
         </div>
       </div>
@@ -1060,7 +1068,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 </div>
 </div>
 
-<!-- ===== NOTIFICATIONS PAGE ===== -->
+<!-- ===== NOTIFICATIONS ===== -->
 <div id="notif-page">
 <nav class="pg-nav"><div class="pg-logo">3D<em>.</em>AI</div><div class="pg-back" onclick="showPage('dashboard')">← Dashboard</div></nav>
 <div class="notif-wrap">
@@ -1081,18 +1089,11 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
     </div>
   </div>
   <div id="notifList">
-    <!-- 3D Model Ready - RAKHA -->
     <div class="notif-card-item unread" data-type="model"><div class="notif-ico-w" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)">✅</div><div style="flex:1"><div class="notif-title">3D Model Ready — Sneaker Scan</div><div class="notif-desc">Aapka "Nike Air Max" ka 3D model successfully generate ho gaya. 48,291 polygons, HD textures ready.</div><div class="notif-time">2 minutes ago · 3D MODEL</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <!-- World Generation — REMOVED -->
-    <!-- Pro Plan Offer - RAKHA -->
     <div class="notif-card-item unread" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎁</div><div style="flex:1"><div class="notif-title">Pro Plan — 30% Off This Week!</div><div class="notif-desc">Sirf aapke liye special offer — Pro plan pe ₹300 off. Unlimited generations, 4K textures.</div><div class="notif-time">1 hour ago · OFFER</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <!-- Daily Limit - RAKHA -->
-    <div class="notif-card-item unread" data-type="system"><div class="notif-ico-w" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)">⚡</div><div style="flex:1"><div class="notif-title">Daily Limit — 8/10 Used</div><div class="notif-desc">Aaj 8 Photo→3D generations use ho gayi. Sirf 2 aur baaki hain. Pro upgrade karoge toh unlimited milega.</div><div class="notif-time">3 hours ago · USAGE</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <!-- Export - RAKHA -->
+    <div class="notif-card-item unread" data-type="system"><div class="notif-ico-w" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)">⚡</div><div style="flex:1"><div class="notif-title">Daily Limit — 8/10 Used</div><div class="notif-desc">Aaj 8 Photo→3D generations use ho gayi. Sirf 2 aur baaki hain.</div><div class="notif-time">3 hours ago · USAGE</div></div><div class="unread-dot"></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
     <div class="notif-card-item" data-type="model"><div class="notif-ico-w" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2)">📸</div><div style="flex:1"><div class="notif-title">Export Successful — Guitar Model</div><div class="notif-desc">guitar_ref.glb export ho gaya. File size: 6.8 MB.</div><div class="notif-time">Yesterday · EXPORT</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <!-- Security - RAKHA -->
     <div class="notif-card-item" data-type="system"><div class="notif-ico-w" style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2)">🔒</div><div style="flex:1"><div class="notif-title">New Device Login Detected</div><div class="notif-desc">Chrome on Windows se login hua. Agar yeh aap nahi the toh password change karo.</div><div class="notif-time">Yesterday · SECURITY</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
-    <!-- Welcome - RAKHA, updated text -->
     <div class="notif-card-item" data-type="promo"><div class="notif-ico-w" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2)">🎉</div><div style="flex:1"><div class="notif-title">Welcome to 3D.AI!</div><div class="notif-desc">Aapka account create ho gaya. Pehle 3 Photo→3D scans bilkul free hain!</div><div class="notif-time">7 days ago · WELCOME</div></div><button class="notif-dismiss" onclick="dismissN(this)">✕</button></div>
   </div>
   <div style="margin-top:2rem;">
@@ -1107,9 +1108,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
 </div>
 </div>
 
-<!-- ===== JAVASCRIPT ===== -->
 <script>
-// BG CANVAS
 (function(){
   const c=document.getElementById('bgCanvas'),ctx=c.getContext('2d');
   function resize(){c.width=innerWidth;c.height=innerHeight;}
@@ -1132,10 +1131,8 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overfl
   draw();
 })();
 
-// NAV SCROLL
 window.addEventListener('scroll',()=>document.getElementById('lpNav')?.classList.toggle('scrolled',window.scrollY>40));
 
-// THEME
 function toggleThemeDrop(e){e.stopPropagation();document.getElementById('themeDrop').classList.toggle('open');}
 document.addEventListener('click',()=>document.getElementById('themeDrop')?.classList.remove('open'));
 function setTheme(t,ico,el){
@@ -1147,10 +1144,7 @@ function setTheme(t,ico,el){
   localStorage.setItem('3dai-t',t);localStorage.setItem('3dai-i',ico);
 }
 (()=>{const t=localStorage.getItem('3dai-t'),i=localStorage.getItem('3dai-i');if(t){document.documentElement.setAttribute('data-theme',t);if(i)document.getElementById('themeIco').textContent=i;}})();
-
 function goSection(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
-
-// DRAWER
 function openDrawer(tab){document.getElementById('drwOv').classList.add('open');switchTab(tab);}
 function closeDrawer(){document.getElementById('drwOv').classList.remove('open');}
 function ovClose(e){if(e.target===document.getElementById('drwOv'))closeDrawer();}
@@ -1161,11 +1155,8 @@ function switchTab(t){
   document.getElementById('panel-'+t).classList.add('act');
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
-
 let selPlanVal='free';
 function selPlan(p){selPlanVal=p;['free','basic','pro'].forEach(x=>document.getElementById('ps-'+x)?.classList.remove('sel'));document.getElementById('ps-'+p)?.classList.add('sel');}
-
-// AUTH
 function doGoogle(){document.querySelectorAll('.g-btn').forEach(b=>{b.innerHTML='⏳ Connecting...';b.disabled=true;});setTimeout(enterDashboard,1500);}
 function doLogin(){
   const btn=document.querySelector('#panel-login .d-submit');
@@ -1179,32 +1170,22 @@ function doSignup(){
   if(!n||!e||!p){btn.style.background='#ff3d6b';btn.textContent='⚠️ Fill all fields!';setTimeout(()=>{btn.style.background='';btn.textContent='✦ Create My Account';},1500);return;}
   btn.textContent='⏳ Creating...';btn.disabled=true;setTimeout(enterDashboard,1800);
 }
-
-// PAGE NAVIGATION
 const ALL_PAGES=['landing','dashboard','profile-page','payment-page','photo-page','notif-page'];
 function hideAll(){ALL_PAGES.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});}
 function enterDashboard(){closeDrawer();hideAll();document.getElementById('dashboard').style.display='block';window.scrollTo(0,0);}
 function showPage(key){
   hideAll();window.scrollTo(0,0);
   const map={dashboard:'dashboard',profile:'profile-page',payment:'payment-page',photo:'photo-page',notif:'notif-page'};
-  if(map[key]){
-    document.getElementById(map[key]).style.display='block';
-    if(key==='payment')initPaySummary();
-    return;
-  }
+  if(map[key]){document.getElementById(map[key]).style.display='block';if(key==='payment')initPaySummary();return;}
   document.getElementById('dashboard').style.display='block';
   showToast('🚧 '+key+' — coming soon!','#b8aaff');
 }
-
-// TOAST
 function showToast(msg,col='#b8aaff'){
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.color=col;t.style.borderColor=col+'55';
   t.style.opacity='1';clearTimeout(t._to);
   t._to=setTimeout(()=>t.style.opacity='0',2800);
 }
-
-// PROFILE
 function saveProfile(){
   document.getElementById('dispName').textContent=document.getElementById('fname').value.trim()||'Ujjwal';
   document.getElementById('dispEmail').textContent=document.getElementById('femail').value.trim();
@@ -1239,8 +1220,6 @@ function deleteAcc(){
   showToast('Account deleted.','#ff3d6b');
   setTimeout(()=>{hideAll();document.getElementById('landing').style.display='block';},2200);
 }
-
-// PAYMENT
 const planData={
   free: {name:'Free Plan',ico:'🆓',price:0,gst:0,total:0,feats:['3 Photo → 3D Conversions','Basic Textures','Browser Viewer','Community Support','10 Scans/day']},
   basic:{name:'Basic Plan',ico:'📦',price:299,gst:54,total:353,feats:['20 Photo → 3D Conversions','HD Textures','GLB Export','Email Support','Unlimited Scans/day']},
@@ -1305,8 +1284,6 @@ function launchConfetti(){
     document.body.appendChild(el);setTimeout(()=>el.remove(),4000);
   }
 }
-
-// PHOTO TO 3D
 let phStream=null;
 function phDragOver(e){e.preventDefault();document.getElementById('phDrop').classList.add('drag');}
 function phDragLeave(){document.getElementById('phDrop').classList.remove('drag');}
@@ -1373,7 +1350,6 @@ function initCubeCanvas(){
   const V=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
   const F=[[4,5,6,7],[0,1,2,3],[0,4,7,3],[1,5,6,2],[3,7,6,2],[0,4,5,1]];
   const C=['rgba(124,111,255,0.7)','rgba(79,70,229,0.6)','rgba(99,102,241,0.65)','rgba(167,139,250,0.6)','rgba(60,50,180,0.7)','rgba(140,120,255,0.65)'];
-  const S=Math.min(W,H)*0.22;
   function ry(v,a){return[v[0]*Math.cos(a)-v[2]*Math.sin(a),v[1],v[0]*Math.sin(a)+v[2]*Math.cos(a)];}
   function rx(v,a){return[v[0],v[1]*Math.cos(a)-v[2]*Math.sin(a),v[1]*Math.sin(a)+v[2]*Math.cos(a)];}
   function prj(v){const fov=W*0.5,dz=v[2]+3.5;return{x:cx+v[0]*fov/dz,y:cy+v[1]*fov/dz};}
@@ -1397,8 +1373,6 @@ function initCubeCanvas(){
   }
   draw();
 }
-
-// NOTIFICATIONS
 function filterN(tab,type){
   document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('act'));tab.classList.add('act');
   document.querySelectorAll('#notifList .notif-card-item').forEach(c=>{c.style.display=(type==='all'||c.dataset.type===type)?'flex':'none';});
